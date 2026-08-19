@@ -8,7 +8,6 @@ import {
   Globe,
   CalendarDays,
   MapPin,
-  Star,
   BookOpen,
   Building2,
 } from "lucide-react";
@@ -372,13 +371,13 @@ function ForBusiness() {
           </a>
         </div>
         <div className="flex-1">
-          <div className="w-full h-[480px] rounded-2xl bg-gradient-to-br from-section via-peach/30 to-warm flex items-center justify-center">
-            <div className="text-center">
-              <Building2 className="w-16 h-16 text-plum/20 mx-auto mb-4" />
-              <p className="text-[15px] text-foreground/25 font-medium">
-                Business Dashboard Preview
-              </p>
-            </div>
+          <div className="w-full h-[480px] rounded-2xl overflow-hidden relative">
+            <img
+              src="/images/resort.jpg"
+              alt="Luxury resort view with palm trees and ocean"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
           </div>
         </div>
       </div>
@@ -449,13 +448,13 @@ function Marketplace() {
           </a>
         </div>
         <div className="flex-1">
-          <div className="w-full h-[540px] rounded-2xl bg-gradient-to-br from-section via-peach/30 to-warm flex items-center justify-center">
-            <div className="text-center">
-              <Star className="w-16 h-16 text-plum/20 mx-auto mb-4" />
-              <p className="text-[15px] text-foreground/25 font-medium">
-                Agent Profile & Marketplace
-              </p>
-            </div>
+          <div className="w-full h-[540px] rounded-2xl overflow-hidden relative">
+            <img
+              src="/images/yacht-friends.jpg"
+              alt="Friends enjoying a yacht trip together"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
           </div>
         </div>
       </div>
@@ -600,16 +599,27 @@ function Pricing() {
 }
 
 function GalleryPause() {
+  const destinations = [
+    { label: "Bali Retreat", image: "/images/bali.jpg" },
+    { label: "Beach Escape", image: "/images/beach.jpg" },
+    { label: "Lisbon Adventure", image: "/images/lisbon.jpg" },
+  ];
   return (
     <section className="px-20 py-24 max-w-[1440px] mx-auto">
       <div className="grid grid-cols-3 gap-6">
-        {["Bali Retreat", "Tulum Offsite", "Amalfi Coast"].map((dest) => (
+        {destinations.map((dest) => (
           <div
-            key={dest}
-            className="aspect-[411/320] rounded-2xl bg-gradient-to-br from-section via-peach/20 to-warm flex items-center justify-center"
+            key={dest.label}
+            className="aspect-[411/320] rounded-2xl overflow-hidden relative group"
           >
-            <span className="text-[14px] text-foreground/20 font-medium">
-              {dest}
+            <img
+              src={dest.image}
+              alt={dest.label}
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
+            <span className="absolute bottom-6 left-6 text-[16px] text-white font-semibold">
+              {dest.label}
             </span>
           </div>
         ))}
@@ -750,6 +760,24 @@ export default function Home() {
       <DashboardMockup />
       <Features />
       <Testimonials />
+      <section className="px-20 max-w-[1440px] mx-auto">
+        <div className="w-full h-[400px] rounded-2xl overflow-hidden relative">
+          <img
+            src="/images/lisbon-evening.jpg"
+            alt="Evening in a charming European city"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+          <div className="absolute bottom-10 left-10">
+            <p className="text-white/80 text-[13px] font-medium tracking-wider uppercase mb-2">
+              Your Next Adventure Awaits
+            </p>
+            <p className="font-serif text-white text-[32px] font-medium">
+              Every trip tells a story
+            </p>
+          </div>
+        </div>
+      </section>
       <ForBusiness />
       <Marketplace />
       <AIVision />
