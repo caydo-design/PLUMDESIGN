@@ -39,6 +39,9 @@ function Navbar() {
         <a href="#pricing" className="hover:text-foreground transition-colors">
           Pricing
         </a>
+        <a href="/brand" className="hover:text-foreground transition-colors">
+          Our Brand
+        </a>
       </div>
       <a
         href="#demo"
