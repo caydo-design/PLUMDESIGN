@@ -1,5 +1,9 @@
+import { ArrowRight, Check, Globe, Sparkles, Users } from "lucide-react";
 import {
   BackNavbar,
+  Button,
+  Badge,
+  Card,
   Logo,
   Section,
   SectionLabel,
@@ -316,145 +320,250 @@ function DesignPrinciples() {
   );
 }
 
-function UIElements() {
+function ComponentShowcase({
+  title,
+  code,
+  children,
+}: {
+  title: string;
+  code: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="rounded-2xl border border-warm/60 overflow-hidden">
+      <div className="p-8 flex items-center flex-wrap gap-4">{children}</div>
+      <div className="border-t border-warm/40 bg-foreground/[0.02] px-8 py-4 flex items-start justify-between gap-4">
+        <code className="text-[12px] text-foreground/40 font-mono leading-relaxed whitespace-pre-wrap">
+          {code}
+        </code>
+        <span className="text-[11px] font-medium text-foreground/20 tracking-wider uppercase flex-shrink-0">
+          {title}
+        </span>
+      </div>
+    </div>
+  );
+}
+
+function ComponentLibrary() {
   return (
     <Section>
-      <SectionLabel style="dot">UI Components</SectionLabel>
-      <SectionHeading className="mb-16 max-w-[600px]">
-        Component patterns
+      <SectionLabel style="dot">Component Library</SectionLabel>
+      <SectionHeading className="mb-6 max-w-[700px]">
+        Live components from our design system
       </SectionHeading>
-      <div className="grid grid-cols-2 gap-8">
-        <div className="rounded-2xl border border-warm/60 p-10">
-          <h4 className="text-[13px] font-medium tracking-[1.5px] uppercase text-foreground/30 mb-8">
-            Buttons
-          </h4>
-          <div className="space-y-6">
-            <div className="flex items-center gap-4">
-              <div className="px-7 py-3 rounded-full bg-plum text-white text-[15px] font-semibold">
-                Primary Action
+      <p className="text-[16px] text-foreground/50 leading-relaxed max-w-[560px] mb-16">
+        Every component below is rendered from{" "}
+        <code className="text-[14px] font-mono text-plum bg-plum/5 px-1.5 py-0.5 rounded">
+          @/components/ui
+        </code>
+        . Import and use them across any page.
+      </p>
+
+      <div className="space-y-6">
+        <ComponentShowcase
+          title="Button"
+          code={`<Button>Start Planning</Button>\n<Button variant="secondary">Book a Demo</Button>\n<Button variant="accent">Subscribe</Button>\n<Button variant="ghost" size="sm">Filter</Button>`}
+        >
+          <Button>Start Planning</Button>
+          <Button variant="secondary">
+            Book a Demo
+            <ArrowRight className="w-3.5 h-3.5" />
+          </Button>
+          <Button variant="accent">Subscribe</Button>
+          <Button variant="ghost" size="sm">
+            Filter
+          </Button>
+        </ComponentShowcase>
+
+        <ComponentShowcase
+          title="Badge"
+          code={`<Badge>12 Guests</Badge>\n<Badge variant="sienna">New</Badge>\n<Badge variant="lavender">Agent</Badge>\n<Badge variant="neutral">Draft</Badge>`}
+        >
+          <Badge>12 Guests Confirmed</Badge>
+          <Badge variant="sienna">New</Badge>
+          <Badge variant="lavender">Agent Pro</Badge>
+          <Badge variant="neutral">Draft</Badge>
+        </ComponentShowcase>
+
+        <div className="grid grid-cols-2 gap-6">
+          <ComponentShowcase
+            title="Logo · Variants"
+            code={`<Logo />                  // dark, md\n<Logo variant="light" />  // on dark bg\n<Logo size="sm" />        // compact\n<Logo showText={false} /> // icon only`}
+          >
+            <div className="flex items-center gap-8 flex-wrap">
+              <Logo />
+              <div className="bg-foreground rounded-xl px-5 py-3">
+                <Logo variant="light" />
               </div>
-              <span className="text-[12px] text-foreground/30">
-                bg-plum, text-white, pill
-              </span>
+              <Logo size="sm" />
+              <Logo showText={false} />
             </div>
-            <div className="flex items-center gap-4">
-              <div className="px-7 py-3 rounded-full border-2 border-foreground text-foreground text-[15px] font-semibold">
-                Secondary Action
-              </div>
-              <span className="text-[12px] text-foreground/30">
-                border-foreground, pill
-              </span>
+          </ComponentShowcase>
+
+          <ComponentShowcase
+            title="Logo · Sizes"
+            code={`<Logo size="sm" />\n<Logo size="md" />\n<Logo size="lg" />`}
+          >
+            <div className="flex items-center gap-6">
+              <Logo size="sm" />
+              <Logo size="md" />
+              <Logo size="lg" />
             </div>
-            <div className="flex items-center gap-4">
-              <div className="px-7 py-3 rounded-full bg-sienna text-white text-[15px] font-semibold">
-                Accent Action
-              </div>
-              <span className="text-[12px] text-foreground/30">
-                bg-sienna, text-white, pill
-              </span>
-            </div>
-            <div className="flex items-center gap-4">
-              <div className="px-5 py-2 rounded-full bg-foreground/5 text-foreground/60 text-[13px] font-medium">
-                Tag / Chip
-              </div>
-              <span className="text-[12px] text-foreground/30">
-                bg-foreground/5, pill, small
-              </span>
-            </div>
-          </div>
+          </ComponentShowcase>
         </div>
-        <div className="rounded-2xl border border-warm/60 p-10">
-          <h4 className="text-[13px] font-medium tracking-[1.5px] uppercase text-foreground/30 mb-8">
-            Cards &amp; Surfaces
-          </h4>
-          <div className="space-y-4">
-            <div className="p-6 rounded-2xl border border-warm/60">
-              <h5 className="font-serif text-[18px] font-medium text-foreground mb-1">
-                Default Card
+
+        <ComponentShowcase
+          title="Card"
+          code={`<Card className="p-6">Bordered (default)</Card>\n<Card variant="section" className="p-6">Section bg</Card>\n<Card variant="dark" className="p-6">Dark surface</Card>\n<Card hover className="p-6">Hover border</Card>`}
+        >
+          <div className="grid grid-cols-3 gap-4 w-full">
+            <Card className="p-6">
+              <h5 className="font-serif text-[16px] font-medium text-foreground mb-1">
+                Bordered
+              </h5>
+              <p className="text-[13px] text-foreground/40">Default card</p>
+            </Card>
+            <Card variant="section" className="p-6">
+              <h5 className="font-serif text-[16px] font-medium text-foreground mb-1">
+                Section
               </h5>
               <p className="text-[13px] text-foreground/40">
-                border-warm/60, rounded-2xl, p-6+
+                Warm section background
               </p>
-            </div>
-            <div className="p-6 rounded-2xl bg-section">
-              <h5 className="font-serif text-[18px] font-medium text-foreground mb-1">
-                Section Card
+            </Card>
+            <Card variant="dark" className="p-6">
+              <h5 className="font-serif text-[16px] font-medium text-white mb-1">
+                Dark
               </h5>
-              <p className="text-[13px] text-foreground/40">
-                bg-section, rounded-2xl, p-6+
-              </p>
-            </div>
-            <div className="p-6 rounded-2xl bg-foreground text-white">
-              <h5 className="font-serif text-[18px] font-medium mb-1">
-                Dark Card
+              <p className="text-[13px] text-white/40">Inverted surface</p>
+            </Card>
+          </div>
+        </ComponentShowcase>
+
+        <ComponentShowcase
+          title="Card · Feature Example"
+          code={`<Card hover className="p-8">\n  <Icon className="w-6 h-6 text-plum mb-5" />\n  <h3 className="font-serif ...">Title</h3>\n  <p className="...">Description</p>\n</Card>`}
+        >
+          <div className="grid grid-cols-3 gap-4 w-full">
+            <Card hover className="p-8">
+              <Sparkles className="w-6 h-6 text-plum mb-5" />
+              <h5 className="font-serif text-[18px] font-medium mb-2">
+                AI Trip Builder
               </h5>
-              <p className="text-[13px] text-white/40">
-                bg-foreground, rounded-2xl, p-6+
+              <p className="text-[14px] text-foreground/50 leading-relaxed">
+                Smart itinerary generation with real-time pricing.
               </p>
+            </Card>
+            <Card hover className="p-8">
+              <Users className="w-6 h-6 text-plum mb-5" />
+              <h5 className="font-serif text-[18px] font-medium mb-2">
+                Agent Marketplace
+              </h5>
+              <p className="text-[14px] text-foreground/50 leading-relaxed">
+                Connect with vetted local travel experts.
+              </p>
+            </Card>
+            <Card hover className="p-8">
+              <Globe className="w-6 h-6 text-plum mb-5" />
+              <h5 className="font-serif text-[18px] font-medium mb-2">
+                Consumer App
+              </h5>
+              <p className="text-[14px] text-foreground/50 leading-relaxed">
+                Plan trips and keep a beautiful travel diary.
+              </p>
+            </Card>
+          </div>
+        </ComponentShowcase>
+
+        <ComponentShowcase
+          title="SectionLabel + SectionHeading"
+          code={`<SectionLabel>Label Text</SectionLabel>          // line style\n<SectionLabel style="dot">Label</SectionLabel>  // dot style\n<SectionHeading>Heading Text</SectionHeading>`}
+        >
+          <div className="w-full space-y-6">
+            <div>
+              <SectionLabel>Line Style Label</SectionLabel>
+              <SectionHeading>Section heading example</SectionHeading>
+            </div>
+            <div className="h-px bg-warm/40" />
+            <div>
+              <SectionLabel style="dot">Dot Style Label</SectionLabel>
+              <SectionHeading>Another heading example</SectionHeading>
             </div>
           </div>
-        </div>
-        <div className="col-span-2 rounded-2xl border border-warm/60 p-10">
-          <h4 className="text-[13px] font-medium tracking-[1.5px] uppercase text-foreground/30 mb-8">
-            Spacing &amp; Layout
-          </h4>
-          <div className="grid grid-cols-4 gap-6">
-            <div>
-              <div className="flex items-end gap-1 mb-3 h-16">
-                <div className="w-2 h-2 rounded-sm bg-plum/20" />
-                <div className="w-2 h-4 rounded-sm bg-plum/30" />
-                <div className="w-2 h-8 rounded-sm bg-plum/50" />
-                <div className="w-2 h-16 rounded-sm bg-plum" />
-              </div>
-              <h5 className="text-[14px] font-semibold text-foreground mb-1">
-                8px Grid
-              </h5>
-              <p className="text-[12px] text-foreground/40">
-                All spacing in multiples of 8
-              </p>
-            </div>
-            <div>
-              <div className="flex items-center justify-center h-16 mb-3">
-                <div className="w-12 h-12 rounded-2xl border-2 border-plum/30" />
-              </div>
-              <h5 className="text-[14px] font-semibold text-foreground mb-1">
-                16px Radius
-              </h5>
-              <p className="text-[12px] text-foreground/40">
-                Container border-radius
-              </p>
-            </div>
-            <div>
-              <div className="flex items-center justify-center h-16 mb-3">
-                <div className="px-4 py-2 rounded-full border-2 border-plum/30 text-[11px] text-plum/50 font-medium">
-                  pill
+        </ComponentShowcase>
+
+        <div className="grid grid-cols-2 gap-6">
+          <ComponentShowcase
+            title="Spacing"
+            code={`// 8px grid, 80px outer padding\n// 16px container radius\n// pill-shaped buttons (rounded-full)`}
+          >
+            <div className="grid grid-cols-4 gap-4 w-full">
+              <div className="text-center">
+                <div className="flex items-end justify-center gap-1 mb-3 h-12">
+                  <div className="w-2 h-2 rounded-sm bg-plum/20" />
+                  <div className="w-2 h-4 rounded-sm bg-plum/30" />
+                  <div className="w-2 h-8 rounded-sm bg-plum/50" />
+                  <div className="w-2 h-12 rounded-sm bg-plum" />
                 </div>
+                <span className="text-[12px] font-semibold text-foreground">
+                  8px Grid
+                </span>
               </div>
-              <h5 className="text-[14px] font-semibold text-foreground mb-1">
-                Pill Buttons
-              </h5>
-              <p className="text-[12px] text-foreground/40">
-                rounded-full for all CTAs
-              </p>
-            </div>
-            <div>
-              <div className="flex items-center justify-center h-16 mb-3">
-                <div className="flex items-center gap-1">
-                  <div className="w-3 h-8 bg-transparent border-l-2 border-plum/20" />
+              <div className="text-center">
+                <div className="flex items-center justify-center h-12 mb-3">
+                  <div className="w-10 h-10 rounded-2xl border-2 border-plum/30" />
+                </div>
+                <span className="text-[12px] font-semibold text-foreground">
+                  16px Radius
+                </span>
+              </div>
+              <div className="text-center">
+                <div className="flex items-center justify-center h-12 mb-3">
+                  <div className="px-3 py-1.5 rounded-full border-2 border-plum/30 text-[10px] text-plum/50 font-medium">
+                    pill
+                  </div>
+                </div>
+                <span className="text-[12px] font-semibold text-foreground">
+                  Pill Buttons
+                </span>
+              </div>
+              <div className="text-center">
+                <div className="flex items-center justify-center h-12 mb-3">
                   <span className="text-[11px] text-plum/40 font-mono">
                     80px
                   </span>
-                  <div className="w-3 h-8 bg-transparent border-r-2 border-plum/20" />
                 </div>
+                <span className="text-[12px] font-semibold text-foreground">
+                  Outer Pad
+                </span>
               </div>
-              <h5 className="text-[14px] font-semibold text-foreground mb-1">
-                80px Padding
-              </h5>
-              <p className="text-[12px] text-foreground/40">
-                Outer container padding
-              </p>
             </div>
-          </div>
+          </ComponentShowcase>
+
+          <ComponentShowcase
+            title="Composed Example"
+            code={`// Combine Card + Badge + Button\n// for real UI patterns`}
+          >
+            <Card className="p-6 w-full">
+              <div className="flex items-center justify-between mb-4">
+                <h5 className="font-serif text-[18px] font-medium">
+                  Tulum Creator Retreat
+                </h5>
+                <Badge>12 Guests</Badge>
+              </div>
+              <p className="text-[14px] text-foreground/50 mb-6 leading-relaxed">
+                5-night brand trip with content deliverables, group
+                accommodations, and curated local experiences.
+              </p>
+              <div className="flex items-center gap-3">
+                <Button size="sm">View Trip</Button>
+                <Button variant="secondary" size="sm">
+                  Edit
+                  <ArrowRight className="w-3 h-3" />
+                </Button>
+              </div>
+            </Card>
+          </ComponentShowcase>
         </div>
       </div>
     </Section>
@@ -499,7 +608,7 @@ export default function BrandPage() {
       <div className="mx-20 h-px bg-warm/40 mt-24" />
       <DesignPrinciples />
       <Divider />
-      <UIElements />
+      <ComponentLibrary />
       <BrandFooter />
     </main>
   );
