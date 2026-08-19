@@ -11,45 +11,29 @@ import {
   BookOpen,
   Building2,
 } from "lucide-react";
+import {
+  Navbar,
+  Button,
+  Badge,
+  Card,
+  Section,
+  SectionLabel,
+  SectionHeading,
+  Logo,
+} from "@/components/ui";
 
-function Navbar() {
+function SiteNavbar() {
   return (
-    <nav className="flex items-center justify-between px-20 py-7 max-w-[1440px] mx-auto w-full">
-      <div className="flex items-center gap-3">
-        <div className="w-8 h-8 rounded-full border-2 border-foreground flex items-center justify-center">
-          <div className="w-4 h-4 rounded-full bg-foreground" />
-        </div>
-        <span className="font-serif text-[22px] font-semibold tracking-tight">
-          Plum
-        </span>
-      </div>
-      <div className="flex items-center gap-10 text-[15px] font-medium text-foreground/80">
-        <a href="#platform" className="hover:text-foreground transition-colors">
-          Platform
-        </a>
-        <a href="#business" className="hover:text-foreground transition-colors">
-          For Business
-        </a>
-        <a
-          href="#marketplace"
-          className="hover:text-foreground transition-colors"
-        >
-          Marketplace
-        </a>
-        <a href="#pricing" className="hover:text-foreground transition-colors">
-          Pricing
-        </a>
-        <a href="/brand" className="hover:text-foreground transition-colors">
-          Our Brand
-        </a>
-      </div>
-      <a
-        href="#demo"
-        className="px-7 py-3 rounded-full border border-foreground text-[15px] font-semibold hover:bg-foreground hover:text-white transition-colors"
-      >
-        Book a Demo
-      </a>
-    </nav>
+    <Navbar
+      links={[
+        { href: "#platform", label: "Platform" },
+        { href: "#business", label: "For Business" },
+        { href: "#marketplace", label: "Marketplace" },
+        { href: "#pricing", label: "Pricing" },
+        { href: "/brand", label: "Our Brand" },
+      ]}
+      cta={{ href: "#demo", label: "Book a Demo" }}
+    />
   );
 }
 
@@ -71,19 +55,11 @@ function Hero() {
         consumers planning their next adventure.
       </p>
       <div className="flex items-center justify-center gap-4">
-        <a
-          href="#get-started"
-          className="px-7 py-3 rounded-full bg-plum text-white text-[15px] font-semibold hover:bg-plum/90 transition-colors"
-        >
-          Start Planning Free
-        </a>
-        <a
-          href="#platform"
-          className="px-7 py-3 rounded-full border border-foreground text-[15px] font-semibold hover:bg-foreground hover:text-white transition-colors inline-flex items-center gap-2"
-        >
+        <Button href="#get-started">Start Planning Free</Button>
+        <Button variant="secondary" href="#platform">
           See How It Works
           <ArrowRight className="w-3.5 h-3.5" />
-        </a>
+        </Button>
       </div>
     </section>
   );
@@ -92,7 +68,7 @@ function Hero() {
 function DashboardMockup() {
   return (
     <section className="px-20 max-w-[1440px] mx-auto">
-      <div className="w-full rounded-2xl border border-warm overflow-hidden bg-white">
+      <Card variant="bordered" className="overflow-hidden">
         <div className="flex">
           <div className="w-[240px] border-r border-warm p-8 flex-shrink-0">
             <h3 className="font-serif text-lg font-semibold mb-10">
@@ -121,9 +97,7 @@ function DashboardMockup() {
                 <h3 className="font-serif text-2xl font-medium">
                   Brand Trip: Tulum Creator Retreat
                 </h3>
-                <span className="px-3 py-1.5 rounded-full bg-plum/10 text-plum text-[13px] font-medium">
-                  12 Guests Confirmed
-                </span>
+                <Badge>12 Guests Confirmed</Badge>
               </div>
               <div className="w-full aspect-[656/518] rounded-xl bg-gradient-to-br from-peach/40 via-section to-warm flex items-center justify-center">
                 <div className="text-center">
@@ -184,7 +158,7 @@ function DashboardMockup() {
             </div>
           </div>
         </div>
-      </div>
+      </Card>
     </section>
   );
 }
@@ -230,17 +204,12 @@ const features = [
 
 function Features() {
   return (
-    <section id="platform" className="px-20 py-24 max-w-[1440px] mx-auto">
+    <Section id="platform">
       <div className="text-center mb-16">
-        <div className="flex items-center justify-center gap-3 mb-8">
-          <div className="w-4 h-px bg-foreground/30" />
-          <span className="text-[13px] font-medium tracking-wider uppercase text-sienna">
-            One Platform, Every Journey
-          </span>
-        </div>
-        <h2 className="font-serif text-[44px] leading-tight font-medium mb-4">
+        <SectionLabel>One Platform, Every Journey</SectionLabel>
+        <SectionHeading className="mb-4">
           Everything travel teams actually need
-        </h2>
+        </SectionHeading>
         <p className="text-[16px] leading-relaxed text-foreground/60 max-w-[680px] mx-auto">
           Whether you&apos;re a business coordinating brand trips, a travel
           agent building your practice, or a consumer planning your next
@@ -259,10 +228,7 @@ function Features() {
           };
           const Icon = iconMap[feature.icon];
           return (
-            <div
-              key={feature.title}
-              className="p-8 rounded-2xl border border-warm hover:border-plum/20 transition-colors"
-            >
+            <Card key={feature.title} hover className="p-8">
               <Icon className="w-6 h-6 text-plum mb-5" />
               <h3 className="font-serif text-[22px] font-medium mb-3">
                 {feature.title}
@@ -270,17 +236,17 @@ function Features() {
               <p className="text-[15px] leading-relaxed text-foreground/60">
                 {feature.description}
               </p>
-            </div>
+            </Card>
           );
         })}
       </div>
-    </section>
+    </Section>
   );
 }
 
 function Testimonials() {
   return (
-    <section className="px-20 py-24 max-w-[1440px] mx-auto">
+    <Section>
       <div className="grid grid-cols-2 gap-8">
         {[
           {
@@ -296,10 +262,7 @@ function Testimonials() {
             title: "Independent Travel Agent, Wanderlux Travel",
           },
         ].map((testimonial) => (
-          <div
-            key={testimonial.name}
-            className="p-12 rounded-2xl border border-warm bg-white"
-          >
+          <Card key={testimonial.name} className="p-12">
             <p className="font-serif text-[20px] leading-relaxed text-foreground/80 mb-10">
               {testimonial.quote}
             </p>
@@ -309,28 +272,23 @@ function Testimonials() {
                 {testimonial.title}
               </p>
             </div>
-          </div>
+          </Card>
         ))}
       </div>
-    </section>
+    </Section>
   );
 }
 
 function ForBusiness() {
   return (
-    <section id="business" className="px-20 py-24 max-w-[1440px] mx-auto">
+    <Section id="business">
       <div className="flex gap-16">
         <div className="w-[515px] flex-shrink-0">
           <div className="mb-10">
-            <div className="flex items-center gap-3 mb-8">
-              <div className="w-4 h-px bg-foreground/30" />
-              <span className="text-[13px] font-medium tracking-wider uppercase text-sienna">
-                Built for Business
-              </span>
-            </div>
-            <h2 className="font-serif text-[40px] leading-tight font-medium mb-4">
+            <SectionLabel>Built for Business</SectionLabel>
+            <SectionHeading className="mb-4">
               Brand trips and team offsites, handled
-            </h2>
+            </SectionHeading>
             <p className="text-[16px] leading-relaxed text-foreground/60">
               Businesses today need seamless trip execution — from influencer
               brand trips to quarterly team offsites. Plum gives you the tools
@@ -384,25 +342,20 @@ function ForBusiness() {
           </div>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }
 
 function Marketplace() {
   return (
-    <section id="marketplace" className="px-20 py-24 max-w-[1440px] mx-auto">
+    <Section id="marketplace">
       <div className="flex gap-16 flex-row-reverse">
         <div className="w-[515px] flex-shrink-0">
           <div className="mb-10">
-            <div className="flex items-center gap-3 mb-8">
-              <div className="w-4 h-px bg-foreground/30" />
-              <span className="text-[13px] font-medium tracking-wider uppercase text-sienna">
-                Travel Agent Marketplace
-              </span>
-            </div>
-            <h2 className="font-serif text-[40px] leading-tight font-medium mb-4">
+            <SectionLabel>Travel Agent Marketplace</SectionLabel>
+            <SectionHeading className="mb-4">
               Your platform to become a travel entrepreneur
-            </h2>
+            </SectionHeading>
             <p className="text-[16px] leading-relaxed text-foreground/60">
               As AI reshapes the workforce, human-centered services like travel
               planning become more valuable than ever. Plum gives anyone the
@@ -461,7 +414,7 @@ function Marketplace() {
           </div>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }
 
@@ -479,7 +432,7 @@ const pricingPlans = [
       "Booking integration",
     ],
     cta: "Start Exploring",
-    ctaStyle: "ghost" as const,
+    ctaVariant: "secondary" as const,
     popular: false,
   },
   {
@@ -496,7 +449,7 @@ const pricingPlans = [
       "Priority marketplace listing",
     ],
     cta: "Become an Agent",
-    ctaStyle: "primary" as const,
+    ctaVariant: "primary" as const,
     popular: true,
   },
   {
@@ -512,24 +465,19 @@ const pricingPlans = [
       "Dedicated account manager",
     ],
     cta: "Contact Sales",
-    ctaStyle: "ghost" as const,
+    ctaVariant: "secondary" as const,
     popular: false,
   },
 ];
 
 function Pricing() {
   return (
-    <section id="pricing" className="px-20 py-24 max-w-[1440px] mx-auto">
+    <Section id="pricing">
       <div className="text-center mb-16">
-        <div className="flex items-center justify-center gap-3 mb-8">
-          <div className="w-4 h-px bg-foreground/30" />
-          <span className="text-[13px] font-medium tracking-wider uppercase text-sienna">
-            Simple Pricing
-          </span>
-        </div>
-        <h2 className="font-serif text-[44px] leading-tight font-medium mb-4">
+        <SectionLabel>Simple Pricing</SectionLabel>
+        <SectionHeading className="mb-4">
           A plan for every kind of traveler
-        </h2>
+        </SectionHeading>
         <p className="text-[16px] leading-relaxed text-foreground/60 max-w-[680px] mx-auto">
           Whether you&apos;re exploring the world, building a travel business,
           or managing corporate trips — start for free and scale as you grow.
@@ -550,11 +498,7 @@ function Pricing() {
                 <h3 className="font-serif text-[26px] font-medium">
                   {plan.name}
                 </h3>
-                {plan.popular && (
-                  <span className="px-3 py-1 rounded-full bg-plum/10 text-plum text-[12px] font-semibold">
-                    Most Popular
-                  </span>
-                )}
+                {plan.popular && <Badge>Most Popular</Badge>}
               </div>
               <p className="text-[14px] leading-relaxed text-foreground/60">
                 {plan.description}
@@ -580,24 +524,17 @@ function Pricing() {
               ))}
             </div>
             <div className="mt-10">
-              <a
-                href="#get-started"
-                className={`inline-flex items-center gap-2 px-7 py-3 rounded-full text-[15px] font-semibold transition-colors ${
-                  plan.ctaStyle === "primary"
-                    ? "bg-plum text-white hover:bg-plum/90"
-                    : "border border-foreground hover:bg-foreground hover:text-white"
-                }`}
-              >
+              <Button variant={plan.ctaVariant} href="#get-started">
                 {plan.cta}
-                {plan.ctaStyle === "ghost" && (
+                {plan.ctaVariant === "secondary" && (
                   <ArrowRight className="w-3.5 h-3.5" />
                 )}
-              </a>
+              </Button>
             </div>
           </div>
         ))}
       </div>
-    </section>
+    </Section>
   );
 }
 
@@ -608,7 +545,7 @@ function GalleryPause() {
     { label: "Lisbon Adventure", image: "/images/lisbon.jpg" },
   ];
   return (
-    <section className="px-20 py-24 max-w-[1440px] mx-auto">
+    <Section>
       <div className="grid grid-cols-3 gap-6">
         {destinations.map((dest) => (
           <div
@@ -627,23 +564,18 @@ function GalleryPause() {
           </div>
         ))}
       </div>
-    </section>
+    </Section>
   );
 }
 
 function AIVision() {
   return (
-    <section className="px-20 py-24 max-w-[1440px] mx-auto">
-      <div className="rounded-2xl border border-warm bg-white p-16 text-center">
-        <div className="flex items-center justify-center gap-3 mb-8">
-          <div className="w-4 h-px bg-foreground/30" />
-          <span className="text-[13px] font-medium tracking-wider uppercase text-sienna">
-            Why Now
-          </span>
-        </div>
-        <h2 className="font-serif text-[40px] leading-tight font-medium mb-6 max-w-[700px] mx-auto">
+    <Section>
+      <Card className="p-16 text-center">
+        <SectionLabel>Why Now</SectionLabel>
+        <SectionHeading className="mb-6 max-w-[700px] mx-auto">
           AI creates free time. People spend free time traveling.
-        </h2>
+        </SectionHeading>
         <p className="text-[16px] leading-relaxed text-foreground/60 max-w-[640px] mx-auto mb-12">
           As AI automates more work, people gain more leisure time — and travel
           is how they spend it. Plum meets this growing demand while creating
@@ -673,8 +605,8 @@ function AIVision() {
             </div>
           ))}
         </div>
-      </div>
-    </section>
+      </Card>
+    </Section>
   );
 }
 
@@ -683,13 +615,8 @@ function Footer() {
     <footer className="px-20 pt-24 pb-12 max-w-[1440px] mx-auto">
       <div className="flex gap-16 mb-16">
         <div className="w-[320px]">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-8 h-8 rounded-full border-2 border-foreground flex items-center justify-center">
-              <div className="w-4 h-4 rounded-full bg-foreground" />
-            </div>
-            <span className="font-serif text-[22px] font-semibold tracking-tight">
-              Plum
-            </span>
+          <div className="mb-6">
+            <Logo />
           </div>
           <p className="text-[14px] leading-relaxed text-foreground/50">
             The all-in-one travel platform for businesses managing brand trips,
@@ -758,7 +685,7 @@ function Footer() {
 export default function Home() {
   return (
     <main className="bg-background">
-      <Navbar />
+      <SiteNavbar />
       <Hero />
       <DashboardMockup />
       <Features />

@@ -1,26 +1,15 @@
-import { ArrowLeft, Copy, Check } from "lucide-react";
-
-function BrandNavbar() {
-  return (
-    <nav className="flex items-center justify-between px-20 py-7 max-w-[1440px] mx-auto w-full">
-      <div className="flex items-center gap-3">
-        <div className="w-8 h-8 rounded-full border-2 border-foreground flex items-center justify-center">
-          <div className="w-4 h-4 rounded-full bg-foreground" />
-        </div>
-        <span className="font-serif text-[22px] font-semibold tracking-tight">
-          Plum
-        </span>
-      </div>
-      <a
-        href="/"
-        className="flex items-center gap-2 text-[15px] font-medium text-foreground/60 hover:text-foreground transition-colors"
-      >
-        <ArrowLeft size={16} />
-        Back to Home
-      </a>
-    </nav>
-  );
-}
+import { ArrowRight, Check, Globe, Sparkles, Users } from "lucide-react";
+import {
+  BackNavbar,
+  Button,
+  Badge,
+  Card,
+  Logo,
+  Section,
+  SectionLabel,
+  SectionHeading,
+  Divider,
+} from "@/components/ui";
 
 function ColorSwatch({
   name,
@@ -67,16 +56,11 @@ function ColorPalette() {
   ];
 
   return (
-    <section className="px-20 py-24 max-w-[1440px] mx-auto">
-      <div className="flex items-center gap-3 mb-4">
-        <div className="w-1 h-1 rounded-full bg-plum" />
-        <span className="text-[13px] font-medium tracking-[2px] uppercase text-sienna">
-          Color System
-        </span>
-      </div>
-      <h2 className="font-serif text-[44px] font-medium text-foreground tracking-tight leading-tight mb-6 max-w-[600px]">
+    <Section>
+      <SectionLabel style="dot">Color System</SectionLabel>
+      <SectionHeading className="mb-6 max-w-[600px]">
         Our palette draws from warmth and richness
-      </h2>
+      </SectionHeading>
       <p className="text-[16px] text-foreground/50 leading-relaxed max-w-[520px] mb-12">
         Earth tones, plum purples, and warm neutrals create a sophisticated yet
         welcoming identity that evokes the warmth of travel.
@@ -86,22 +70,17 @@ function ColorPalette() {
           <ColorSwatch key={c.hex} {...c} />
         ))}
       </div>
-    </section>
+    </Section>
   );
 }
 
 function Typography() {
   return (
-    <section className="px-20 py-24 max-w-[1440px] mx-auto">
-      <div className="flex items-center gap-3 mb-4">
-        <div className="w-1 h-1 rounded-full bg-plum" />
-        <span className="text-[13px] font-medium tracking-[2px] uppercase text-sienna">
-          Typography
-        </span>
-      </div>
-      <h2 className="font-serif text-[44px] font-medium text-foreground tracking-tight leading-tight mb-16 max-w-[600px]">
+    <Section>
+      <SectionLabel style="dot">Typography</SectionLabel>
+      <SectionHeading className="mb-16 max-w-[600px]">
         Two typefaces, one voice
-      </h2>
+      </SectionHeading>
       <div className="grid grid-cols-2 gap-16">
         <div>
           <div className="mb-8">
@@ -118,30 +97,24 @@ function Typography() {
             sense of elegance and warmth.
           </p>
           <div className="space-y-3">
-            <div className="flex items-baseline gap-4">
-              <span className="text-[12px] text-foreground/30 w-8">400</span>
-              <span className="font-serif text-[24px] font-normal text-foreground">
-                Regular weight
-              </span>
-            </div>
-            <div className="flex items-baseline gap-4">
-              <span className="text-[12px] text-foreground/30 w-8">500</span>
-              <span className="font-serif text-[24px] font-medium text-foreground">
-                Medium weight
-              </span>
-            </div>
-            <div className="flex items-baseline gap-4">
-              <span className="text-[12px] text-foreground/30 w-8">600</span>
-              <span className="font-serif text-[24px] font-semibold text-foreground">
-                SemiBold weight
-              </span>
-            </div>
-            <div className="flex items-baseline gap-4">
-              <span className="text-[12px] text-foreground/30 w-8">700</span>
-              <span className="font-serif text-[24px] font-bold text-foreground">
-                Bold weight
-              </span>
-            </div>
+            {[
+              { weight: "400", label: "Regular weight", serif: true },
+              { weight: "500", label: "Medium weight", serif: true },
+              { weight: "600", label: "SemiBold weight", serif: true },
+              { weight: "700", label: "Bold weight", serif: true },
+            ].map((w) => (
+              <div key={w.weight} className="flex items-baseline gap-4">
+                <span className="text-[12px] text-foreground/30 w-8">
+                  {w.weight}
+                </span>
+                <span
+                  className="font-serif text-[24px] text-foreground"
+                  style={{ fontWeight: Number(w.weight) }}
+                >
+                  {w.label}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
         <div>
@@ -158,38 +131,42 @@ function Typography() {
             sizes. Used for body copy, UI elements, labels, and navigation.
           </p>
           <div className="space-y-3">
-            <div className="flex items-baseline gap-4">
-              <span className="text-[12px] text-foreground/30 w-8">400</span>
-              <span className="text-[24px] font-normal text-foreground">
-                Regular weight
-              </span>
-            </div>
-            <div className="flex items-baseline gap-4">
-              <span className="text-[12px] text-foreground/30 w-8">500</span>
-              <span className="text-[24px] font-medium text-foreground">
-                Medium weight
-              </span>
-            </div>
-            <div className="flex items-baseline gap-4">
-              <span className="text-[12px] text-foreground/30 w-8">600</span>
-              <span className="text-[24px] font-semibold text-foreground">
-                SemiBold weight
-              </span>
-            </div>
-            <div className="flex items-baseline gap-4">
-              <span className="text-[12px] text-foreground/30 w-8">700</span>
-              <span className="text-[24px] font-bold text-foreground">
-                Bold weight
-              </span>
-            </div>
+            {[
+              { weight: "400", label: "Regular weight" },
+              { weight: "500", label: "Medium weight" },
+              { weight: "600", label: "SemiBold weight" },
+              { weight: "700", label: "Bold weight" },
+            ].map((w) => (
+              <div key={w.weight} className="flex items-baseline gap-4">
+                <span className="text-[12px] text-foreground/30 w-8">
+                  {w.weight}
+                </span>
+                <span
+                  className="text-[24px] text-foreground"
+                  style={{ fontWeight: Number(w.weight) }}
+                >
+                  {w.label}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }
 
 function TypeScale() {
+  const scale = [
+    { size: "56px", text: "Display Heading", serif: true },
+    { size: "44px", text: "Section Heading", serif: true },
+    { size: "32px", text: "Subsection Heading", serif: true },
+    { size: "20px", text: "Card Title", serif: true },
+    { size: "16px", text: "Body Text", serif: false },
+    { size: "14px", text: "Secondary Body", serif: false, muted: true },
+    { size: "13px", text: "Label / Overline", serif: false, label: true },
+  ];
+
   return (
     <section className="px-20 py-24 max-w-[1440px] mx-auto bg-section rounded-3xl mx-20">
       <div className="px-16 py-16">
@@ -197,62 +174,29 @@ function TypeScale() {
           Type Scale
         </h3>
         <div className="space-y-8">
-          <div className="flex items-baseline gap-8 border-b border-warm/40 pb-6">
-            <span className="text-[12px] text-foreground/30 font-mono w-12">
-              56px
-            </span>
-            <span className="font-serif text-[56px] font-medium text-foreground tracking-tight leading-none">
-              Display Heading
-            </span>
-          </div>
-          <div className="flex items-baseline gap-8 border-b border-warm/40 pb-6">
-            <span className="text-[12px] text-foreground/30 font-mono w-12">
-              44px
-            </span>
-            <span className="font-serif text-[44px] font-medium text-foreground tracking-tight leading-none">
-              Section Heading
-            </span>
-          </div>
-          <div className="flex items-baseline gap-8 border-b border-warm/40 pb-6">
-            <span className="text-[12px] text-foreground/30 font-mono w-12">
-              32px
-            </span>
-            <span className="font-serif text-[32px] font-medium text-foreground tracking-tight leading-none">
-              Subsection Heading
-            </span>
-          </div>
-          <div className="flex items-baseline gap-8 border-b border-warm/40 pb-6">
-            <span className="text-[12px] text-foreground/30 font-mono w-12">
-              20px
-            </span>
-            <span className="font-serif text-[20px] font-medium text-foreground leading-none">
-              Card Title
-            </span>
-          </div>
-          <div className="flex items-baseline gap-8 border-b border-warm/40 pb-6">
-            <span className="text-[12px] text-foreground/30 font-mono w-12">
-              16px
-            </span>
-            <span className="text-[16px] text-foreground leading-none">
-              Body Text
-            </span>
-          </div>
-          <div className="flex items-baseline gap-8 border-b border-warm/40 pb-6">
-            <span className="text-[12px] text-foreground/30 font-mono w-12">
-              14px
-            </span>
-            <span className="text-[14px] text-foreground/60 leading-none">
-              Secondary Body
-            </span>
-          </div>
-          <div className="flex items-baseline gap-8">
-            <span className="text-[12px] text-foreground/30 font-mono w-12">
-              13px
-            </span>
-            <span className="text-[13px] font-medium tracking-[2px] uppercase text-sienna leading-none">
-              Label / Overline
-            </span>
-          </div>
+          {scale.map((item, i) => (
+            <div
+              key={item.size}
+              className={`flex items-baseline gap-8 ${i < scale.length - 1 ? "border-b border-warm/40 pb-6" : ""}`}
+            >
+              <span className="text-[12px] text-foreground/30 font-mono w-12">
+                {item.size}
+              </span>
+              <span
+                className={`leading-none ${
+                  item.label
+                    ? "text-[13px] font-medium tracking-[2px] uppercase text-sienna"
+                    : item.muted
+                      ? `text-[${item.size}] text-foreground/60`
+                      : item.serif
+                        ? `font-serif text-[${Math.min(parseInt(item.size), 56)}px] font-medium text-foreground tracking-tight`
+                        : `text-[${item.size}] text-foreground`
+                }`}
+              >
+                {item.text}
+              </span>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -261,51 +205,31 @@ function TypeScale() {
 
 function LogoSection() {
   return (
-    <section className="px-20 py-24 max-w-[1440px] mx-auto">
-      <div className="flex items-center gap-3 mb-4">
-        <div className="w-1 h-1 rounded-full bg-plum" />
-        <span className="text-[13px] font-medium tracking-[2px] uppercase text-sienna">
-          Logo
-        </span>
-      </div>
-      <h2 className="font-serif text-[44px] font-medium text-foreground tracking-tight leading-tight mb-16 max-w-[500px]">
+    <Section>
+      <SectionLabel style="dot">Logo</SectionLabel>
+      <SectionHeading className="mb-16 max-w-[500px]">
         The Plum mark
-      </h2>
+      </SectionHeading>
       <div className="grid grid-cols-3 gap-6">
         <div className="rounded-2xl bg-white border border-warm/60 p-12 flex flex-col items-center justify-center aspect-[4/3]">
-          <div className="flex items-center gap-4 mb-6">
-            <div className="w-14 h-14 rounded-full border-[3px] border-foreground flex items-center justify-center">
-              <div className="w-7 h-7 rounded-full bg-foreground" />
-            </div>
-            <span className="font-serif text-[36px] font-semibold text-foreground tracking-tight">
-              Plum
-            </span>
+          <div className="mb-6">
+            <Logo variant="dark" size="lg" />
           </div>
           <span className="text-[13px] text-foreground/30 font-medium">
             Primary — Light BG
           </span>
         </div>
         <div className="rounded-2xl bg-foreground p-12 flex flex-col items-center justify-center aspect-[4/3]">
-          <div className="flex items-center gap-4 mb-6">
-            <div className="w-14 h-14 rounded-full border-[3px] border-white flex items-center justify-center">
-              <div className="w-7 h-7 rounded-full bg-white" />
-            </div>
-            <span className="font-serif text-[36px] font-semibold text-white tracking-tight">
-              Plum
-            </span>
+          <div className="mb-6">
+            <Logo variant="light" size="lg" />
           </div>
           <span className="text-[13px] text-white/30 font-medium">
             Reversed — Dark BG
           </span>
         </div>
         <div className="rounded-2xl bg-plum p-12 flex flex-col items-center justify-center aspect-[4/3]">
-          <div className="flex items-center gap-4 mb-6">
-            <div className="w-14 h-14 rounded-full border-[3px] border-white flex items-center justify-center">
-              <div className="w-7 h-7 rounded-full bg-white" />
-            </div>
-            <span className="font-serif text-[36px] font-semibold text-white tracking-tight">
-              Plum
-            </span>
+          <div className="mb-6">
+            <Logo variant="light" size="lg" />
           </div>
           <span className="text-[13px] text-white/30 font-medium">
             On Plum
@@ -314,9 +238,7 @@ function LogoSection() {
       </div>
       <div className="mt-12 grid grid-cols-4 gap-6">
         <div className="rounded-2xl border border-warm/60 p-8 flex items-center justify-center">
-          <div className="w-16 h-16 rounded-full border-[3px] border-foreground flex items-center justify-center">
-            <div className="w-8 h-8 rounded-full bg-foreground" />
-          </div>
+          <Logo variant="dark" size="lg" showText={false} />
         </div>
         <div className="col-span-3 rounded-2xl border border-warm/60 p-8">
           <h4 className="font-serif text-[18px] font-medium text-foreground mb-3">
@@ -338,7 +260,7 @@ function LogoSection() {
           </div>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }
 
@@ -371,16 +293,11 @@ function DesignPrinciples() {
   ];
 
   return (
-    <section className="px-20 py-24 max-w-[1440px] mx-auto">
-      <div className="flex items-center gap-3 mb-4">
-        <div className="w-1 h-1 rounded-full bg-plum" />
-        <span className="text-[13px] font-medium tracking-[2px] uppercase text-sienna">
-          Principles
-        </span>
-      </div>
-      <h2 className="font-serif text-[44px] font-medium text-foreground tracking-tight leading-tight mb-16 max-w-[600px]">
+    <Section>
+      <SectionLabel style="dot">Principles</SectionLabel>
+      <SectionHeading className="mb-16 max-w-[600px]">
         Design principles
-      </h2>
+      </SectionHeading>
       <div className="grid grid-cols-2 gap-6">
         {principles.map((p) => (
           <div
@@ -399,157 +316,257 @@ function DesignPrinciples() {
           </div>
         ))}
       </div>
-    </section>
+    </Section>
   );
 }
 
-function UIElements() {
+function ComponentShowcase({
+  title,
+  code,
+  children,
+}: {
+  title: string;
+  code: string;
+  children: React.ReactNode;
+}) {
   return (
-    <section className="px-20 py-24 max-w-[1440px] mx-auto">
-      <div className="flex items-center gap-3 mb-4">
-        <div className="w-1 h-1 rounded-full bg-plum" />
-        <span className="text-[13px] font-medium tracking-[2px] uppercase text-sienna">
-          UI Components
+    <div className="rounded-2xl border border-warm/60 overflow-hidden">
+      <div className="p-8 flex items-center flex-wrap gap-4">{children}</div>
+      <div className="border-t border-warm/40 bg-foreground/[0.02] px-8 py-4 flex items-start justify-between gap-4">
+        <code className="text-[12px] text-foreground/40 font-mono leading-relaxed whitespace-pre-wrap">
+          {code}
+        </code>
+        <span className="text-[11px] font-medium text-foreground/20 tracking-wider uppercase flex-shrink-0">
+          {title}
         </span>
       </div>
-      <h2 className="font-serif text-[44px] font-medium text-foreground tracking-tight leading-tight mb-16 max-w-[600px]">
-        Component patterns
-      </h2>
-      <div className="grid grid-cols-2 gap-8">
-        <div className="rounded-2xl border border-warm/60 p-10">
-          <h4 className="text-[13px] font-medium tracking-[1.5px] uppercase text-foreground/30 mb-8">
-            Buttons
-          </h4>
-          <div className="space-y-6">
-            <div className="flex items-center gap-4">
-              <div className="px-7 py-3 rounded-full bg-plum text-white text-[15px] font-semibold">
-                Primary Action
+    </div>
+  );
+}
+
+function ComponentLibrary() {
+  return (
+    <Section>
+      <SectionLabel style="dot">Component Library</SectionLabel>
+      <SectionHeading className="mb-6 max-w-[700px]">
+        Live components from our design system
+      </SectionHeading>
+      <p className="text-[16px] text-foreground/50 leading-relaxed max-w-[560px] mb-16">
+        Every component below is rendered from{" "}
+        <code className="text-[14px] font-mono text-plum bg-plum/5 px-1.5 py-0.5 rounded">
+          @/components/ui
+        </code>
+        . Import and use them across any page.
+      </p>
+
+      <div className="space-y-6">
+        <ComponentShowcase
+          title="Button"
+          code={`<Button>Start Planning</Button>\n<Button variant="secondary">Book a Demo</Button>\n<Button variant="accent">Subscribe</Button>\n<Button variant="ghost" size="sm">Filter</Button>`}
+        >
+          <Button>Start Planning</Button>
+          <Button variant="secondary">
+            Book a Demo
+            <ArrowRight className="w-3.5 h-3.5" />
+          </Button>
+          <Button variant="accent">Subscribe</Button>
+          <Button variant="ghost" size="sm">
+            Filter
+          </Button>
+        </ComponentShowcase>
+
+        <ComponentShowcase
+          title="Badge"
+          code={`<Badge>12 Guests</Badge>\n<Badge variant="sienna">New</Badge>\n<Badge variant="lavender">Agent</Badge>\n<Badge variant="neutral">Draft</Badge>`}
+        >
+          <Badge>12 Guests Confirmed</Badge>
+          <Badge variant="sienna">New</Badge>
+          <Badge variant="lavender">Agent Pro</Badge>
+          <Badge variant="neutral">Draft</Badge>
+        </ComponentShowcase>
+
+        <div className="grid grid-cols-2 gap-6">
+          <ComponentShowcase
+            title="Logo · Variants"
+            code={`<Logo />                  // dark, md\n<Logo variant="light" />  // on dark bg\n<Logo size="sm" />        // compact\n<Logo showText={false} /> // icon only`}
+          >
+            <div className="flex items-center gap-8 flex-wrap">
+              <Logo />
+              <div className="bg-foreground rounded-xl px-5 py-3">
+                <Logo variant="light" />
               </div>
-              <span className="text-[12px] text-foreground/30">
-                bg-plum, text-white, pill
-              </span>
+              <Logo size="sm" />
+              <Logo showText={false} />
             </div>
-            <div className="flex items-center gap-4">
-              <div className="px-7 py-3 rounded-full border-2 border-foreground text-foreground text-[15px] font-semibold">
-                Secondary Action
-              </div>
-              <span className="text-[12px] text-foreground/30">
-                border-foreground, pill
-              </span>
+          </ComponentShowcase>
+
+          <ComponentShowcase
+            title="Logo · Sizes"
+            code={`<Logo size="sm" />\n<Logo size="md" />\n<Logo size="lg" />`}
+          >
+            <div className="flex items-center gap-6">
+              <Logo size="sm" />
+              <Logo size="md" />
+              <Logo size="lg" />
             </div>
-            <div className="flex items-center gap-4">
-              <div className="px-7 py-3 rounded-full bg-sienna text-white text-[15px] font-semibold">
-                Accent Action
-              </div>
-              <span className="text-[12px] text-foreground/30">
-                bg-sienna, text-white, pill
-              </span>
-            </div>
-            <div className="flex items-center gap-4">
-              <div className="px-5 py-2 rounded-full bg-foreground/5 text-foreground/60 text-[13px] font-medium">
-                Tag / Chip
-              </div>
-              <span className="text-[12px] text-foreground/30">
-                bg-foreground/5, pill, small
-              </span>
-            </div>
-          </div>
+          </ComponentShowcase>
         </div>
-        <div className="rounded-2xl border border-warm/60 p-10">
-          <h4 className="text-[13px] font-medium tracking-[1.5px] uppercase text-foreground/30 mb-8">
-            Cards &amp; Surfaces
-          </h4>
-          <div className="space-y-4">
-            <div className="p-6 rounded-2xl border border-warm/60">
-              <h5 className="font-serif text-[18px] font-medium text-foreground mb-1">
-                Default Card
+
+        <ComponentShowcase
+          title="Card"
+          code={`<Card className="p-6">Bordered (default)</Card>\n<Card variant="section" className="p-6">Section bg</Card>\n<Card variant="dark" className="p-6">Dark surface</Card>\n<Card hover className="p-6">Hover border</Card>`}
+        >
+          <div className="grid grid-cols-3 gap-4 w-full">
+            <Card className="p-6">
+              <h5 className="font-serif text-[16px] font-medium text-foreground mb-1">
+                Bordered
+              </h5>
+              <p className="text-[13px] text-foreground/40">Default card</p>
+            </Card>
+            <Card variant="section" className="p-6">
+              <h5 className="font-serif text-[16px] font-medium text-foreground mb-1">
+                Section
               </h5>
               <p className="text-[13px] text-foreground/40">
-                border-warm/60, rounded-2xl, p-6+
+                Warm section background
               </p>
-            </div>
-            <div className="p-6 rounded-2xl bg-section">
-              <h5 className="font-serif text-[18px] font-medium text-foreground mb-1">
-                Section Card
+            </Card>
+            <Card variant="dark" className="p-6">
+              <h5 className="font-serif text-[16px] font-medium text-white mb-1">
+                Dark
               </h5>
-              <p className="text-[13px] text-foreground/40">
-                bg-section, rounded-2xl, p-6+
-              </p>
-            </div>
-            <div className="p-6 rounded-2xl bg-foreground text-white">
-              <h5 className="font-serif text-[18px] font-medium mb-1">
-                Dark Card
+              <p className="text-[13px] text-white/40">Inverted surface</p>
+            </Card>
+          </div>
+        </ComponentShowcase>
+
+        <ComponentShowcase
+          title="Card · Feature Example"
+          code={`<Card hover className="p-8">\n  <Icon className="w-6 h-6 text-plum mb-5" />\n  <h3 className="font-serif ...">Title</h3>\n  <p className="...">Description</p>\n</Card>`}
+        >
+          <div className="grid grid-cols-3 gap-4 w-full">
+            <Card hover className="p-8">
+              <Sparkles className="w-6 h-6 text-plum mb-5" />
+              <h5 className="font-serif text-[18px] font-medium mb-2">
+                AI Trip Builder
               </h5>
-              <p className="text-[13px] text-white/40">
-                bg-foreground, rounded-2xl, p-6+
+              <p className="text-[14px] text-foreground/50 leading-relaxed">
+                Smart itinerary generation with real-time pricing.
               </p>
+            </Card>
+            <Card hover className="p-8">
+              <Users className="w-6 h-6 text-plum mb-5" />
+              <h5 className="font-serif text-[18px] font-medium mb-2">
+                Agent Marketplace
+              </h5>
+              <p className="text-[14px] text-foreground/50 leading-relaxed">
+                Connect with vetted local travel experts.
+              </p>
+            </Card>
+            <Card hover className="p-8">
+              <Globe className="w-6 h-6 text-plum mb-5" />
+              <h5 className="font-serif text-[18px] font-medium mb-2">
+                Consumer App
+              </h5>
+              <p className="text-[14px] text-foreground/50 leading-relaxed">
+                Plan trips and keep a beautiful travel diary.
+              </p>
+            </Card>
+          </div>
+        </ComponentShowcase>
+
+        <ComponentShowcase
+          title="SectionLabel + SectionHeading"
+          code={`<SectionLabel>Label Text</SectionLabel>          // line style\n<SectionLabel style="dot">Label</SectionLabel>  // dot style\n<SectionHeading>Heading Text</SectionHeading>`}
+        >
+          <div className="w-full space-y-6">
+            <div>
+              <SectionLabel>Line Style Label</SectionLabel>
+              <SectionHeading>Section heading example</SectionHeading>
+            </div>
+            <div className="h-px bg-warm/40" />
+            <div>
+              <SectionLabel style="dot">Dot Style Label</SectionLabel>
+              <SectionHeading>Another heading example</SectionHeading>
             </div>
           </div>
-        </div>
-        <div className="col-span-2 rounded-2xl border border-warm/60 p-10">
-          <h4 className="text-[13px] font-medium tracking-[1.5px] uppercase text-foreground/30 mb-8">
-            Spacing &amp; Layout
-          </h4>
-          <div className="grid grid-cols-4 gap-6">
-            <div>
-              <div className="flex items-end gap-1 mb-3 h-16">
-                <div className="w-2 h-2 rounded-sm bg-plum/20" />
-                <div className="w-2 h-4 rounded-sm bg-plum/30" />
-                <div className="w-2 h-8 rounded-sm bg-plum/50" />
-                <div className="w-2 h-16 rounded-sm bg-plum" />
-              </div>
-              <h5 className="text-[14px] font-semibold text-foreground mb-1">
-                8px Grid
-              </h5>
-              <p className="text-[12px] text-foreground/40">
-                All spacing in multiples of 8
-              </p>
-            </div>
-            <div>
-              <div className="flex items-center justify-center h-16 mb-3">
-                <div className="w-12 h-12 rounded-2xl border-2 border-plum/30" />
-              </div>
-              <h5 className="text-[14px] font-semibold text-foreground mb-1">
-                16px Radius
-              </h5>
-              <p className="text-[12px] text-foreground/40">
-                Container border-radius
-              </p>
-            </div>
-            <div>
-              <div className="flex items-center justify-center h-16 mb-3">
-                <div className="px-4 py-2 rounded-full border-2 border-plum/30 text-[11px] text-plum/50 font-medium">
-                  pill
+        </ComponentShowcase>
+
+        <div className="grid grid-cols-2 gap-6">
+          <ComponentShowcase
+            title="Spacing"
+            code={`// 8px grid, 80px outer padding\n// 16px container radius\n// pill-shaped buttons (rounded-full)`}
+          >
+            <div className="grid grid-cols-4 gap-4 w-full">
+              <div className="text-center">
+                <div className="flex items-end justify-center gap-1 mb-3 h-12">
+                  <div className="w-2 h-2 rounded-sm bg-plum/20" />
+                  <div className="w-2 h-4 rounded-sm bg-plum/30" />
+                  <div className="w-2 h-8 rounded-sm bg-plum/50" />
+                  <div className="w-2 h-12 rounded-sm bg-plum" />
                 </div>
+                <span className="text-[12px] font-semibold text-foreground">
+                  8px Grid
+                </span>
               </div>
-              <h5 className="text-[14px] font-semibold text-foreground mb-1">
-                Pill Buttons
-              </h5>
-              <p className="text-[12px] text-foreground/40">
-                rounded-full for all CTAs
-              </p>
-            </div>
-            <div>
-              <div className="flex items-center justify-center h-16 mb-3">
-                <div className="flex items-center gap-1">
-                  <div className="w-3 h-8 bg-transparent border-l-2 border-plum/20" />
+              <div className="text-center">
+                <div className="flex items-center justify-center h-12 mb-3">
+                  <div className="w-10 h-10 rounded-2xl border-2 border-plum/30" />
+                </div>
+                <span className="text-[12px] font-semibold text-foreground">
+                  16px Radius
+                </span>
+              </div>
+              <div className="text-center">
+                <div className="flex items-center justify-center h-12 mb-3">
+                  <div className="px-3 py-1.5 rounded-full border-2 border-plum/30 text-[10px] text-plum/50 font-medium">
+                    pill
+                  </div>
+                </div>
+                <span className="text-[12px] font-semibold text-foreground">
+                  Pill Buttons
+                </span>
+              </div>
+              <div className="text-center">
+                <div className="flex items-center justify-center h-12 mb-3">
                   <span className="text-[11px] text-plum/40 font-mono">
                     80px
                   </span>
-                  <div className="w-3 h-8 bg-transparent border-r-2 border-plum/20" />
                 </div>
+                <span className="text-[12px] font-semibold text-foreground">
+                  Outer Pad
+                </span>
               </div>
-              <h5 className="text-[14px] font-semibold text-foreground mb-1">
-                80px Padding
-              </h5>
-              <p className="text-[12px] text-foreground/40">
-                Outer container padding
-              </p>
             </div>
-          </div>
+          </ComponentShowcase>
+
+          <ComponentShowcase
+            title="Composed Example"
+            code={`// Combine Card + Badge + Button\n// for real UI patterns`}
+          >
+            <Card className="p-6 w-full">
+              <div className="flex items-center justify-between mb-4">
+                <h5 className="font-serif text-[18px] font-medium">
+                  Tulum Creator Retreat
+                </h5>
+                <Badge>12 Guests</Badge>
+              </div>
+              <p className="text-[14px] text-foreground/50 mb-6 leading-relaxed">
+                5-night brand trip with content deliverables, group
+                accommodations, and curated local experiences.
+              </p>
+              <div className="flex items-center gap-3">
+                <Button size="sm">View Trip</Button>
+                <Button variant="secondary" size="sm">
+                  Edit
+                  <ArrowRight className="w-3 h-3" />
+                </Button>
+              </div>
+            </Card>
+          </ComponentShowcase>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }
 
@@ -557,14 +574,7 @@ function BrandFooter() {
   return (
     <footer className="px-20 py-16 max-w-[1440px] mx-auto border-t border-warm/40">
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="w-6 h-6 rounded-full border-2 border-foreground flex items-center justify-center">
-            <div className="w-3 h-3 rounded-full bg-foreground" />
-          </div>
-          <span className="font-serif text-[16px] font-semibold text-foreground">
-            Plum
-          </span>
-        </div>
+        <Logo size="sm" />
         <p className="text-[13px] text-foreground/30">
           Brand Guidelines &mdash; Plum Travel Platform
         </p>
@@ -576,15 +586,10 @@ function BrandFooter() {
 export default function BrandPage() {
   return (
     <main className="bg-background">
-      <BrandNavbar />
+      <BackNavbar />
       <section className="px-20 pt-16 pb-24 max-w-[1440px] mx-auto">
         <div className="max-w-[800px]">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-1 h-1 rounded-full bg-plum" />
-            <span className="text-[13px] font-medium tracking-[2px] uppercase text-sienna">
-              Brand Guidelines
-            </span>
-          </div>
+          <SectionLabel style="dot">Brand Guidelines</SectionLabel>
           <h1 className="font-serif text-[64px] font-medium text-foreground tracking-tight leading-[1.05] mb-6">
             Our Brand
           </h1>
@@ -595,15 +600,15 @@ export default function BrandPage() {
         </div>
       </section>
       <LogoSection />
-      <div className="mx-20 h-px bg-warm/40" />
+      <Divider />
       <ColorPalette />
-      <div className="mx-20 h-px bg-warm/40" />
+      <Divider />
       <Typography />
       <TypeScale />
       <div className="mx-20 h-px bg-warm/40 mt-24" />
       <DesignPrinciples />
-      <div className="mx-20 h-px bg-warm/40" />
-      <UIElements />
+      <Divider />
+      <ComponentLibrary />
       <BrandFooter />
     </main>
   );
