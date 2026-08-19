@@ -236,11 +236,8 @@ function LogoSection() {
           </span>
         </div>
       </div>
-      <div className="mt-8 lg:mt-12 grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6">
-        <div className="rounded-2xl border border-warm/60 p-8 flex items-center justify-center">
-          <Logo variant="dark" size="lg" showText={false} />
-        </div>
-        <div className="md:col-span-3 rounded-2xl border border-warm/60 p-6 lg:p-8">
+      <div className="mt-8 lg:mt-12">
+        <div className="rounded-2xl border border-warm/60 p-6 lg:p-8">
           <h4 className="font-serif text-[18px] font-medium text-foreground mb-3">
             Clear Space &amp; Usage
           </h4>
@@ -388,7 +385,7 @@ function ComponentLibrary() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
           <ComponentShowcase
             title="Logo Variants"
-            code={`<Logo />                  // dark, md\n<Logo variant="light" />  // on dark bg\n<Logo size="sm" />        // compact\n<Logo showText={false} /> // icon only`}
+            code={`<Logo />                  // dark, md\n<Logo variant="light" />  // on dark bg\n<Logo size="sm" />        // compact`}
           >
             <div className="flex items-center gap-6 flex-wrap">
               <Logo />
@@ -396,7 +393,6 @@ function ComponentLibrary() {
                 <Logo variant="light" />
               </div>
               <Logo size="sm" />
-              <Logo showText={false} />
             </div>
           </ComponentShowcase>
 
