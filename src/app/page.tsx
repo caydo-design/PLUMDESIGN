@@ -39,22 +39,22 @@ function SiteNavbar() {
 
 function Hero() {
   return (
-    <section className="px-20 pt-24 pb-16 max-w-[1440px] mx-auto text-center">
-      <div className="flex items-center justify-center gap-2 mb-8">
+    <section className="px-6 md:px-12 lg:px-20 pt-12 md:pt-16 lg:pt-24 pb-12 lg:pb-16 max-w-[1440px] mx-auto text-center">
+      <div className="flex items-center justify-center gap-2 mb-6 lg:mb-8">
         <div className="w-2 h-2 rounded-full bg-plum" />
-        <span className="text-[13px] font-medium tracking-wide text-foreground/70">
+        <span className="text-[12px] lg:text-[13px] font-medium tracking-wide text-foreground/70">
           The all-in-one travel platform for businesses, agents &amp; travelers
         </span>
       </div>
-      <h1 className="font-serif text-[72px] leading-[1.05] font-medium tracking-tight max-w-[1000px] mx-auto mb-8">
+      <h1 className="font-serif text-[36px] md:text-[48px] lg:text-[72px] leading-[1.1] lg:leading-[1.05] font-medium tracking-tight max-w-[1000px] mx-auto mb-6 lg:mb-8">
         Seamless trip execution, from brand trips to bucket lists
       </h1>
-      <p className="text-[17px] leading-relaxed text-foreground/60 max-w-[640px] mx-auto mb-14">
+      <p className="text-[15px] lg:text-[17px] leading-relaxed text-foreground/60 max-w-[640px] mx-auto mb-10 lg:mb-14">
         Plum powers effortless travel for businesses managing team offsites and
         influencer brand trips, travel agents building their own practice, and
         consumers planning their next adventure.
       </p>
-      <div className="flex items-center justify-center gap-4">
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
         <Button href="#get-started">Start Planning Free</Button>
         <Button variant="secondary" href="#platform">
           See How It Works
@@ -67,10 +67,10 @@ function Hero() {
 
 function DashboardMockup() {
   return (
-    <section className="px-20 max-w-[1440px] mx-auto">
+    <section className="px-6 md:px-12 lg:px-20 max-w-[1440px] mx-auto">
       <Card variant="bordered" className="overflow-hidden">
-        <div className="flex">
-          <div className="w-[240px] border-r border-warm p-8 flex-shrink-0">
+        <div className="flex flex-col lg:flex-row">
+          <div className="hidden lg:block w-[240px] border-r border-warm p-8 flex-shrink-0">
             <h3 className="font-serif text-lg font-semibold mb-10">
               Plum Dashboard
             </h3>
@@ -91,10 +91,10 @@ function DashboardMockup() {
               ))}
             </div>
           </div>
-          <div className="flex-1 flex">
-            <div className="flex-1 p-8">
-              <div className="flex items-center justify-between mb-6">
-                <h3 className="font-serif text-2xl font-medium">
+          <div className="flex-1 flex flex-col md:flex-row">
+            <div className="flex-1 p-6 lg:p-8">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
+                <h3 className="font-serif text-xl lg:text-2xl font-medium">
                   Brand Trip: Tulum Creator Retreat
                 </h3>
                 <Badge>12 Guests Confirmed</Badge>
@@ -108,7 +108,7 @@ function DashboardMockup() {
                 </div>
               </div>
             </div>
-            <div className="w-[320px] border-l border-warm p-8">
+            <div className="border-t md:border-t-0 md:border-l border-warm p-6 lg:p-8 md:w-[280px] lg:w-[320px]">
               <h4 className="text-[15px] font-semibold mb-6">Trip Overview</h4>
               <div className="space-y-6">
                 {[
@@ -205,18 +205,18 @@ const features = [
 function Features() {
   return (
     <Section id="platform">
-      <div className="text-center mb-16">
+      <div className="text-center mb-10 lg:mb-16">
         <SectionLabel>One Platform, Every Journey</SectionLabel>
         <SectionHeading className="mb-4">
           Everything travel teams actually need
         </SectionHeading>
-        <p className="text-[16px] leading-relaxed text-foreground/60 max-w-[680px] mx-auto">
+        <p className="text-[15px] lg:text-[16px] leading-relaxed text-foreground/60 max-w-[680px] mx-auto">
           Whether you&apos;re a business coordinating brand trips, a travel
           agent building your practice, or a consumer planning your next
           getaway — Plum handles it all.
         </p>
       </div>
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
         {features.map((feature) => {
           const iconMap = {
             briefcase: Briefcase,
@@ -228,12 +228,12 @@ function Features() {
           };
           const Icon = iconMap[feature.icon];
           return (
-            <Card key={feature.title} hover className="p-8">
-              <Icon className="w-6 h-6 text-plum mb-5" />
-              <h3 className="font-serif text-[22px] font-medium mb-3">
+            <Card key={feature.title} hover className="p-6 lg:p-8">
+              <Icon className="w-6 h-6 text-plum mb-4 lg:mb-5" />
+              <h3 className="font-serif text-[20px] lg:text-[22px] font-medium mb-3">
                 {feature.title}
               </h3>
-              <p className="text-[15px] leading-relaxed text-foreground/60">
+              <p className="text-[14px] lg:text-[15px] leading-relaxed text-foreground/60">
                 {feature.description}
               </p>
             </Card>
@@ -247,7 +247,7 @@ function Features() {
 function Testimonials() {
   return (
     <Section>
-      <div className="grid grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
         {[
           {
             quote:
@@ -262,8 +262,8 @@ function Testimonials() {
             title: "Independent Travel Agent, Wanderlux Travel",
           },
         ].map((testimonial) => (
-          <Card key={testimonial.name} className="p-12">
-            <p className="font-serif text-[20px] leading-relaxed text-foreground/80 mb-10">
+          <Card key={testimonial.name} className="p-8 lg:p-12">
+            <p className="font-serif text-[18px] lg:text-[20px] leading-relaxed text-foreground/80 mb-8 lg:mb-10">
               {testimonial.quote}
             </p>
             <div>
@@ -282,20 +282,20 @@ function Testimonials() {
 function ForBusiness() {
   return (
     <Section id="business">
-      <div className="flex gap-16">
-        <div className="w-[515px] flex-shrink-0">
-          <div className="mb-10">
+      <div className="flex flex-col lg:flex-row gap-10 lg:gap-16">
+        <div className="lg:w-[515px] lg:flex-shrink-0">
+          <div className="mb-8 lg:mb-10">
             <SectionLabel>Built for Business</SectionLabel>
             <SectionHeading className="mb-4">
               Brand trips and team offsites, handled
             </SectionHeading>
-            <p className="text-[16px] leading-relaxed text-foreground/60">
+            <p className="text-[15px] lg:text-[16px] leading-relaxed text-foreground/60">
               Businesses today need seamless trip execution — from influencer
               brand trips to quarterly team offsites. Plum gives you the tools
               to plan, book, and manage group travel without the chaos.
             </p>
           </div>
-          <div className="space-y-6 mb-12">
+          <div className="space-y-6 mb-10 lg:mb-12">
             {[
               {
                 num: "1",
@@ -316,7 +316,7 @@ function ForBusiness() {
                   <h4 className="font-serif text-lg font-medium mb-1">
                     {item.title}
                   </h4>
-                  <p className="text-[15px] leading-relaxed text-foreground/60">
+                  <p className="text-[14px] lg:text-[15px] leading-relaxed text-foreground/60">
                     {item.desc}
                   </p>
                 </div>
@@ -332,7 +332,7 @@ function ForBusiness() {
           </a>
         </div>
         <div className="flex-1">
-          <div className="w-full h-[480px] rounded-2xl overflow-hidden relative">
+          <div className="w-full h-[300px] md:h-[400px] lg:h-[480px] rounded-2xl overflow-hidden relative">
             <img
               src="/images/resort.jpg"
               alt="Luxury resort view with palm trees and ocean"
@@ -349,20 +349,20 @@ function ForBusiness() {
 function Marketplace() {
   return (
     <Section id="marketplace">
-      <div className="flex gap-16 flex-row-reverse">
-        <div className="w-[515px] flex-shrink-0">
-          <div className="mb-10">
+      <div className="flex flex-col-reverse lg:flex-row-reverse gap-10 lg:gap-16">
+        <div className="lg:w-[515px] lg:flex-shrink-0">
+          <div className="mb-8 lg:mb-10">
             <SectionLabel>Travel Agent Marketplace</SectionLabel>
             <SectionHeading className="mb-4">
               Your platform to become a travel entrepreneur
             </SectionHeading>
-            <p className="text-[16px] leading-relaxed text-foreground/60">
+            <p className="text-[15px] lg:text-[16px] leading-relaxed text-foreground/60">
               As AI reshapes the workforce, human-centered services like travel
               planning become more valuable than ever. Plum gives anyone the
               tools to build a thriving travel agency business.
             </p>
           </div>
-          <div className="space-y-6 mb-12">
+          <div className="space-y-6 mb-10 lg:mb-12">
             {[
               {
                 num: "1",
@@ -388,7 +388,7 @@ function Marketplace() {
                   <h4 className="font-serif text-lg font-medium mb-1">
                     {item.title}
                   </h4>
-                  <p className="text-[15px] leading-relaxed text-foreground/60">
+                  <p className="text-[14px] lg:text-[15px] leading-relaxed text-foreground/60">
                     {item.desc}
                   </p>
                 </div>
@@ -404,7 +404,7 @@ function Marketplace() {
           </a>
         </div>
         <div className="flex-1">
-          <div className="w-full h-[540px] rounded-2xl overflow-hidden relative">
+          <div className="w-full h-[300px] md:h-[400px] lg:h-[540px] rounded-2xl overflow-hidden relative">
             <img
               src="/images/yacht-friends.jpg"
               alt="Friends enjoying a yacht trip together"
@@ -473,21 +473,21 @@ const pricingPlans = [
 function Pricing() {
   return (
     <Section id="pricing">
-      <div className="text-center mb-16">
+      <div className="text-center mb-10 lg:mb-16">
         <SectionLabel>Simple Pricing</SectionLabel>
         <SectionHeading className="mb-4">
           A plan for every kind of traveler
         </SectionHeading>
-        <p className="text-[16px] leading-relaxed text-foreground/60 max-w-[680px] mx-auto">
+        <p className="text-[15px] lg:text-[16px] leading-relaxed text-foreground/60 max-w-[680px] mx-auto">
           Whether you&apos;re exploring the world, building a travel business,
           or managing corporate trips — start for free and scale as you grow.
         </p>
       </div>
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
         {pricingPlans.map((plan) => (
           <div
             key={plan.name}
-            className={`rounded-2xl border p-10 flex flex-col ${
+            className={`rounded-2xl border p-8 lg:p-10 flex flex-col ${
               plan.popular
                 ? "border-plum bg-white ring-1 ring-plum/20"
                 : "border-warm"
@@ -495,7 +495,7 @@ function Pricing() {
           >
             <div className="mb-6">
               <div className="flex items-center gap-3 mb-3">
-                <h3 className="font-serif text-[26px] font-medium">
+                <h3 className="font-serif text-[22px] lg:text-[26px] font-medium">
                   {plan.name}
                 </h3>
                 {plan.popular && <Badge>Most Popular</Badge>}
@@ -505,7 +505,7 @@ function Pricing() {
               </p>
             </div>
             <div className="flex items-baseline gap-2 mb-6">
-              <span className="font-serif text-[44px] font-medium">
+              <span className="font-serif text-[36px] lg:text-[44px] font-medium">
                 {plan.price}
               </span>
               <span className="text-[15px] text-foreground/50">
@@ -523,7 +523,7 @@ function Pricing() {
                 </div>
               ))}
             </div>
-            <div className="mt-10">
+            <div className="mt-8 lg:mt-10">
               <Button variant={plan.ctaVariant} href="#get-started">
                 {plan.cta}
                 {plan.ctaVariant === "secondary" && (
@@ -546,7 +546,7 @@ function GalleryPause() {
   ];
   return (
     <Section>
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6">
         {destinations.map((dest) => (
           <div
             key={dest.label}
@@ -558,7 +558,7 @@ function GalleryPause() {
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
-            <span className="absolute bottom-6 left-6 text-[16px] text-white font-semibold">
+            <span className="absolute bottom-5 left-5 lg:bottom-6 lg:left-6 text-[15px] lg:text-[16px] text-white font-semibold">
               {dest.label}
             </span>
           </div>
@@ -571,18 +571,18 @@ function GalleryPause() {
 function AIVision() {
   return (
     <Section>
-      <Card className="p-16 text-center">
+      <Card className="p-8 md:p-12 lg:p-16 text-center">
         <SectionLabel>Why Now</SectionLabel>
         <SectionHeading className="mb-6 max-w-[700px] mx-auto">
           AI creates free time. People spend free time traveling.
         </SectionHeading>
-        <p className="text-[16px] leading-relaxed text-foreground/60 max-w-[640px] mx-auto mb-12">
+        <p className="text-[15px] lg:text-[16px] leading-relaxed text-foreground/60 max-w-[640px] mx-auto mb-8 lg:mb-12">
           As AI automates more work, people gain more leisure time — and travel
           is how they spend it. Plum meets this growing demand while creating
           new opportunities for displaced workers to become travel
           entrepreneurs.
         </p>
-        <div className="grid grid-cols-3 gap-8 max-w-[900px] mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-[900px] mx-auto">
           {[
             {
               stat: "$730B+",
@@ -598,10 +598,10 @@ function AIVision() {
             },
           ].map((item) => (
             <div key={item.label}>
-              <p className="font-serif text-[36px] font-medium text-plum mb-2">
+              <p className="font-serif text-[28px] lg:text-[36px] font-medium text-plum mb-2">
                 {item.stat}
               </p>
-              <p className="text-[14px] text-foreground/50">{item.label}</p>
+              <p className="text-[13px] lg:text-[14px] text-foreground/50">{item.label}</p>
             </div>
           ))}
         </div>
@@ -612,9 +612,9 @@ function AIVision() {
 
 function Footer() {
   return (
-    <footer className="px-20 pt-24 pb-12 max-w-[1440px] mx-auto">
-      <div className="flex gap-16 mb-16">
-        <div className="w-[320px]">
+    <footer className="px-6 md:px-12 lg:px-20 pt-16 lg:pt-24 pb-10 lg:pb-12 max-w-[1440px] mx-auto">
+      <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 mb-12 lg:mb-16">
+        <div className="lg:w-[320px]">
           <div className="mb-6">
             <Logo />
           </div>
@@ -623,7 +623,7 @@ function Footer() {
             agents building their practice, and travelers exploring the world.
           </p>
         </div>
-        <div className="flex-1 flex justify-end gap-20">
+        <div className="flex-1 grid grid-cols-2 sm:grid-cols-3 gap-8 lg:justify-end lg:gap-20">
           {[
             {
               title: "Platform",
@@ -652,7 +652,7 @@ function Footer() {
                   <a
                     key={link}
                     href="#"
-                    className="block text-[15px] text-foreground/60 hover:text-foreground transition-colors"
+                    className="block text-[14px] lg:text-[15px] text-foreground/60 hover:text-foreground transition-colors"
                   >
                     {link}
                   </a>
@@ -663,11 +663,11 @@ function Footer() {
         </div>
       </div>
       <div className="mb-4">
-        <h2 className="font-serif text-[96px] leading-none font-bold tracking-tight text-foreground/10 select-none">
+        <h2 className="font-serif text-[48px] md:text-[72px] lg:text-[96px] leading-none font-bold tracking-tight text-foreground/10 select-none">
           PLUM
         </h2>
       </div>
-      <div className="flex items-center justify-between text-[13px] text-foreground/40">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-[13px] text-foreground/40">
         <span>&copy; 2026 Plum Technologies. All rights reserved.</span>
         <div className="flex gap-6">
           <a href="#" className="hover:text-foreground transition-colors">
@@ -690,19 +690,19 @@ export default function Home() {
       <DashboardMockup />
       <Features />
       <Testimonials />
-      <section className="px-20 max-w-[1440px] mx-auto">
-        <div className="w-full h-[400px] rounded-2xl overflow-hidden relative">
+      <section className="px-6 md:px-12 lg:px-20 max-w-[1440px] mx-auto">
+        <div className="w-full h-[240px] md:h-[320px] lg:h-[400px] rounded-2xl overflow-hidden relative">
           <img
             src="/images/lisbon-evening.jpg"
             alt="Evening in a charming European city"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-          <div className="absolute bottom-10 left-10">
-            <p className="text-white/80 text-[13px] font-medium tracking-wider uppercase mb-2">
+          <div className="absolute bottom-6 left-6 lg:bottom-10 lg:left-10">
+            <p className="text-white/80 text-[12px] lg:text-[13px] font-medium tracking-wider uppercase mb-2">
               Your Next Adventure Awaits
             </p>
-            <p className="font-serif text-white text-[32px] font-medium">
+            <p className="font-serif text-white text-[22px] md:text-[28px] lg:text-[32px] font-medium">
               Every trip tells a story
             </p>
           </div>
