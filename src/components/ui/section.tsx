@@ -12,7 +12,7 @@ export function Section({
   return (
     <section
       id={id}
-      className={`px-6 py-16 md:px-12 md:py-20 lg:px-20 lg:py-24 max-w-[1440px] mx-auto ${className}`}
+      className={`px-6 py-20 md:px-12 md:py-28 lg:px-20 lg:py-32 max-w-[1440px] mx-auto ${className}`}
     >
       {children}
     </section>
@@ -51,7 +51,7 @@ export function SectionHeading({
 }) {
   return (
     <h2
-      className={`font-serif text-[28px] md:text-[36px] lg:text-[44px] leading-tight font-medium tracking-tight ${className}`}
+      className={`font-serif text-[28px] md:text-[36px] lg:text-[44px] leading-tight font-medium tracking-[-0.03em] ${className}`}
     >
       {children}
     </h2>
