@@ -39,27 +39,31 @@ function SiteNavbar() {
 
 function Hero() {
   return (
-    <section className="px-6 md:px-12 lg:px-20 pt-12 md:pt-16 lg:pt-24 pb-12 lg:pb-16 max-w-[1440px] mx-auto text-center">
-      <div className="flex items-center justify-center gap-2 mb-6 lg:mb-8">
-        <div className="w-2 h-2 rounded-full bg-plum" />
-        <span className="text-[12px] lg:text-[13px] font-medium tracking-wide text-foreground/70">
-          The all-in-one travel platform for businesses, agents &amp; travelers
-        </span>
-      </div>
-      <h1 className="font-serif text-[36px] md:text-[48px] lg:text-[72px] leading-[1.1] lg:leading-[1.05] font-medium tracking-tight max-w-[1000px] mx-auto mb-6 lg:mb-8">
-        Seamless trip execution, from brand trips to bucket lists
-      </h1>
-      <p className="text-[15px] lg:text-[17px] leading-relaxed text-foreground/60 max-w-[640px] mx-auto mb-10 lg:mb-14">
-        Plum powers effortless travel for businesses managing team offsites and
-        influencer brand trips, travel agents building their own practice, and
-        consumers planning their next adventure.
-      </p>
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
-        <Button href="#get-started">Start Planning Free</Button>
-        <Button variant="secondary" href="#platform">
-          See How It Works
-          <ArrowRight className="w-3.5 h-3.5" />
-        </Button>
+    <section className="relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(255,211,172,0.25),transparent)]" />
+      <div className="relative px-6 md:px-12 lg:px-20 pt-20 md:pt-28 lg:pt-36 pb-16 lg:pb-24 max-w-[1440px] mx-auto text-center">
+        <div className="flex items-center justify-center gap-2 mb-6 lg:mb-8">
+          <div className="w-2 h-2 rounded-full bg-plum" />
+          <span className="text-[12px] lg:text-[13px] font-medium tracking-wide text-foreground/70">
+            The all-in-one travel platform for businesses, agents &amp;
+            travelers
+          </span>
+        </div>
+        <h1 className="font-serif text-[36px] md:text-[48px] lg:text-[72px] leading-[1.1] lg:leading-[1.05] font-normal tracking-[-0.03em] lg:tracking-[-0.04em] max-w-[1000px] mx-auto mb-6 lg:mb-8">
+          Seamless trip execution, from brand trips to bucket lists
+        </h1>
+        <p className="text-[15px] lg:text-[17px] leading-relaxed text-foreground/60 max-w-[640px] mx-auto mb-10 lg:mb-14">
+          Plum powers effortless travel for businesses managing team offsites
+          and influencer brand trips, travel agents building their own practice,
+          and consumers planning their next adventure.
+        </p>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+          <Button href="#get-started">Start Planning Free</Button>
+          <Button variant="secondary" href="#platform">
+            See How It Works
+            <ArrowRight className="w-3.5 h-3.5" />
+          </Button>
+        </div>
       </div>
     </section>
   );
@@ -202,6 +206,15 @@ const features = [
   },
 ];
 
+const featureCardBgs = [
+  "bg-[#FFF0E0]",
+  "bg-[#F2EDF5]",
+  "bg-[#FFF4E8]",
+  "bg-[#F7F2F8]",
+  "bg-[#FFF6EE]",
+  "bg-[#F0EBE6]",
+];
+
 function Features() {
   return (
     <Section id="platform">
@@ -217,7 +230,7 @@ function Features() {
         </p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-        {features.map((feature) => {
+        {features.map((feature, i) => {
           const iconMap = {
             briefcase: Briefcase,
             building: Building2,
@@ -228,15 +241,18 @@ function Features() {
           };
           const Icon = iconMap[feature.icon];
           return (
-            <Card key={feature.title} hover className="p-6 lg:p-8">
+            <div
+              key={feature.title}
+              className={`rounded-2xl ${featureCardBgs[i]} p-6 lg:p-8 hover:shadow-md transition-all`}
+            >
               <Icon className="w-6 h-6 text-plum mb-4 lg:mb-5" />
-              <h3 className="font-serif text-[20px] lg:text-[22px] font-medium mb-3">
+              <h3 className="font-serif text-[20px] lg:text-[22px] font-medium tracking-[-0.02em] mb-3">
                 {feature.title}
               </h3>
               <p className="text-[14px] lg:text-[15px] leading-relaxed text-foreground/60">
                 {feature.description}
               </p>
-            </Card>
+            </div>
           );
         })}
       </div>
@@ -246,36 +262,54 @@ function Features() {
 
 function Testimonials() {
   return (
-    <Section>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-        {[
-          {
-            quote:
-              "“We used to juggle spreadsheets, Venmo requests, and group chats for every brand trip. Plum replaced all of that with one dashboard. Our last creator retreat had 20 influencers confirmed and paid in 48 hours.”",
-            name: "Jordan Ellis",
-            title: "Brand Partnerships Lead, Glow Collective",
-          },
-          {
-            quote:
-              "“As an independent travel agent, Plum gave me a real platform to run my business. I set my rates, clients book directly through the app, and I spend my time curating experiences instead of chasing invoices.”",
-            name: "Maya Torres",
-            title: "Independent Travel Agent, Wanderlux Travel",
-          },
-        ].map((testimonial) => (
-          <Card key={testimonial.name} className="p-8 lg:p-12">
-            <p className="font-serif text-[18px] lg:text-[20px] leading-relaxed text-foreground/80 mb-8 lg:mb-10">
-              {testimonial.quote}
-            </p>
-            <div>
-              <p className="text-[15px] font-semibold">{testimonial.name}</p>
-              <p className="text-[13px] text-foreground/50 mt-1">
-                {testimonial.title}
+    <section className="bg-foreground text-white">
+      <div className="px-6 py-20 md:px-12 md:py-28 lg:px-20 lg:py-32 max-w-[1440px] mx-auto">
+        <div className="text-center mb-10 lg:mb-16">
+          <div className="flex items-center justify-center gap-3 mb-6 lg:mb-8">
+            <div className="w-4 h-px bg-white/30" />
+            <span className="text-[12px] lg:text-[13px] font-medium tracking-wider uppercase text-peach">
+              What People Are Saying
+            </span>
+          </div>
+          <h2 className="font-serif text-[28px] md:text-[36px] lg:text-[44px] leading-tight font-medium tracking-[-0.03em]">
+            Trusted by travel teams everywhere
+          </h2>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          {[
+            {
+              quote:
+                "“We used to juggle spreadsheets, Venmo requests, and group chats for every brand trip. Plum replaced all of that with one dashboard. Our last creator retreat had 20 influencers confirmed and paid in 48 hours.”",
+              name: "Jordan Ellis",
+              title: "Brand Partnerships Lead, Glow Collective",
+            },
+            {
+              quote:
+                "“As an independent travel agent, Plum gave me a real platform to run my business. I set my rates, clients book directly through the app, and I spend my time curating experiences instead of chasing invoices.”",
+              name: "Maya Torres",
+              title: "Independent Travel Agent, Wanderlux Travel",
+            },
+          ].map((testimonial) => (
+            <div
+              key={testimonial.name}
+              className="rounded-2xl ring-1 ring-white/10 p-8 lg:p-12"
+            >
+              <p className="font-serif text-[18px] lg:text-[20px] leading-relaxed text-white/80 mb-8 lg:mb-10">
+                {testimonial.quote}
               </p>
+              <div>
+                <p className="text-[15px] font-semibold text-white">
+                  {testimonial.name}
+                </p>
+                <p className="text-[13px] text-white/50 mt-1">
+                  {testimonial.title}
+                </p>
+              </div>
             </div>
-          </Card>
-        ))}
+          ))}
+        </div>
       </div>
-    </Section>
+    </section>
   );
 }
 
@@ -505,7 +539,7 @@ function Pricing() {
               </p>
             </div>
             <div className="flex items-baseline gap-2 mb-6">
-              <span className="font-serif text-[36px] lg:text-[44px] font-medium">
+              <span className="font-serif text-[36px] lg:text-[44px] font-medium tracking-[-0.03em]">
                 {plan.price}
               </span>
               <span className="text-[15px] text-foreground/50">
@@ -570,13 +604,18 @@ function GalleryPause() {
 
 function AIVision() {
   return (
-    <Section>
-      <Card className="p-8 md:p-12 lg:p-16 text-center">
-        <SectionLabel>Why Now</SectionLabel>
-        <SectionHeading className="mb-6 max-w-[700px] mx-auto">
+    <section className="bg-foreground text-white">
+      <div className="px-6 py-20 md:px-12 md:py-28 lg:px-20 lg:py-32 max-w-[1440px] mx-auto text-center">
+        <div className="flex items-center justify-center gap-3 mb-6 lg:mb-8">
+          <div className="w-4 h-px bg-white/30" />
+          <span className="text-[12px] lg:text-[13px] font-medium tracking-wider uppercase text-peach">
+            Why Now
+          </span>
+        </div>
+        <h2 className="font-serif text-[28px] md:text-[36px] lg:text-[44px] leading-tight font-medium tracking-[-0.03em] mb-6 max-w-[700px] mx-auto">
           AI creates free time. People spend free time traveling.
-        </SectionHeading>
-        <p className="text-[15px] lg:text-[16px] leading-relaxed text-foreground/60 max-w-[640px] mx-auto mb-8 lg:mb-12">
+        </h2>
+        <p className="text-[15px] lg:text-[16px] leading-relaxed text-white/60 max-w-[640px] mx-auto mb-10 lg:mb-14">
           As AI automates more work, people gain more leisure time — and travel
           is how they spend it. Plum meets this growing demand while creating
           new opportunities for displaced workers to become travel
@@ -598,15 +637,17 @@ function AIVision() {
             },
           ].map((item) => (
             <div key={item.label}>
-              <p className="font-serif text-[28px] lg:text-[36px] font-medium text-plum mb-2">
+              <p className="font-serif text-[28px] lg:text-[36px] font-medium text-peach mb-2">
                 {item.stat}
               </p>
-              <p className="text-[13px] lg:text-[14px] text-foreground/50">{item.label}</p>
+              <p className="text-[13px] lg:text-[14px] text-white/50">
+                {item.label}
+              </p>
             </div>
           ))}
         </div>
-      </Card>
-    </Section>
+      </div>
+    </section>
   );
 }
 
@@ -663,7 +704,7 @@ function Footer() {
         </div>
       </div>
       <div className="mb-4">
-        <h2 className="font-serif text-[48px] md:text-[72px] lg:text-[96px] leading-none font-bold tracking-tight text-foreground/10 select-none">
+        <h2 className="font-serif text-[48px] md:text-[72px] lg:text-[96px] leading-none font-bold tracking-[-0.04em] text-foreground/10 select-none">
           PLUM
         </h2>
       </div>
