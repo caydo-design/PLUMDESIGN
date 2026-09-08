@@ -45,13 +45,21 @@ export function SectionLabel({
 export function SectionHeading({
   children,
   className = "",
+  size = "md",
 }: {
   children: ReactNode;
   className?: string;
+  size?: "md" | "lg" | "xl";
 }) {
+  const sizeMap = {
+    md: "clamp(28px, 4vw, 44px)",
+    lg: "clamp(36px, 5vw, 72px)",
+    xl: "clamp(40px, 7vw, 96px)",
+  };
   return (
     <h2
-      className={`font-serif text-[28px] md:text-[36px] lg:text-[44px] leading-tight font-medium tracking-[-0.03em] ${className}`}
+      className={`font-serif leading-tight font-medium tracking-[-0.03em] ${className}`}
+      style={{ fontSize: sizeMap[size] }}
     >
       {children}
     </h2>

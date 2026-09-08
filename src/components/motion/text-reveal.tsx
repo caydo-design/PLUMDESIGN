@@ -8,17 +8,19 @@ export function TextReveal({
   delay = 0,
   stagger = 0.04,
   as: Tag = "h1",
+  style,
 }: {
   text: string;
   className?: string;
   delay?: number;
   stagger?: number;
   as?: "h1" | "h2" | "h3" | "p" | "span";
+  style?: React.CSSProperties;
 }) {
   const words = text.split(" ");
 
   return (
-    <Tag className={className}>
+    <Tag className={className} style={style}>
       <motion.span
         initial="hidden"
         whileInView="visible"

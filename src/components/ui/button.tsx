@@ -1,7 +1,7 @@
 import { type ReactNode } from "react";
 
 type ButtonVariant = "primary" | "secondary" | "accent" | "ghost";
-type ButtonSize = "sm" | "md";
+type ButtonSize = "sm" | "md" | "lg";
 
 const variantStyles = {
   primary:
@@ -17,6 +17,7 @@ const variantStyles = {
 const sizeStyles = {
   sm: "px-5 py-2 text-[13px] font-medium",
   md: "px-7 py-3 text-[15px] font-semibold",
+  lg: "px-8 py-4 text-[16px] font-semibold",
 };
 
 export function Button({
@@ -32,7 +33,7 @@ export function Button({
   children: ReactNode;
   className?: string;
 }) {
-  const classes = `inline-flex items-center gap-2 rounded-full transition-colors ${variantStyles[variant]} ${sizeStyles[size]} ${className}`;
+  const classes = `inline-flex items-center gap-2 rounded-full transition-all duration-150 active:scale-[0.98] ${variantStyles[variant]} ${sizeStyles[size]} ${className}`;
 
   if (href) {
     return (

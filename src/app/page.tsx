@@ -35,59 +35,65 @@ import {
   MagneticHover,
 } from "@/components/motion";
 import { motion } from "framer-motion";
+import type { ReactNode } from "react";
 
 function SiteNavbar() {
   return (
     <Navbar
       links={[
+        { href: "#how-it-works", label: "How It Works" },
         { href: "#platform", label: "Platform" },
         { href: "#business", label: "For Business" },
-        { href: "#marketplace", label: "Marketplace" },
         { href: "#pricing", label: "Pricing" },
         { href: "/brand", label: "Our Brand" },
       ]}
-      cta={{ href: "#demo", label: "Book a Demo" }}
+      cta={{ href: "#get-started", label: "Get Started" }}
     />
   );
 }
 
+/* ────────────────────────────────────────────────────────────────
+ * Hero — editorial, punchy, travelapp-inspired
+ * ──────────────────────────────────────────────────────────────── */
 function Hero() {
   return (
     <section className="relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(255,211,172,0.25),transparent)]" />
-      <div className="relative px-6 md:px-12 lg:px-20 pt-20 md:pt-28 lg:pt-36 pb-16 lg:pb-24 max-w-[1440px] mx-auto text-center">
+      <div className="relative px-6 md:px-12 lg:px-20 pt-24 md:pt-32 lg:pt-40 pb-20 lg:pb-28 max-w-[1440px] mx-auto">
         <FadeIn delay={0.1} blur>
-          <div className="flex items-center justify-center gap-2 mb-6 lg:mb-8">
-            <div className="w-2 h-2 rounded-full bg-plum" />
-            <span className="text-[12px] lg:text-[13px] font-medium tracking-wide text-foreground/70">
-              The all-in-one travel platform for businesses, agents &amp;
-              travelers
-            </span>
-          </div>
+          <span className="uppercase font-semibold text-[11px] lg:text-[12px] tracking-[0.12em] text-sienna">
+            Group trips, end to end
+          </span>
         </FadeIn>
         <TextReveal
-          text="Seamless trip execution, from brand trips to bucket lists"
+          text="From group chat to gate D7."
           as="h1"
-          className="font-serif text-[36px] md:text-[48px] lg:text-[72px] leading-[1.1] lg:leading-[1.05] font-normal tracking-[-0.03em] lg:tracking-[-0.04em] max-w-[1000px] mx-auto mb-6 lg:mb-8"
+          className="font-serif font-medium max-w-[900px] mt-4 lg:mt-5"
+          style={{
+            fontSize: "clamp(40px, 8vw, 112px)",
+            lineHeight: 0.98,
+            letterSpacing: "-0.035em",
+          }}
           delay={0.3}
-          stagger={0.05}
+          stagger={0.06}
         />
-        <FadeIn delay={0.7} blur>
-          <p className="text-[15px] lg:text-[17px] leading-relaxed text-foreground/60 max-w-[640px] mx-auto mb-10 lg:mb-14">
-            Plum powers effortless travel for businesses managing team offsites
-            and influencer brand trips, travel agents building their own
-            practice, and consumers planning their next adventure.
+        <FadeIn delay={0.8} blur>
+          <p className="mt-6 lg:mt-8 text-[16px] lg:text-[18px] leading-relaxed text-foreground/60 max-w-[560px]">
+            You&apos;ve talked about it for months. Plum turns the group chat
+            into a booked trip — plans, splits, and all — in one afternoon.
           </p>
         </FadeIn>
-        <FadeIn delay={0.9} direction="up">
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+        <FadeIn delay={1} direction="up">
+          <div className="flex flex-wrap items-center gap-3 mt-8 lg:mt-10">
             <MagneticHover strength={0.15}>
-              <Button href="#get-started">Start Planning Free</Button>
+              <Button href="#get-started" size="lg">
+                Start planning free
+              </Button>
             </MagneticHover>
             <MagneticHover strength={0.15}>
-              <Button variant="secondary" href="#platform">
-                See How It Works
-                <ArrowRight className="w-3.5 h-3.5" />
+              <Button variant="secondary" href="#how-it-works" size="lg">
+                See how it works
+                <ArrowRight className="w-4 h-4" />
               </Button>
             </MagneticHover>
           </div>
@@ -97,15 +103,507 @@ function Hero() {
   );
 }
 
+/* ────────────────────────────────────────────────────────────────
+ * Hero image — full-bleed editorial image
+ * ──────────────────────────────────────────────────────────────── */
+function HeroImage() {
+  return (
+    <FadeIn delay={0.1}>
+      <section className="px-6 md:px-12 lg:px-20 max-w-[1440px] mx-auto">
+        <motion.div
+          className="w-full h-[280px] md:h-[400px] lg:h-[520px] rounded-2xl overflow-hidden relative"
+          whileHover={{ scale: 1.005 }}
+          transition={{ type: "spring", stiffness: 200, damping: 30 }}
+        >
+          <ParallaxImage
+            src="/images/lisbon-evening.jpg"
+            alt="Evening light on a European street"
+            className="w-full h-full"
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(180deg, rgba(50,5,5,0.1) 0%, rgba(50,5,5,0.45) 100%)",
+            }}
+          />
+          <div className="absolute bottom-6 left-6 lg:bottom-10 lg:left-10">
+            <LineReveal delay={0.3}>
+              <span className="uppercase font-semibold text-[11px] tracking-[0.12em] text-white/70">
+                Lisbon · April
+              </span>
+            </LineReveal>
+            <LineReveal delay={0.45}>
+              <p
+                className="font-serif text-white font-medium mt-2"
+                style={{ fontSize: "clamp(22px, 3vw, 36px)" }}
+              >
+                Every trip starts with one message.
+              </p>
+            </LineReveal>
+          </div>
+        </motion.div>
+      </section>
+    </FadeIn>
+  );
+}
+
+/* ────────────────────────────────────────────────────────────────
+ * How It Works — travelapp numbered steps pattern (01/02/03)
+ * ──────────────────────────────────────────────────────────────── */
+function HowItWorks() {
+  const steps = [
+    {
+      n: "01",
+      title: "Drop a vibe",
+      body: "Start a plan, name the trip, invite your people. Cabo for Sara's birthday? Tokyo for the long weekend? Off you go.",
+    },
+    {
+      n: "02",
+      title: "Decide together",
+      body: "Everyone weighs in on dates, spots, and splurges. No more forty-seven-message threads across three apps.",
+    },
+    {
+      n: "03",
+      title: "Book it once",
+      body: "Flights, stays, and the dinner you've been talking about — confirmed in one checkout. Split however you like.",
+    },
+  ];
+
+  return (
+    <section
+      id="how-it-works"
+      className="border-t border-warm/60 px-6 py-20 md:px-12 md:py-28 lg:px-20 lg:py-32 max-w-[1440px] mx-auto"
+    >
+      <FadeIn blur>
+        <span className="uppercase font-semibold text-[11px] lg:text-[12px] tracking-[0.12em] text-sienna">
+          How it works
+        </span>
+      </FadeIn>
+      <FadeIn delay={0.1}>
+        <SectionHeading size="lg" className="mt-4 max-w-3xl">
+          Plan a trip the way you actually plan a trip.
+        </SectionHeading>
+      </FadeIn>
+
+      <StaggerContainer
+        stagger={0.12}
+        delay={0.3}
+        className="mt-14 lg:mt-20 grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-14"
+      >
+        {steps.map((s) => (
+          <StaggerItem key={s.n}>
+            <div className="flex flex-col gap-3">
+              <span className="font-serif text-[20px] text-foreground/30">
+                {s.n}
+              </span>
+              <div className="h-px w-12 bg-foreground" aria-hidden="true" />
+              <h3
+                className="font-serif font-medium mt-2"
+                style={{ fontSize: "clamp(24px, 3vw, 32px)" }}
+              >
+                {s.title}
+              </h3>
+              <p className="text-[15px] lg:text-[16px] leading-relaxed text-foreground/60 max-w-md">
+                {s.body}
+              </p>
+            </div>
+          </StaggerItem>
+        ))}
+      </StaggerContainer>
+    </section>
+  );
+}
+
+/* ────────────────────────────────────────────────────────────────
+ * Features — eyebrow + bold heading pattern from travelapp
+ * ──────────────────────────────────────────────────────────────── */
+function Features() {
+  const features = [
+    {
+      eyebrow: "Group-first",
+      title: "Built for more than one of you.",
+      body: "Polls, splits, and shared lists are the defaults — not afterthoughts. Every step assumes a group is going.",
+      icon: Users,
+    },
+    {
+      eyebrow: "AI-powered",
+      title: "An agent that reads the room.",
+      body: "Your AI travel agent reads the feed, the group's calendars, and the destination — then plans. Push back, ask for cheaper, and it rewrites.",
+      icon: Sparkles,
+    },
+    {
+      eyebrow: "One bill",
+      title: "Pay together. Settle later.",
+      body: "Charge it all to one card and split when you're home. Or split as you go. Whatever keeps the group chat civil.",
+      icon: CalendarDays,
+    },
+  ];
+
+  return (
+    <section
+      id="platform"
+      className="border-t border-warm/60 px-6 py-20 md:px-12 md:py-28 lg:px-20 lg:py-32 max-w-[1440px] mx-auto"
+    >
+      <FadeIn>
+        <SectionHeading size="lg" className="max-w-3xl">
+          Built for the way friends actually travel.
+        </SectionHeading>
+      </FadeIn>
+
+      <StaggerContainer
+        stagger={0.1}
+        delay={0.2}
+        className="mt-14 lg:mt-20 grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-12"
+      >
+        {features.map((f) => (
+          <StaggerItem key={f.title}>
+            <motion.div
+              className="flex flex-col gap-3"
+              whileHover={{ y: -2 }}
+              transition={{ type: "spring", stiffness: 400, damping: 25 }}
+            >
+              <span className="uppercase font-semibold text-[11px] tracking-[0.12em] text-sienna">
+                {f.eyebrow}
+              </span>
+              <h3
+                className="font-serif font-medium"
+                style={{ fontSize: "clamp(20px, 2.5vw, 26px)" }}
+              >
+                {f.title}
+              </h3>
+              <p className="text-[15px] leading-relaxed text-foreground/60">
+                {f.body}
+              </p>
+            </motion.div>
+          </StaggerItem>
+        ))}
+      </StaggerContainer>
+    </section>
+  );
+}
+
+/* ────────────────────────────────────────────────────────────────
+ * Pull Quote — editorial blockquote from travelapp pattern
+ * ──────────────────────────────────────────────────────────────── */
+function PullQuote() {
+  return (
+    <section className="border-t border-warm/60 px-6 py-20 md:px-12 md:py-28 lg:px-20 lg:py-32 max-w-[1440px] mx-auto">
+      <FadeIn blur>
+        <span className="uppercase font-semibold text-[11px] lg:text-[12px] tracking-[0.12em] text-sienna">
+          From a recent trip
+        </span>
+      </FadeIn>
+      <FadeIn delay={0.2}>
+        <blockquote
+          className="mt-6 font-serif italic text-foreground/90 max-w-4xl"
+          style={{
+            fontSize: "clamp(24px, 4vw, 48px)",
+            lineHeight: 1.15,
+            letterSpacing: "-0.02em",
+          }}
+        >
+          &ldquo;We&apos;d been saying we&apos;d go to Lisbon for three years.
+          We booked it on a Sunday afternoon, in the time it took to finish a
+          bottle of natural wine.&rdquo;
+        </blockquote>
+      </FadeIn>
+      <FadeIn delay={0.35}>
+        <footer className="mt-6">
+          <p className="text-[15px] font-semibold">Maya &amp; friends</p>
+          <p className="text-[14px] text-foreground/50 mt-1">
+            Brooklyn → Lisbon, four nights
+          </p>
+        </footer>
+      </FadeIn>
+    </section>
+  );
+}
+
+/* ────────────────────────────────────────────────────────────────
+ * App Showcase — phone frame mockups from travelapp AppFlow
+ * ──────────────────────────────────────────────────────────────── */
+function PhoneFrame({ children }: { children: ReactNode }) {
+  return (
+    <div
+      className="relative flex-shrink-0"
+      style={{
+        width: 320,
+        height: 660,
+        background: "var(--foreground)",
+        borderRadius: 48,
+        padding: 8,
+        boxShadow:
+          "0 30px 60px rgba(43, 11, 2, 0.15), 0 8px 20px rgba(43, 11, 2, 0.08)",
+      }}
+    >
+      <div
+        className="relative w-full h-full overflow-hidden"
+        style={{ background: "#FAF6F0", borderRadius: 40 }}
+      >
+        <div
+          className="absolute top-2 left-1/2 -translate-x-1/2 z-20"
+          style={{
+            width: 96,
+            height: 24,
+            background: "var(--foreground)",
+            borderRadius: 999,
+          }}
+          aria-hidden="true"
+        />
+        <div
+          className="absolute top-0 inset-x-0 z-10 flex items-center justify-between px-6 pt-2.5 text-[10px] font-semibold"
+          style={{ color: "var(--foreground)" }}
+        >
+          <span>9:41</span>
+          <span className="opacity-60">87%</span>
+        </div>
+        <div className="absolute inset-0 pt-10 pb-2 overflow-y-auto [&::-webkit-scrollbar]:hidden">
+          {children}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function AppShowcase() {
+  return (
+    <section className="border-t border-warm/60 bg-foreground text-white overflow-hidden">
+      <div className="px-6 py-20 md:px-12 md:py-28 lg:px-20 lg:py-32 max-w-[1440px] mx-auto">
+        <FadeIn blur>
+          <span className="uppercase font-semibold text-[11px] lg:text-[12px] tracking-[0.12em] text-peach">
+            The app
+          </span>
+        </FadeIn>
+        <FadeIn delay={0.1}>
+          <h2
+            className="font-serif font-medium mt-4 max-w-3xl"
+            style={{
+              fontSize: "clamp(28px, 5vw, 56px)",
+              lineHeight: 1.05,
+              letterSpacing: "-0.03em",
+            }}
+          >
+            Four screens. The whole product.
+          </h2>
+        </FadeIn>
+        <FadeIn delay={0.2}>
+          <p className="mt-4 text-[15px] lg:text-[16px] leading-relaxed text-white/50 max-w-xl">
+            Invitation, shared feed, AI itinerary, trip creation — the soul of
+            the app is group context, shared content, and AI planning.
+          </p>
+        </FadeIn>
+
+        <div className="mt-14 lg:mt-20 grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20">
+          {/* Screen 1: Invitation */}
+          <FadeIn direction="up" delay={0.3}>
+            <div className="flex flex-col lg:flex-row gap-8 items-start">
+              <div className="lg:sticky lg:top-12 flex-1">
+                <span className="font-serif text-[20px] text-white/30">01</span>
+                <div className="h-px w-10 bg-white/40 my-3" />
+                <h3
+                  className="font-serif font-medium"
+                  style={{ fontSize: "clamp(22px, 3vw, 28px)" }}
+                >
+                  You&apos;re invited.
+                </h3>
+                <p className="mt-3 text-[14px] leading-relaxed text-white/50">
+                  It starts in your messages. Someone you trust sends a trip —
+                  destination, dates, vibe. One tap and you&apos;re in.
+                </p>
+              </div>
+              <div className="mx-auto lg:mx-0">
+                <PhoneFrame>
+                  <InvitationMockup />
+                </PhoneFrame>
+              </div>
+            </div>
+          </FadeIn>
+
+          {/* Screen 2: AI Itinerary */}
+          <FadeIn direction="up" delay={0.4}>
+            <div className="flex flex-col lg:flex-row gap-8 items-start">
+              <div className="lg:sticky lg:top-12 flex-1">
+                <span className="font-serif text-[20px] text-white/30">02</span>
+                <div className="h-px w-10 bg-white/40 my-3" />
+                <h3
+                  className="font-serif font-medium"
+                  style={{ fontSize: "clamp(22px, 3vw, 28px)" }}
+                >
+                  AI that knows the season.
+                </h3>
+                <p className="mt-3 text-[14px] leading-relaxed text-white/50">
+                  Your AI travel agent reads the feed, the group&apos;s
+                  calendars, and the destination — then builds the plan.
+                </p>
+              </div>
+              <div className="mx-auto lg:mx-0">
+                <PhoneFrame>
+                  <ItineraryMockup />
+                </PhoneFrame>
+              </div>
+            </div>
+          </FadeIn>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function InvitationMockup() {
+  return (
+    <div className="px-5 pt-2 pb-6 flex flex-col text-foreground">
+      <span className="text-[12px] text-foreground/50">← Inbox</span>
+      <div className="flex flex-col items-center text-center mt-8">
+        <div className="flex -space-x-3 mb-5">
+          {["S", "M", "J"].map((letter, i) => (
+            <div
+              key={letter}
+              className="w-11 h-11 rounded-full flex items-center justify-center text-[13px] font-semibold text-white border-2 border-[#FAF6F0]"
+              style={{
+                background: ["#d03660", "#2f4a64", "#b8722a"][i],
+              }}
+            >
+              {letter}
+            </div>
+          ))}
+        </div>
+        <span className="uppercase font-semibold text-[10px] tracking-[0.12em] text-foreground/50 mb-3">
+          You&apos;re invited
+        </span>
+        <h2 className="font-serif font-semibold text-[24px] leading-tight tracking-tight">
+          Lisbon for the long weekend
+        </h2>
+        <p className="text-[13px] text-foreground/50 mt-2">
+          <strong className="text-foreground">Sara</strong> wants you on this
+          one.
+        </p>
+      </div>
+
+      <div className="mt-6 rounded-xl bg-section p-4 flex flex-col gap-2.5">
+        {[
+          ["Destination", "Lisbon, Portugal"],
+          ["Dates", "Thu Apr 24 – Mon Apr 28"],
+          ["Going", "Sara, Maya, Jamie + you"],
+          ["Vibe", "Slow mornings, fado nights"],
+        ].map(([label, value]) => (
+          <div
+            key={label}
+            className="flex items-baseline justify-between gap-3"
+          >
+            <span className="text-[12px] text-foreground/50">{label}</span>
+            <span className="text-[12px] font-semibold text-right">
+              {value}
+            </span>
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-6 flex flex-col gap-2">
+        <div className="h-11 rounded-full bg-foreground text-white font-semibold text-[14px] flex items-center justify-center">
+          Accept &amp; open feed
+        </div>
+        <div className="h-11 rounded-full border border-foreground text-foreground font-medium text-[14px] flex items-center justify-center">
+          Maybe later
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ItineraryMockup() {
+  return (
+    <div className="flex flex-col text-foreground">
+      <div className="px-5 pt-2 pb-3 border-b border-warm">
+        <span className="text-[12px] text-foreground/50">← Feed</span>
+        <div className="flex items-center gap-2 mt-3">
+          <span
+            className="w-6 h-6 rounded-full flex items-center justify-center text-[10px] text-white"
+            style={{ background: "#b8722a" }}
+          >
+            ✦
+          </span>
+          <span className="uppercase text-[10px] font-semibold tracking-[0.12em] text-foreground/50">
+            Travel AI · 4 days · Lisbon
+          </span>
+        </div>
+        <h2 className="font-serif font-semibold text-[20px] leading-tight tracking-tight mt-2">
+          Slow weekend, no missed boats.
+        </h2>
+      </div>
+
+      <div className="px-5 pt-4">
+        <span className="uppercase font-semibold text-[10px] tracking-[0.12em] text-foreground/50">
+          Why late April
+        </span>
+        <p className="text-[12px] text-foreground/80 mt-2 leading-relaxed">
+          Avg <strong>67°F</strong>, lowest tourist density of the shoulder
+          season, and the jacarandas are mid-bloom.
+        </p>
+      </div>
+
+      <div className="px-5 pt-5 flex flex-col gap-3">
+        {[
+          {
+            day: "Thu · Day 1",
+            tag: "Land slow",
+            items: ["16:00 — Land LIS, taxi to Alfama", "19:30 — Tasca Zé dos Cornos", "22:00 — Fado in Mouraria"],
+          },
+          {
+            day: "Fri · Day 2",
+            tag: "The city itself",
+            items: ["08:30 — Pastéis at Manteigaria", "10:30 — Walk Alfama → Graça", "20:00 — Sunset at Santa Catarina"],
+          },
+        ].map((d) => (
+          <div
+            key={d.day}
+            className="rounded-xl border border-warm p-3.5 bg-white/50"
+          >
+            <div className="flex items-baseline justify-between">
+              <span className="text-[12px] font-semibold">{d.day}</span>
+              <span className="uppercase text-[10px] font-semibold text-foreground/40 tracking-[0.08em]">
+                {d.tag}
+              </span>
+            </div>
+            <ul className="mt-2.5 flex flex-col gap-2">
+              {d.items.map((it) => (
+                <li key={it} className="text-[11px] text-foreground/70">
+                  {it}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ────────────────────────────────────────────────────────────────
+ * Dashboard Mockup — refined with editorial tone
+ * ──────────────────────────────────────────────────────────────── */
 function DashboardMockup() {
   return (
-    <section className="px-6 md:px-12 lg:px-20 max-w-[1440px] mx-auto">
-      <FadeInScale delay={0.15} scale={0.92}>
+    <section className="border-t border-warm/60 px-6 py-20 md:px-12 md:py-28 lg:px-20 lg:py-32 max-w-[1440px] mx-auto">
+      <div className="mb-10 lg:mb-14">
+        <FadeIn blur>
+          <span className="uppercase font-semibold text-[11px] lg:text-[12px] tracking-[0.12em] text-sienna">
+            The dashboard
+          </span>
+        </FadeIn>
+        <FadeIn delay={0.1}>
+          <SectionHeading size="lg" className="mt-4 max-w-3xl">
+            Everything in one place. Finally.
+          </SectionHeading>
+        </FadeIn>
+      </div>
+
+      <FadeInScale delay={0.15} scale={0.95}>
         <Card variant="bordered" className="overflow-hidden">
           <div className="flex flex-col lg:flex-row">
             <div className="hidden lg:block w-[240px] border-r border-warm p-8 flex-shrink-0">
               <h3 className="font-serif text-lg font-semibold mb-10">
-                Plum Dashboard
+                Plum
               </h3>
               <StaggerContainer stagger={0.08} delay={0.4}>
                 {[
@@ -130,7 +628,7 @@ function DashboardMockup() {
               <div className="flex-1 p-6 lg:p-8">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
                   <h3 className="font-serif text-xl lg:text-2xl font-medium">
-                    Brand Trip: Tulum Creator Retreat
+                    Tulum Creator Retreat
                   </h3>
                   <Badge>12 Guests Confirmed</Badge>
                 </div>
@@ -183,25 +681,6 @@ function DashboardMockup() {
                     </StaggerItem>
                   ))}
                 </StaggerContainer>
-                <div className="mt-4">
-                  <span className="text-[13px] text-foreground/60">
-                    Upcoming Milestones
-                  </span>
-                  <StaggerContainer stagger={0.08} delay={0.8} className="mt-3">
-                    {[
-                      "Final headcount due Sep 1",
-                      "Deposit deadline Sep 15",
-                      "Itinerary review Sep 20",
-                    ].map((milestone) => (
-                      <StaggerItem key={milestone}>
-                        <div className="flex items-start gap-2 text-[13px] text-foreground/50 py-1">
-                          <div className="w-1.5 h-1.5 rounded-full bg-plum/40 mt-1.5 flex-shrink-0" />
-                          {milestone}
-                        </div>
-                      </StaggerItem>
-                    ))}
-                  </StaggerContainer>
-                </div>
               </div>
             </div>
           </div>
@@ -211,318 +690,151 @@ function DashboardMockup() {
   );
 }
 
-const features = [
-  {
-    icon: "briefcase" as const,
-    title: "Brand Trip Manager",
-    description:
-      "Coordinate influencer brand trips and creator retreats with guest tracking, payment handling, and automated reminders in one dashboard.",
-  },
-  {
-    icon: "building" as const,
-    title: "Team Offsite Planner",
-    description:
-      "Plan and execute small team offsites with budget controls, group booking, and seamless logistics for remote-first companies.",
-  },
-  {
-    icon: "users" as const,
-    title: "Agent Marketplace",
-    description:
-      "Travel agents set their own rates, showcase specialties, and connect with travelers looking for expert-curated experiences.",
-  },
-  {
-    icon: "sparkles" as const,
-    title: "AI Trip Builder",
-    description:
-      "Intelligent itinerary generation that learns preferences, optimizes routes, and surfaces hidden gems at every destination.",
-  },
-  {
-    icon: "globe" as const,
-    title: "Consumer Travel App",
-    description:
-      "Plan trips yourself or hire an agent through the app. Keep a beautiful travel diary of every journey you take.",
-  },
-  {
-    icon: "calendar" as const,
-    title: "Unified Booking Engine",
-    description:
-      "Flights, hotels, activities, and ground transport all in one place with real-time availability and group rate negotiation.",
-  },
-];
-
-const featureCardBgs = [
-  "bg-[#FFF0E0]",
-  "bg-[#F2EDF5]",
-  "bg-[#FFF4E8]",
-  "bg-[#F7F2F8]",
-  "bg-[#FFF6EE]",
-  "bg-[#F0EBE6]",
-];
-
-function Features() {
-  const iconMap = {
-    briefcase: Briefcase,
-    building: Building2,
-    users: Users,
-    sparkles: Sparkles,
-    globe: Globe,
-    calendar: CalendarDays,
-  };
-
-  return (
-    <Section id="platform">
-      <div className="text-center mb-10 lg:mb-16">
-        <FadeIn blur>
-          <SectionLabel>One Platform, Every Journey</SectionLabel>
-        </FadeIn>
-        <FadeIn delay={0.1}>
-          <SectionHeading className="mb-4">
-            Everything travel teams actually need
-          </SectionHeading>
-        </FadeIn>
-        <FadeIn delay={0.2}>
-          <p className="text-[15px] lg:text-[16px] leading-relaxed text-foreground/60 max-w-[680px] mx-auto">
-            Whether you&apos;re a business coordinating brand trips, a travel
-            agent building your practice, or a consumer planning your next
-            getaway — Plum handles it all.
-          </p>
-        </FadeIn>
-      </div>
-      <StaggerContainer
-        stagger={0.08}
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6"
-      >
-        {features.map((feature, i) => {
-          const Icon = iconMap[feature.icon];
-          return (
-            <StaggerItem key={feature.title}>
-              <motion.div
-                className={`rounded-2xl ${featureCardBgs[i]} p-6 lg:p-8 transition-shadow`}
-                whileHover={{
-                  y: -4,
-                  boxShadow:
-                    "0 20px 40px -12px rgba(0,0,0,0.08)",
-                }}
-                transition={{
-                  type: "spring",
-                  stiffness: 400,
-                  damping: 25,
-                }}
-              >
-                <Icon className="w-6 h-6 text-plum mb-4 lg:mb-5" />
-                <h3 className="font-serif text-[20px] lg:text-[22px] font-medium tracking-[-0.02em] mb-3">
-                  {feature.title}
-                </h3>
-                <p className="text-[14px] lg:text-[15px] leading-relaxed text-foreground/60">
-                  {feature.description}
-                </p>
-              </motion.div>
-            </StaggerItem>
-          );
-        })}
-      </StaggerContainer>
-    </Section>
-  );
-}
-
-function Testimonials() {
-  const testimonials = [
-    {
-      quote:
-        "“We used to juggle spreadsheets, Venmo requests, and group chats for every brand trip. Plum replaced all of that with one dashboard. Our last creator retreat had 20 influencers confirmed and paid in 48 hours.”",
-      name: "Jordan Ellis",
-      title: "Brand Partnerships Lead, Glow Collective",
-    },
-    {
-      quote:
-        "“As an independent travel agent, Plum gave me a real platform to run my business. I set my rates, clients book directly through the app, and I spend my time curating experiences instead of chasing invoices.”",
-      name: "Maya Torres",
-      title: "Independent Travel Agent, Wanderlux Travel",
-    },
-  ];
-
-  return (
-    <section className="bg-foreground text-white">
-      <div className="px-6 py-20 md:px-12 md:py-28 lg:px-20 lg:py-32 max-w-[1440px] mx-auto">
-        <div className="text-center mb-10 lg:mb-16">
-          <FadeIn blur>
-            <div className="flex items-center justify-center gap-3 mb-6 lg:mb-8">
-              <div className="w-4 h-px bg-white/30" />
-              <span className="text-[12px] lg:text-[13px] font-medium tracking-wider uppercase text-peach">
-                What People Are Saying
-              </span>
-            </div>
-          </FadeIn>
-          <FadeIn delay={0.15}>
-            <h2 className="font-serif text-[28px] md:text-[36px] lg:text-[44px] leading-tight font-medium tracking-[-0.03em]">
-              Trusted by travel teams everywhere
-            </h2>
-          </FadeIn>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-          {testimonials.map((testimonial, i) => (
-            <FadeIn
-              key={testimonial.name}
-              direction={i === 0 ? "left" : "right"}
-              delay={0.2 + i * 0.15}
-            >
-              <motion.div
-                className="rounded-2xl ring-1 ring-white/10 p-8 lg:p-12 h-full hover:ring-white/20 transition-[box-shadow]"
-                whileHover={{
-                  boxShadow: "0 0 40px rgba(255,211,172,0.06)",
-                }}
-                transition={{ duration: 0.3 }}
-              >
-                <p className="font-serif text-[18px] lg:text-[20px] leading-relaxed text-white/80 mb-8 lg:mb-10">
-                  {testimonial.quote}
-                </p>
-                <div>
-                  <p className="text-[15px] font-semibold text-white">
-                    {testimonial.name}
-                  </p>
-                  <p className="text-[13px] text-white/50 mt-1">
-                    {testimonial.title}
-                  </p>
-                </div>
-              </motion.div>
-            </FadeIn>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
+/* ────────────────────────────────────────────────────────────────
+ * For Business — numbered steps with divider lines
+ * ──────────────────────────────────────────────────────────────── */
 function ForBusiness() {
   return (
-    <Section id="business">
+    <section
+      id="business"
+      className="border-t border-warm/60 px-6 py-20 md:px-12 md:py-28 lg:px-20 lg:py-32 max-w-[1440px] mx-auto"
+    >
       <div className="flex flex-col lg:flex-row gap-10 lg:gap-16">
         <div className="lg:w-[515px] lg:flex-shrink-0">
-          <div className="mb-8 lg:mb-10">
-            <FadeIn blur>
-              <SectionLabel>Built for Business</SectionLabel>
-            </FadeIn>
-            <FadeIn delay={0.1}>
-              <SectionHeading className="mb-4">
-                Brand trips and team offsites, handled
-              </SectionHeading>
-            </FadeIn>
-            <FadeIn delay={0.2}>
-              <p className="text-[15px] lg:text-[16px] leading-relaxed text-foreground/60">
-                Businesses today need seamless trip execution — from influencer
-                brand trips to quarterly team offsites. Plum gives you the tools
-                to plan, book, and manage group travel without the chaos.
-              </p>
-            </FadeIn>
-          </div>
-          <StaggerContainer stagger={0.12} delay={0.3} className="space-y-6 mb-10 lg:mb-12">
+          <FadeIn blur>
+            <span className="uppercase font-semibold text-[11px] lg:text-[12px] tracking-[0.12em] text-sienna">
+              Built for business
+            </span>
+          </FadeIn>
+          <FadeIn delay={0.1}>
+            <SectionHeading size="lg" className="mt-4 mb-5">
+              Brand trips and team offsites, handled.
+            </SectionHeading>
+          </FadeIn>
+          <FadeIn delay={0.2}>
+            <p className="text-[15px] lg:text-[16px] leading-relaxed text-foreground/60 mb-10">
+              From influencer brand trips to quarterly team offsites — plan,
+              book, and manage group travel without the chaos.
+            </p>
+          </FadeIn>
+          <StaggerContainer stagger={0.12} delay={0.3} className="space-y-8">
             {[
               {
-                num: "1",
-                title: "Influencer Brand Trips",
+                n: "01",
+                title: "Influencer brand trips",
                 desc: "Manage guest lists, coordinate content deliverables, handle payments and installments — all from one place.",
               },
               {
-                num: "2",
-                title: "Small Team Offsites",
-                desc: "Budget-controlled planning for remote teams who need to get together. Group rates, shared itineraries, and expense tracking built in.",
+                n: "02",
+                title: "Small team offsites",
+                desc: "Budget-controlled planning for remote teams. Group rates, shared itineraries, and expense tracking built in.",
               },
             ].map((item) => (
-              <StaggerItem key={item.num} direction="left">
-                <div className="flex gap-4">
-                  <div className="w-9 h-9 rounded-full border border-warm flex items-center justify-center text-[15px] font-semibold flex-shrink-0">
-                    {item.num}
-                  </div>
-                  <div>
-                    <h4 className="font-serif text-lg font-medium mb-1">
-                      {item.title}
-                    </h4>
-                    <p className="text-[14px] lg:text-[15px] leading-relaxed text-foreground/60">
-                      {item.desc}
-                    </p>
-                  </div>
+              <StaggerItem key={item.n} direction="left">
+                <div className="flex flex-col gap-2">
+                  <span className="font-serif text-[18px] text-foreground/30">
+                    {item.n}
+                  </span>
+                  <div className="h-px w-10 bg-foreground" />
+                  <h4 className="font-serif text-[20px] font-medium mt-1">
+                    {item.title}
+                  </h4>
+                  <p className="text-[14px] lg:text-[15px] leading-relaxed text-foreground/60">
+                    {item.desc}
+                  </p>
                 </div>
               </StaggerItem>
             ))}
           </StaggerContainer>
-          <FadeIn delay={0.5}>
+          <FadeIn delay={0.6}>
             <a
               href="#demo"
-              className="inline-flex items-center gap-2 text-[15px] font-semibold text-foreground hover:text-plum transition-colors"
+              className="inline-flex items-center gap-2 text-[15px] font-semibold text-foreground hover:text-plum transition-colors mt-10"
             >
-              Talk to our Business Team
+              Talk to our business team
               <ArrowRight className="w-3.5 h-3.5" />
             </a>
           </FadeIn>
         </div>
         <FadeIn direction="right" delay={0.2} className="flex-1">
-          <div className="w-full h-[300px] md:h-[400px] lg:h-[480px] rounded-2xl overflow-hidden relative">
+          <div className="w-full h-[300px] md:h-[400px] lg:h-[520px] rounded-2xl overflow-hidden relative">
             <ParallaxImage
               src="/images/resort.jpg"
-              alt="Luxury resort view with palm trees and ocean"
+              alt="Luxury resort with palm trees and ocean"
               className="w-full h-full"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(180deg, rgba(50,5,5,0.05) 0%, rgba(50,5,5,0.35) 100%)",
+              }}
+            />
           </div>
         </FadeIn>
       </div>
-    </Section>
+    </section>
   );
 }
 
+/* ────────────────────────────────────────────────────────────────
+ * Marketplace — agent platform, numbered steps
+ * ──────────────────────────────────────────────────────────────── */
 function Marketplace() {
   return (
-    <Section id="marketplace">
+    <section
+      id="marketplace"
+      className="border-t border-warm/60 px-6 py-20 md:px-12 md:py-28 lg:px-20 lg:py-32 max-w-[1440px] mx-auto"
+    >
       <div className="flex flex-col-reverse lg:flex-row-reverse gap-10 lg:gap-16">
         <div className="lg:w-[515px] lg:flex-shrink-0">
-          <div className="mb-8 lg:mb-10">
-            <FadeIn blur>
-              <SectionLabel>Travel Agent Marketplace</SectionLabel>
-            </FadeIn>
-            <FadeIn delay={0.1}>
-              <SectionHeading className="mb-4">
-                Your platform to become a travel entrepreneur
-              </SectionHeading>
-            </FadeIn>
-            <FadeIn delay={0.2}>
-              <p className="text-[15px] lg:text-[16px] leading-relaxed text-foreground/60">
-                As AI reshapes the workforce, human-centered services like
-                travel planning become more valuable than ever. Plum gives
-                anyone the tools to build a thriving travel agency business.
-              </p>
-            </FadeIn>
-          </div>
-          <StaggerContainer stagger={0.1} delay={0.3} className="space-y-6 mb-10 lg:mb-12">
+          <FadeIn blur>
+            <span className="uppercase font-semibold text-[11px] lg:text-[12px] tracking-[0.12em] text-sienna">
+              Agent marketplace
+            </span>
+          </FadeIn>
+          <FadeIn delay={0.1}>
+            <SectionHeading size="lg" className="mt-4 mb-5">
+              Your platform to become a travel entrepreneur.
+            </SectionHeading>
+          </FadeIn>
+          <FadeIn delay={0.2}>
+            <p className="text-[15px] lg:text-[16px] leading-relaxed text-foreground/60 mb-10">
+              As AI reshapes the workforce, human-centered services like travel
+              planning become more valuable than ever. Plum gives anyone the
+              tools to build a thriving travel agency.
+            </p>
+          </FadeIn>
+          <StaggerContainer stagger={0.1} delay={0.3} className="space-y-8">
             {[
               {
-                num: "1",
-                title: "Set Your Own Rates",
-                desc: "Define your pricing, showcase your expertise and travel specialties, and let clients find and book you directly.",
+                n: "01",
+                title: "Set your own rates",
+                desc: "Define your pricing, showcase your expertise, and let clients find and book you directly through the app.",
               },
               {
-                num: "2",
-                title: "Deliver Plans Through the App",
-                desc: "Create beautiful, shareable travel itineraries your clients can access on the go — with real-time updates and booking links.",
+                n: "02",
+                title: "Deliver plans through the app",
+                desc: "Create beautiful, shareable travel itineraries your clients can access on the go — with real-time updates.",
               },
               {
-                num: "3",
-                title: "Grow Your Business",
-                desc: "Build your reputation with client reviews, track earnings, and access AI-powered tools to plan trips faster.",
+                n: "03",
+                title: "Grow your business",
+                desc: "Build your reputation with reviews, track earnings, and access AI-powered tools to plan trips faster.",
               },
             ].map((item) => (
-              <StaggerItem key={item.num} direction="right">
-                <div className="flex gap-4">
-                  <div className="w-9 h-9 rounded-full border border-warm flex items-center justify-center text-[15px] font-semibold flex-shrink-0">
-                    {item.num}
-                  </div>
-                  <div>
-                    <h4 className="font-serif text-lg font-medium mb-1">
-                      {item.title}
-                    </h4>
-                    <p className="text-[14px] lg:text-[15px] leading-relaxed text-foreground/60">
-                      {item.desc}
-                    </p>
-                  </div>
+              <StaggerItem key={item.n} direction="right">
+                <div className="flex flex-col gap-2">
+                  <span className="font-serif text-[18px] text-foreground/30">
+                    {item.n}
+                  </span>
+                  <div className="h-px w-10 bg-foreground" />
+                  <h4 className="font-serif text-[20px] font-medium mt-1">
+                    {item.title}
+                  </h4>
+                  <p className="text-[14px] lg:text-[15px] leading-relaxed text-foreground/60">
+                    {item.desc}
+                  </p>
                 </div>
               </StaggerItem>
             ))}
@@ -530,9 +842,9 @@ function Marketplace() {
           <FadeIn delay={0.6}>
             <a
               href="#get-started"
-              className="inline-flex items-center gap-2 text-[15px] font-semibold text-foreground hover:text-plum transition-colors"
+              className="inline-flex items-center gap-2 text-[15px] font-semibold text-foreground hover:text-plum transition-colors mt-10"
             >
-              Become a Plum Agent
+              Become a Plum agent
               <ArrowRight className="w-3.5 h-3.5" />
             </a>
           </FadeIn>
@@ -541,22 +853,110 @@ function Marketplace() {
           <div className="w-full h-[300px] md:h-[400px] lg:h-[540px] rounded-2xl overflow-hidden relative">
             <ParallaxImage
               src="/images/yacht-friends.jpg"
-              alt="Friends enjoying a yacht trip together"
+              alt="Friends on a yacht"
               className="w-full h-full"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(180deg, rgba(50,5,5,0.05) 0%, rgba(50,5,5,0.35) 100%)",
+              }}
+            />
           </div>
         </FadeIn>
       </div>
-    </Section>
+    </section>
   );
 }
 
+/* ────────────────────────────────────────────────────────────────
+ * AI Vision — stats with animated counters
+ * ──────────────────────────────────────────────────────────────── */
+function AIVision() {
+  return (
+    <section className="bg-foreground text-white overflow-hidden">
+      <div className="px-6 py-20 md:px-12 md:py-28 lg:px-20 lg:py-32 max-w-[1440px] mx-auto">
+        <FadeIn blur>
+          <span className="uppercase font-semibold text-[11px] lg:text-[12px] tracking-[0.12em] text-peach">
+            Why now
+          </span>
+        </FadeIn>
+        <FadeIn delay={0.15}>
+          <h2
+            className="font-serif font-medium mt-4 max-w-[700px]"
+            style={{
+              fontSize: "clamp(28px, 4vw, 48px)",
+              lineHeight: 1.1,
+              letterSpacing: "-0.03em",
+            }}
+          >
+            AI creates free time. People spend free time traveling.
+          </h2>
+        </FadeIn>
+        <FadeIn delay={0.25}>
+          <p className="mt-5 text-[15px] lg:text-[16px] leading-relaxed text-white/50 max-w-[640px]">
+            As AI automates more work, people gain more leisure time — and
+            travel is how they spend it. Plum meets this growing demand while
+            creating new opportunities for displaced workers to become travel
+            entrepreneurs.
+          </p>
+        </FadeIn>
+        <StaggerContainer
+          stagger={0.15}
+          delay={0.3}
+          className="mt-14 grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-[900px]"
+        >
+          {[
+            {
+              value: 730,
+              prefix: "$",
+              suffix: "B+",
+              label: "Online travel market in 2026",
+            },
+            {
+              value: 34,
+              prefix: "",
+              suffix: "%",
+              label: "YoY growth in AI-powered travel",
+            },
+            {
+              value: 3,
+              prefix: "",
+              suffix: " in 1",
+              label: "SaaS + Marketplace + Consumer app",
+            },
+          ].map((item) => (
+            <StaggerItem key={item.label}>
+              <div>
+                <p className="font-serif text-[28px] lg:text-[36px] font-medium text-peach mb-2">
+                  <AnimatedCounter
+                    value={item.value}
+                    prefix={item.prefix}
+                    suffix={item.suffix}
+                    duration={1.8}
+                  />
+                </p>
+                <p className="text-[13px] lg:text-[14px] text-white/40">
+                  {item.label}
+                </p>
+              </div>
+            </StaggerItem>
+          ))}
+        </StaggerContainer>
+      </div>
+    </section>
+  );
+}
+
+/* ────────────────────────────────────────────────────────────────
+ * Pricing — with spring hover
+ * ──────────────────────────────────────────────────────────────── */
 const pricingPlans = [
   {
     name: "Explorer",
     description:
-      "For travelers who want to plan their own trips with AI-powered tools and a beautiful travel diary.",
+      "For travelers who want to plan their own trips with AI-powered tools.",
     price: "Free",
     period: "forever",
     features: [
@@ -572,7 +972,7 @@ const pricingPlans = [
   {
     name: "Agent Pro",
     description:
-      "For travel agents ready to build their business and reach new clients through the Plum marketplace.",
+      "For travel agents building their business through the Plum marketplace.",
     price: "$29",
     period: "per month",
     features: [
@@ -589,7 +989,7 @@ const pricingPlans = [
   {
     name: "Business",
     description:
-      "For companies managing brand trips, influencer retreats, and team offsites at scale.",
+      "For companies managing brand trips, retreats, and team offsites.",
     price: "Custom",
     period: "per organization",
     features: [
@@ -606,23 +1006,26 @@ const pricingPlans = [
 
 function Pricing() {
   return (
-    <Section id="pricing">
-      <div className="text-center mb-10 lg:mb-16">
-        <FadeIn blur>
-          <SectionLabel>Simple Pricing</SectionLabel>
-        </FadeIn>
-        <FadeIn delay={0.1}>
-          <SectionHeading className="mb-4">
-            A plan for every kind of traveler
-          </SectionHeading>
-        </FadeIn>
-        <FadeIn delay={0.2}>
-          <p className="text-[15px] lg:text-[16px] leading-relaxed text-foreground/60 max-w-[680px] mx-auto">
-            Whether you&apos;re exploring the world, building a travel business,
-            or managing corporate trips — start for free and scale as you grow.
-          </p>
-        </FadeIn>
-      </div>
+    <section
+      id="pricing"
+      className="border-t border-warm/60 px-6 py-20 md:px-12 md:py-28 lg:px-20 lg:py-32 max-w-[1440px] mx-auto"
+    >
+      <FadeIn blur>
+        <span className="uppercase font-semibold text-[11px] lg:text-[12px] tracking-[0.12em] text-sienna">
+          Simple pricing
+        </span>
+      </FadeIn>
+      <FadeIn delay={0.1}>
+        <SectionHeading size="lg" className="mt-4 mb-5 max-w-xl">
+          A plan for every kind of traveler.
+        </SectionHeading>
+      </FadeIn>
+      <FadeIn delay={0.2}>
+        <p className="text-[15px] lg:text-[16px] leading-relaxed text-foreground/60 max-w-[580px] mb-12 lg:mb-16">
+          Start for free and scale as you grow — whether you&apos;re exploring
+          the world, building a travel business, or managing corporate trips.
+        </p>
+      </FadeIn>
       <StaggerContainer
         stagger={0.12}
         className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6"
@@ -636,7 +1039,7 @@ function Pricing() {
                   : "border-warm"
               }`}
               whileHover={{
-                y: -6,
+                y: -4,
                 boxShadow: plan.popular
                   ? "0 24px 48px -12px rgba(107,56,97,0.15)"
                   : "0 20px 40px -12px rgba(0,0,0,0.08)",
@@ -689,10 +1092,13 @@ function Pricing() {
           </StaggerItem>
         ))}
       </StaggerContainer>
-    </Section>
+    </section>
   );
 }
 
+/* ────────────────────────────────────────────────────────────────
+ * Gallery — parallax destination images
+ * ──────────────────────────────────────────────────────────────── */
 function GalleryPause() {
   const destinations = [
     { label: "Bali Retreat", image: "/images/bali.jpg" },
@@ -701,7 +1107,7 @@ function GalleryPause() {
   ];
 
   return (
-    <Section>
+    <section className="px-6 py-16 md:px-12 lg:px-20 max-w-[1440px] mx-auto">
       <StaggerContainer
         stagger={0.1}
         className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6"
@@ -727,118 +1133,62 @@ function GalleryPause() {
           </StaggerItem>
         ))}
       </StaggerContainer>
-    </Section>
-  );
-}
-
-function AIVision() {
-  return (
-    <section className="bg-foreground text-white overflow-hidden">
-      <div className="px-6 py-20 md:px-12 md:py-28 lg:px-20 lg:py-32 max-w-[1440px] mx-auto text-center">
-        <FadeIn blur>
-          <div className="flex items-center justify-center gap-3 mb-6 lg:mb-8">
-            <div className="w-4 h-px bg-white/30" />
-            <span className="text-[12px] lg:text-[13px] font-medium tracking-wider uppercase text-peach">
-              Why Now
-            </span>
-          </div>
-        </FadeIn>
-        <FadeIn delay={0.15}>
-          <h2 className="font-serif text-[28px] md:text-[36px] lg:text-[44px] leading-tight font-medium tracking-[-0.03em] mb-6 max-w-[700px] mx-auto">
-            AI creates free time. People spend free time traveling.
-          </h2>
-        </FadeIn>
-        <FadeIn delay={0.25}>
-          <p className="text-[15px] lg:text-[16px] leading-relaxed text-white/60 max-w-[640px] mx-auto mb-10 lg:mb-14">
-            As AI automates more work, people gain more leisure time — and travel
-            is how they spend it. Plum meets this growing demand while creating
-            new opportunities for displaced workers to become travel
-            entrepreneurs.
-          </p>
-        </FadeIn>
-        <StaggerContainer
-          stagger={0.15}
-          delay={0.3}
-          className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-[900px] mx-auto"
-        >
-          {[
-            {
-              value: 730,
-              prefix: "$",
-              suffix: "B+",
-              label: "Online travel market in 2026",
-            },
-            {
-              value: 34,
-              prefix: "",
-              suffix: "%",
-              label: "YoY growth in AI-powered travel",
-            },
-            {
-              value: 3,
-              prefix: "",
-              suffix: " in 1",
-              label: "SaaS + Marketplace + Consumer app",
-            },
-          ].map((item) => (
-            <StaggerItem key={item.label}>
-              <div>
-                <p className="font-serif text-[28px] lg:text-[36px] font-medium text-peach mb-2">
-                  <AnimatedCounter
-                    value={item.value}
-                    prefix={item.prefix}
-                    suffix={item.suffix}
-                    duration={1.8}
-                  />
-                </p>
-                <p className="text-[13px] lg:text-[14px] text-white/50">
-                  {item.label}
-                </p>
-              </div>
-            </StaggerItem>
-          ))}
-        </StaggerContainer>
-      </div>
     </section>
   );
 }
 
-function HeroImage() {
+/* ────────────────────────────────────────────────────────────────
+ * CTA Strip — travelapp "Stop talking. Start packing." pattern
+ * ──────────────────────────────────────────────────────────────── */
+function CTAStrip() {
   return (
-    <FadeIn delay={0.1}>
-      <section className="px-6 md:px-12 lg:px-20 max-w-[1440px] mx-auto">
-        <motion.div
-          className="w-full h-[240px] md:h-[320px] lg:h-[400px] rounded-2xl overflow-hidden relative"
-          whileHover={{ scale: 1.01 }}
-          transition={{ type: "spring", stiffness: 200, damping: 30 }}
+    <section
+      id="get-started"
+      className="border-t border-warm/60 px-6 py-20 md:px-12 md:py-28 lg:px-20 lg:py-32 max-w-[1440px] mx-auto"
+    >
+      <FadeIn>
+        <h2
+          className="font-serif font-semibold max-w-4xl"
+          style={{
+            fontSize: "clamp(40px, 7vw, 96px)",
+            lineHeight: 0.98,
+            letterSpacing: "-0.035em",
+          }}
         >
-          <ParallaxImage
-            src="/images/lisbon-evening.jpg"
-            alt="Evening in a charming European city"
-            className="w-full h-full"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-          <div className="absolute bottom-6 left-6 lg:bottom-10 lg:left-10">
-            <LineReveal delay={0.3}>
-              <p className="text-white/80 text-[12px] lg:text-[13px] font-medium tracking-wider uppercase mb-2">
-                Your Next Adventure Awaits
-              </p>
-            </LineReveal>
-            <LineReveal delay={0.45}>
-              <p className="font-serif text-white text-[22px] md:text-[28px] lg:text-[32px] font-medium">
-                Every trip tells a story
-              </p>
-            </LineReveal>
-          </div>
-        </motion.div>
-      </section>
-    </FadeIn>
+          Stop planning. Start packing.
+        </h2>
+      </FadeIn>
+      <FadeIn delay={0.15}>
+        <p className="mt-6 text-[16px] lg:text-[18px] leading-relaxed text-foreground/50 max-w-xl">
+          Free to plan. Pay only when you book. Bring everyone — your first
+          trip is on us.
+        </p>
+      </FadeIn>
+      <FadeIn delay={0.3} direction="up">
+        <div className="flex flex-wrap items-center gap-3 mt-8">
+          <MagneticHover strength={0.12}>
+            <Button size="lg" href="#get-started">
+              Get started
+            </Button>
+          </MagneticHover>
+          <MagneticHover strength={0.12}>
+            <Button variant="secondary" size="lg" href="#platform">
+              See destinations
+              <ArrowRight className="w-4 h-4" />
+            </Button>
+          </MagneticHover>
+        </div>
+      </FadeIn>
+    </section>
   );
 }
 
+/* ────────────────────────────────────────────────────────────────
+ * Footer
+ * ──────────────────────────────────────────────────────────────── */
 function Footer() {
   return (
-    <footer className="px-6 md:px-12 lg:px-20 pt-16 lg:pt-24 pb-10 lg:pb-12 max-w-[1440px] mx-auto">
+    <footer className="border-t border-warm/60 px-6 md:px-12 lg:px-20 pt-16 lg:pt-24 pb-10 lg:pb-12 max-w-[1440px] mx-auto">
       <FadeIn>
         <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 mb-12 lg:mb-16">
           <div className="lg:w-[320px]">
@@ -871,7 +1221,7 @@ function Footer() {
               },
             ].map((col) => (
               <div key={col.title}>
-                <h4 className="text-[13px] font-semibold uppercase tracking-wider text-foreground/40 mb-5">
+                <h4 className="text-[12px] font-semibold uppercase tracking-[0.12em] text-foreground/40 mb-5">
                   {col.title}
                 </h4>
                 <div className="space-y-3">
@@ -897,7 +1247,10 @@ function Footer() {
         viewport={{ once: true }}
         transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
       >
-        <h2 className="font-serif text-[48px] md:text-[72px] lg:text-[96px] leading-none font-bold tracking-[-0.04em] text-foreground/10 select-none">
+        <h2
+          className="font-serif leading-none font-bold tracking-[-0.04em] text-foreground/10 select-none"
+          style={{ fontSize: "clamp(48px, 8vw, 96px)" }}
+        >
           PLUM
         </h2>
       </motion.div>
@@ -918,20 +1271,26 @@ function Footer() {
   );
 }
 
+/* ────────────────────────────────────────────────────────────────
+ * Page composition
+ * ──────────────────────────────────────────────────────────────── */
 export default function Home() {
   return (
     <main className="bg-background">
       <SiteNavbar />
       <Hero />
-      <DashboardMockup />
-      <Features />
-      <Testimonials />
       <HeroImage />
+      <HowItWorks />
+      <Features />
+      <PullQuote />
+      <AppShowcase />
+      <DashboardMockup />
       <ForBusiness />
       <Marketplace />
+      <GalleryPause />
       <AIVision />
       <Pricing />
-      <GalleryPause />
+      <CTAStrip />
       <Footer />
     </main>
   );
