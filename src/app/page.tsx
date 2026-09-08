@@ -5,6 +5,7 @@ import {
   Plane,
   Check,
   ArrowRight,
+  ArrowUpRight,
   Globe,
   CalendarDays,
   MapPin,
@@ -40,28 +41,23 @@ function SiteNavbar() {
 function Hero() {
   return (
     <section className="relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(255,211,172,0.25),transparent)]" />
-      <div className="relative px-6 md:px-12 lg:px-20 pt-20 md:pt-28 lg:pt-36 pb-16 lg:pb-24 max-w-[1440px] mx-auto text-center">
-        <div className="flex items-center justify-center gap-2 mb-6 lg:mb-8">
-          <div className="w-2 h-2 rounded-full bg-plum" />
-          <span className="text-[12px] lg:text-[13px] font-medium tracking-wide text-foreground/70">
-            The all-in-one travel platform for businesses, agents &amp;
-            travelers
-          </span>
-        </div>
-        <h1 className="font-serif text-[36px] md:text-[48px] lg:text-[72px] leading-[1.1] lg:leading-[1.05] font-normal tracking-[-0.03em] lg:tracking-[-0.04em] max-w-[1000px] mx-auto mb-6 lg:mb-8">
-          Seamless trip execution, from brand trips to bucket lists
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(255,211,172,0.3),transparent)]" />
+      <div className="relative px-6 md:px-12 lg:px-20 pt-24 md:pt-36 lg:pt-44 pb-16 lg:pb-24 max-w-[1440px] mx-auto text-center">
+        <h1 className="font-serif text-[44px] md:text-[64px] lg:text-[88px] leading-[1.05] font-normal tracking-[-0.04em] max-w-[900px] mx-auto mb-6 lg:mb-8">
+          Don&apos;t plan trips,{" "}
+          <em>live them</em>
         </h1>
-        <p className="text-[15px] lg:text-[17px] leading-relaxed text-foreground/60 max-w-[640px] mx-auto mb-10 lg:mb-14">
-          Plum powers effortless travel for businesses managing team offsites
-          and influencer brand trips, travel agents building their own practice,
-          and consumers planning their next adventure.
+        <p className="text-[16px] lg:text-[18px] leading-relaxed text-foreground/60 max-w-[540px] mx-auto mb-10 lg:mb-14">
+          The all-in-one travel platform for businesses managing brand trips,
+          agents building their practice, and travelers exploring the world.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
-          <Button href="#get-started">Start Planning Free</Button>
-          <Button variant="secondary" href="#platform">
+          <Button href="#get-started">
+            Start Planning Free
+            <ArrowRight className="w-4 h-4" />
+          </Button>
+          <Button variant="ghost" href="#platform">
             See How It Works
-            <ArrowRight className="w-3.5 h-3.5" />
           </Button>
         </div>
       </div>
@@ -71,10 +67,10 @@ function Hero() {
 
 function DashboardMockup() {
   return (
-    <section className="px-6 md:px-12 lg:px-20 max-w-[1440px] mx-auto">
+    <section className="px-6 md:px-12 lg:px-20 pb-8 max-w-[1440px] mx-auto">
       <Card variant="bordered" className="overflow-hidden">
         <div className="flex flex-col lg:flex-row">
-          <div className="hidden lg:block w-[240px] border-r border-warm p-8 flex-shrink-0">
+          <div className="hidden lg:block w-[240px] border-r border-warm/40 p-8 flex-shrink-0">
             <h3 className="font-serif text-lg font-semibold mb-10">
               Plum Dashboard
             </h3>
@@ -112,7 +108,7 @@ function DashboardMockup() {
                 </div>
               </div>
             </div>
-            <div className="border-t md:border-t-0 md:border-l border-warm p-6 lg:p-8 md:w-[280px] lg:w-[320px]">
+            <div className="border-t md:border-t-0 md:border-l border-warm/40 p-6 lg:p-8 md:w-[280px] lg:w-[320px]">
               <h4 className="text-[15px] font-semibold mb-6">Trip Overview</h4>
               <div className="space-y-6">
                 {[
@@ -218,7 +214,7 @@ const featureCardBgs = [
 function Features() {
   return (
     <Section id="platform">
-      <div className="text-center mb-10 lg:mb-16">
+      <div className="text-center mb-12 lg:mb-20">
         <SectionLabel>One Platform, Every Journey</SectionLabel>
         <SectionHeading className="mb-4">
           Everything travel teams actually need
@@ -260,50 +256,116 @@ function Features() {
   );
 }
 
-function Testimonials() {
+const testimonials = [
+  {
+    initials: "JE",
+    quote:
+      "We used to juggle spreadsheets, Venmo requests, and group chats for every brand trip. Plum replaced all of that with one dashboard. Our last creator retreat had 20 influencers confirmed and paid in 48 hours.",
+    name: "Jordan Ellis",
+    title: "Brand Partnerships Lead, Glow Collective",
+  },
+  {
+    initials: "MT",
+    quote:
+      "As an independent travel agent, Plum gave me a real platform to run my business. I set my rates, clients book directly through the app, and I spend my time curating experiences instead of chasing invoices.",
+    name: "Maya Torres",
+    title: "Independent Travel Agent, Wanderlux Travel",
+  },
+  {
+    initials: "AP",
+    quote:
+      "Plum's AI itinerary builder saved me hours of planning. I told it my budget and interests, and it created a perfect two-week Europe trip. The travel diary feature is something I use every single day.",
+    name: "Aisha Patel",
+    title: "Travel Enthusiast & Digital Nomad",
+  },
+];
+
+const proofCards = [
+  {
+    metric: "$730B+",
+    headline: "Online travel market",
+    quote: "Travel is the fastest-growing category in consumer spending globally.",
+    name: "McKinsey & Company",
+    source: "Global Travel Report 2026",
+  },
+  {
+    metric: "90% faster",
+    headline: "Trip planning time",
+    quote: "Plum cut our trip planning from days to minutes with AI-powered tools.",
+    name: "Sarah Kim",
+    source: "Operations Lead at Nomad Co",
+  },
+  {
+    metric: "4.9 stars",
+    headline: "Highest rated platform",
+    quote: "The most loved business travel platform by agents and travelers alike.",
+    name: "App Store",
+    source: "Travel Category, 2026",
+  },
+  {
+    metric: "3-in-1",
+    headline: "SaaS + Marketplace + App",
+    quote: "One seamless product for businesses, agents, and consumers.",
+    name: "Plum Platform",
+    source: "Product Overview",
+  },
+];
+
+function SocialProof() {
   return (
     <section className="bg-foreground text-white">
-      <div className="px-6 py-20 md:px-12 md:py-28 lg:px-20 lg:py-32 max-w-[1440px] mx-auto">
-        <div className="text-center mb-10 lg:mb-16">
-          <div className="flex items-center justify-center gap-3 mb-6 lg:mb-8">
-            <div className="w-4 h-px bg-white/30" />
-            <span className="text-[12px] lg:text-[13px] font-medium tracking-wider uppercase text-peach">
-              What People Are Saying
-            </span>
-          </div>
-          <h2 className="font-serif text-[28px] md:text-[36px] lg:text-[44px] leading-tight font-medium tracking-[-0.03em]">
-            Trusted by travel teams everywhere
-          </h2>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-          {[
-            {
-              quote:
-                "“We used to juggle spreadsheets, Venmo requests, and group chats for every brand trip. Plum replaced all of that with one dashboard. Our last creator retreat had 20 influencers confirmed and paid in 48 hours.”",
-              name: "Jordan Ellis",
-              title: "Brand Partnerships Lead, Glow Collective",
-            },
-            {
-              quote:
-                "“As an independent travel agent, Plum gave me a real platform to run my business. I set my rates, clients book directly through the app, and I spend my time curating experiences instead of chasing invoices.”",
-              name: "Maya Torres",
-              title: "Independent Travel Agent, Wanderlux Travel",
-            },
-          ].map((testimonial) => (
+      <div className="px-6 py-24 md:px-12 md:py-32 lg:px-20 lg:py-40 max-w-[1440px] mx-auto">
+        <h2 className="font-serif text-[36px] md:text-[48px] lg:text-[64px] leading-[1.1] font-normal tracking-[-0.03em] text-center mb-14 lg:mb-20">
+          Love letters
+          <br />
+          to Plum
+        </h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 mb-5">
+          {testimonials.map((t) => (
             <div
-              key={testimonial.name}
-              className="rounded-2xl ring-1 ring-white/10 p-8 lg:p-12"
+              key={t.name}
+              className="bg-[#FAF6F0] text-foreground rounded-2xl p-6 lg:p-8"
             >
-              <p className="font-serif text-[18px] lg:text-[20px] leading-relaxed text-white/80 mb-8 lg:mb-10">
-                {testimonial.quote}
+              <div className="w-11 h-11 rounded-full bg-plum/10 flex items-center justify-center mb-5">
+                <span className="text-[14px] font-semibold text-plum">
+                  {t.initials}
+                </span>
+              </div>
+              <p className="text-[14px] lg:text-[15px] leading-relaxed text-foreground/70 mb-6">
+                &ldquo;{t.quote}&rdquo;
               </p>
               <div>
-                <p className="text-[15px] font-semibold text-white">
-                  {testimonial.name}
+                <p className="text-[14px] font-semibold">{t.name}</p>
+                <p className="text-[12px] text-foreground/50 mt-0.5">
+                  {t.title}
                 </p>
-                <p className="text-[13px] text-white/50 mt-1">
-                  {testimonial.title}
-                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5">
+          {proofCards.map((s) => (
+            <div
+              key={s.metric}
+              className="bg-plum rounded-2xl p-6 lg:p-8 relative"
+            >
+              <ArrowUpRight className="absolute top-6 right-6 lg:top-8 lg:right-8 w-5 h-5 text-white/50" />
+              <h3 className="font-serif text-[28px] lg:text-[36px] font-medium tracking-[-0.02em] mb-1">
+                {s.metric}
+              </h3>
+              <p className="text-[15px] lg:text-[16px] font-semibold text-white/90 mb-3">
+                {s.headline}
+              </p>
+              <p className="text-[13px] lg:text-[14px] text-white/60 leading-relaxed mb-5">
+                &ldquo;{s.quote}&rdquo;
+              </p>
+              <div className="flex items-center gap-1.5">
+                <span className="text-[13px] font-semibold text-white/90">
+                  {s.name}
+                </span>
+                <span className="text-[12px] text-white/40">, {s.source}</span>
               </div>
             </div>
           ))}
@@ -507,7 +569,7 @@ const pricingPlans = [
 function Pricing() {
   return (
     <Section id="pricing">
-      <div className="text-center mb-10 lg:mb-16">
+      <div className="text-center mb-12 lg:mb-20">
         <SectionLabel>Simple Pricing</SectionLabel>
         <SectionHeading className="mb-4">
           A plan for every kind of traveler
@@ -521,10 +583,10 @@ function Pricing() {
         {pricingPlans.map((plan) => (
           <div
             key={plan.name}
-            className={`rounded-2xl border p-8 lg:p-10 flex flex-col ${
+            className={`rounded-2xl p-8 lg:p-10 flex flex-col ${
               plan.popular
-                ? "border-plum bg-white ring-1 ring-plum/20"
-                : "border-warm"
+                ? "bg-white ring-2 ring-plum/20 shadow-lg"
+                : "bg-white ring-1 ring-foreground/[0.06]"
             }`}
           >
             <div className="mb-6">
@@ -546,7 +608,7 @@ function Pricing() {
                 {plan.period}
               </span>
             </div>
-            <div className="h-px bg-warm mb-6" />
+            <div className="h-px bg-warm/60 mb-6" />
             <div className="space-y-3 mb-auto">
               {plan.features.map((feature) => (
                 <div key={feature} className="flex items-start gap-3">
@@ -579,7 +641,7 @@ function GalleryPause() {
     { label: "Lisbon Adventure", image: "/images/lisbon.jpg" },
   ];
   return (
-    <Section>
+    <section className="px-6 md:px-12 lg:px-20 py-8 max-w-[1440px] mx-auto">
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6">
         {destinations.map((dest) => (
           <div
@@ -598,54 +660,27 @@ function GalleryPause() {
           </div>
         ))}
       </div>
-    </Section>
+    </section>
   );
 }
 
-function AIVision() {
+function FinalCTA() {
   return (
-    <section className="bg-foreground text-white">
-      <div className="px-6 py-20 md:px-12 md:py-28 lg:px-20 lg:py-32 max-w-[1440px] mx-auto text-center">
-        <div className="flex items-center justify-center gap-3 mb-6 lg:mb-8">
-          <div className="w-4 h-px bg-white/30" />
-          <span className="text-[12px] lg:text-[13px] font-medium tracking-wider uppercase text-peach">
-            Why Now
-          </span>
-        </div>
-        <h2 className="font-serif text-[28px] md:text-[36px] lg:text-[44px] leading-tight font-medium tracking-[-0.03em] mb-6 max-w-[700px] mx-auto">
-          AI creates free time. People spend free time traveling.
-        </h2>
-        <p className="text-[15px] lg:text-[16px] leading-relaxed text-white/60 max-w-[640px] mx-auto mb-10 lg:mb-14">
-          As AI automates more work, people gain more leisure time — and travel
-          is how they spend it. Plum meets this growing demand while creating
-          new opportunities for displaced workers to become travel
-          entrepreneurs.
-        </p>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-[900px] mx-auto">
-          {[
-            {
-              stat: "$730B+",
-              label: "Online travel market in 2026",
-            },
-            {
-              stat: "34%",
-              label: "YoY growth in AI-powered travel",
-            },
-            {
-              stat: "3 in 1",
-              label: "SaaS + Marketplace + Consumer app",
-            },
-          ].map((item) => (
-            <div key={item.label}>
-              <p className="font-serif text-[28px] lg:text-[36px] font-medium text-peach mb-2">
-                {item.stat}
-              </p>
-              <p className="text-[13px] lg:text-[14px] text-white/50">
-                {item.label}
-              </p>
-            </div>
-          ))}
-        </div>
+    <section className="px-6 md:px-12 lg:px-20 py-20 md:py-28 lg:py-36 max-w-[1440px] mx-auto text-center">
+      <h2 className="font-serif text-[32px] md:text-[44px] lg:text-[56px] leading-[1.1] font-normal tracking-[-0.03em] max-w-[700px] mx-auto mb-6">
+        Ready to transform how you travel?
+      </h2>
+      <p className="text-[15px] lg:text-[17px] leading-relaxed text-foreground/60 max-w-[480px] mx-auto mb-10">
+        Join thousands of businesses, agents, and travelers already using Plum.
+      </p>
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+        <Button href="#get-started">
+          Get Started Free
+          <ArrowRight className="w-4 h-4" />
+        </Button>
+        <Button variant="secondary" href="#demo">
+          Book a Demo
+        </Button>
       </div>
     </section>
   );
@@ -653,70 +688,73 @@ function AIVision() {
 
 function Footer() {
   return (
-    <footer className="px-6 md:px-12 lg:px-20 pt-16 lg:pt-24 pb-10 lg:pb-12 max-w-[1440px] mx-auto">
-      <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 mb-12 lg:mb-16">
-        <div className="lg:w-[320px]">
-          <div className="mb-6">
-            <Logo />
-          </div>
-          <p className="text-[14px] leading-relaxed text-foreground/50">
-            The all-in-one travel platform for businesses managing brand trips,
-            agents building their practice, and travelers exploring the world.
-          </p>
-        </div>
-        <div className="flex-1 grid grid-cols-2 sm:grid-cols-3 gap-8 lg:justify-end lg:gap-20">
-          {[
-            {
-              title: "Platform",
-              links: [
-                "Trip Planner",
-                "Agent Marketplace",
-                "Business Tools",
-                "Travel Diary",
-              ],
-            },
-            {
-              title: "Company",
-              links: ["About Us", "Careers", "Press", "Blog"],
-            },
-            {
-              title: "Resources",
-              links: ["Help Center", "API Docs", "Agent Guide", "Status"],
-            },
-          ].map((col) => (
-            <div key={col.title}>
-              <h4 className="text-[13px] font-semibold uppercase tracking-wider text-foreground/40 mb-5">
-                {col.title}
-              </h4>
-              <div className="space-y-3">
-                {col.links.map((link) => (
-                  <a
-                    key={link}
-                    href="#"
-                    className="block text-[14px] lg:text-[15px] text-foreground/60 hover:text-foreground transition-colors"
-                  >
-                    {link}
-                  </a>
-                ))}
-              </div>
+    <footer className="bg-foreground text-white">
+      <div className="px-6 md:px-12 lg:px-20 pt-16 lg:pt-24 pb-10 lg:pb-12 max-w-[1440px] mx-auto">
+        <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 mb-12 lg:mb-16">
+          <div className="lg:w-[320px]">
+            <div className="mb-6">
+              <Logo variant="light" />
             </div>
-          ))}
+            <p className="text-[14px] leading-relaxed text-white/50">
+              The all-in-one travel platform for businesses managing brand
+              trips, agents building their practice, and travelers exploring the
+              world.
+            </p>
+          </div>
+          <div className="flex-1 grid grid-cols-2 sm:grid-cols-3 gap-8 lg:justify-end lg:gap-20">
+            {[
+              {
+                title: "Platform",
+                links: [
+                  "Trip Planner",
+                  "Agent Marketplace",
+                  "Business Tools",
+                  "Travel Diary",
+                ],
+              },
+              {
+                title: "Company",
+                links: ["About Us", "Careers", "Press", "Blog"],
+              },
+              {
+                title: "Resources",
+                links: ["Help Center", "API Docs", "Agent Guide", "Status"],
+              },
+            ].map((col) => (
+              <div key={col.title}>
+                <h4 className="text-[13px] font-semibold uppercase tracking-wider text-white/40 mb-5">
+                  {col.title}
+                </h4>
+                <div className="space-y-3">
+                  {col.links.map((link) => (
+                    <a
+                      key={link}
+                      href="#"
+                      className="block text-[14px] lg:text-[15px] text-white/60 hover:text-white transition-colors"
+                    >
+                      {link}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-      <div className="mb-4">
-        <h2 className="font-serif text-[48px] md:text-[72px] lg:text-[96px] leading-none font-bold tracking-[-0.04em] text-foreground/10 select-none">
-          PLUM
-        </h2>
-      </div>
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-[13px] text-foreground/40">
-        <span>&copy; 2026 Plum Technologies. All rights reserved.</span>
-        <div className="flex gap-6">
-          <a href="#" className="hover:text-foreground transition-colors">
-            Privacy Policy
-          </a>
-          <a href="#" className="hover:text-foreground transition-colors">
-            Terms of Service
-          </a>
+        <div className="mb-4">
+          <h2 className="font-serif text-[48px] md:text-[72px] lg:text-[96px] leading-none font-bold tracking-[-0.04em] text-white/[0.06] select-none">
+            PLUM
+          </h2>
+        </div>
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-[13px] text-white/40">
+          <span>&copy; 2026 Plum Technologies. All rights reserved.</span>
+          <div className="flex gap-6">
+            <a href="#" className="hover:text-white transition-colors">
+              Privacy Policy
+            </a>
+            <a href="#" className="hover:text-white transition-colors">
+              Terms of Service
+            </a>
+          </div>
         </div>
       </div>
     </footer>
@@ -730,8 +768,8 @@ export default function Home() {
       <Hero />
       <DashboardMockup />
       <Features />
-      <Testimonials />
-      <section className="px-6 md:px-12 lg:px-20 max-w-[1440px] mx-auto">
+      <SocialProof />
+      <section className="px-6 md:px-12 lg:px-20 py-8 max-w-[1440px] mx-auto">
         <div className="w-full h-[240px] md:h-[320px] lg:h-[400px] rounded-2xl overflow-hidden relative">
           <img
             src="/images/lisbon-evening.jpg"
@@ -751,9 +789,9 @@ export default function Home() {
       </section>
       <ForBusiness />
       <Marketplace />
-      <AIVision />
       <Pricing />
       <GalleryPause />
+      <FinalCTA />
       <Footer />
     </main>
   );
