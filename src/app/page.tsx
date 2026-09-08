@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Sparkles,
   Briefcase,
@@ -21,6 +23,18 @@ import {
   SectionHeading,
   Logo,
 } from "@/components/ui";
+import {
+  FadeIn,
+  FadeInScale,
+  StaggerContainer,
+  StaggerItem,
+  TextReveal,
+  LineReveal,
+  ParallaxImage,
+  AnimatedCounter,
+  MagneticHover,
+} from "@/components/motion";
+import { motion } from "framer-motion";
 
 function SiteNavbar() {
   return (
@@ -42,28 +56,42 @@ function Hero() {
     <section className="relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(255,211,172,0.25),transparent)]" />
       <div className="relative px-6 md:px-12 lg:px-20 pt-20 md:pt-28 lg:pt-36 pb-16 lg:pb-24 max-w-[1440px] mx-auto text-center">
-        <div className="flex items-center justify-center gap-2 mb-6 lg:mb-8">
-          <div className="w-2 h-2 rounded-full bg-plum" />
-          <span className="text-[12px] lg:text-[13px] font-medium tracking-wide text-foreground/70">
-            The all-in-one travel platform for businesses, agents &amp;
-            travelers
-          </span>
-        </div>
-        <h1 className="font-serif text-[36px] md:text-[48px] lg:text-[72px] leading-[1.1] lg:leading-[1.05] font-normal tracking-[-0.03em] lg:tracking-[-0.04em] max-w-[1000px] mx-auto mb-6 lg:mb-8">
-          Seamless trip execution, from brand trips to bucket lists
-        </h1>
-        <p className="text-[15px] lg:text-[17px] leading-relaxed text-foreground/60 max-w-[640px] mx-auto mb-10 lg:mb-14">
-          Plum powers effortless travel for businesses managing team offsites
-          and influencer brand trips, travel agents building their own practice,
-          and consumers planning their next adventure.
-        </p>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
-          <Button href="#get-started">Start Planning Free</Button>
-          <Button variant="secondary" href="#platform">
-            See How It Works
-            <ArrowRight className="w-3.5 h-3.5" />
-          </Button>
-        </div>
+        <FadeIn delay={0.1} blur>
+          <div className="flex items-center justify-center gap-2 mb-6 lg:mb-8">
+            <div className="w-2 h-2 rounded-full bg-plum" />
+            <span className="text-[12px] lg:text-[13px] font-medium tracking-wide text-foreground/70">
+              The all-in-one travel platform for businesses, agents &amp;
+              travelers
+            </span>
+          </div>
+        </FadeIn>
+        <TextReveal
+          text="Seamless trip execution, from brand trips to bucket lists"
+          as="h1"
+          className="font-serif text-[36px] md:text-[48px] lg:text-[72px] leading-[1.1] lg:leading-[1.05] font-normal tracking-[-0.03em] lg:tracking-[-0.04em] max-w-[1000px] mx-auto mb-6 lg:mb-8"
+          delay={0.3}
+          stagger={0.05}
+        />
+        <FadeIn delay={0.7} blur>
+          <p className="text-[15px] lg:text-[17px] leading-relaxed text-foreground/60 max-w-[640px] mx-auto mb-10 lg:mb-14">
+            Plum powers effortless travel for businesses managing team offsites
+            and influencer brand trips, travel agents building their own
+            practice, and consumers planning their next adventure.
+          </p>
+        </FadeIn>
+        <FadeIn delay={0.9} direction="up">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+            <MagneticHover strength={0.15}>
+              <Button href="#get-started">Start Planning Free</Button>
+            </MagneticHover>
+            <MagneticHover strength={0.15}>
+              <Button variant="secondary" href="#platform">
+                See How It Works
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Button>
+            </MagneticHover>
+          </div>
+        </FadeIn>
       </div>
     </section>
   );
@@ -72,97 +100,113 @@ function Hero() {
 function DashboardMockup() {
   return (
     <section className="px-6 md:px-12 lg:px-20 max-w-[1440px] mx-auto">
-      <Card variant="bordered" className="overflow-hidden">
-        <div className="flex flex-col lg:flex-row">
-          <div className="hidden lg:block w-[240px] border-r border-warm p-8 flex-shrink-0">
-            <h3 className="font-serif text-lg font-semibold mb-10">
-              Plum Dashboard
-            </h3>
-            <div className="space-y-4">
-              {[
-                { icon: Plane, label: "Trip Planner" },
-                { icon: Users, label: "Guest Manager" },
-                { icon: CalendarDays, label: "Itinerary Builder" },
-                { icon: MapPin, label: "Destination Hub" },
-                { icon: BookOpen, label: "Travel Diary" },
-              ].map((item) => (
-                <div key={item.label} className="flex items-center gap-3">
-                  <item.icon className="w-4 h-4 text-lavender" />
-                  <span className="text-[14px] text-foreground/70">
-                    {item.label}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="flex-1 flex flex-col md:flex-row">
-            <div className="flex-1 p-6 lg:p-8">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
-                <h3 className="font-serif text-xl lg:text-2xl font-medium">
-                  Brand Trip: Tulum Creator Retreat
-                </h3>
-                <Badge>12 Guests Confirmed</Badge>
-              </div>
-              <div className="w-full aspect-[656/518] rounded-xl bg-gradient-to-br from-peach/40 via-section to-warm flex items-center justify-center">
-                <div className="text-center">
-                  <Globe className="w-12 h-12 text-plum/30 mx-auto mb-3" />
-                  <p className="text-[14px] text-foreground/30 font-medium">
-                    Interactive Trip Map
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="border-t md:border-t-0 md:border-l border-warm p-6 lg:p-8 md:w-[280px] lg:w-[320px]">
-              <h4 className="text-[15px] font-semibold mb-6">Trip Overview</h4>
-              <div className="space-y-6">
+      <FadeInScale delay={0.15} scale={0.92}>
+        <Card variant="bordered" className="overflow-hidden">
+          <div className="flex flex-col lg:flex-row">
+            <div className="hidden lg:block w-[240px] border-r border-warm p-8 flex-shrink-0">
+              <h3 className="font-serif text-lg font-semibold mb-10">
+                Plum Dashboard
+              </h3>
+              <StaggerContainer stagger={0.08} delay={0.4}>
                 {[
-                  { label: "Budget Allocated", progress: 72 },
-                  { label: "Accommodations Booked", progress: 100 },
-                  { label: "Activities Planned", progress: 60 },
-                  { label: "Flights Confirmed", progress: 85 },
-                ].map((param) => (
-                  <div key={param.label}>
-                    <div className="flex items-center justify-between">
-                      <span className="text-[13px] text-foreground/60">
-                        {param.label}
-                      </span>
-                      <span className="text-[12px] font-medium text-plum">
-                        {param.progress}%
+                  { icon: Plane, label: "Trip Planner" },
+                  { icon: Users, label: "Guest Manager" },
+                  { icon: CalendarDays, label: "Itinerary Builder" },
+                  { icon: MapPin, label: "Destination Hub" },
+                  { icon: BookOpen, label: "Travel Diary" },
+                ].map((item) => (
+                  <StaggerItem key={item.label}>
+                    <div className="flex items-center gap-3 py-2">
+                      <item.icon className="w-4 h-4 text-lavender" />
+                      <span className="text-[14px] text-foreground/70">
+                        {item.label}
                       </span>
                     </div>
-                    <div className="mt-2 h-1.5 rounded-full bg-warm">
-                      <div
-                        className="h-full rounded-full bg-plum transition-all"
-                        style={{ width: `${param.progress}%` }}
-                      />
-                    </div>
-                  </div>
+                  </StaggerItem>
                 ))}
+              </StaggerContainer>
+            </div>
+            <div className="flex-1 flex flex-col md:flex-row">
+              <div className="flex-1 p-6 lg:p-8">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
+                  <h3 className="font-serif text-xl lg:text-2xl font-medium">
+                    Brand Trip: Tulum Creator Retreat
+                  </h3>
+                  <Badge>12 Guests Confirmed</Badge>
+                </div>
+                <div className="w-full aspect-[656/518] rounded-xl bg-gradient-to-br from-peach/40 via-section to-warm flex items-center justify-center">
+                  <div className="text-center">
+                    <Globe className="w-12 h-12 text-plum/30 mx-auto mb-3" />
+                    <p className="text-[14px] text-foreground/30 font-medium">
+                      Interactive Trip Map
+                    </p>
+                  </div>
+                </div>
               </div>
-              <div className="mt-10">
-                <span className="text-[13px] text-foreground/60">
-                  Upcoming Milestones
-                </span>
-                <div className="mt-3 space-y-2">
+              <div className="border-t md:border-t-0 md:border-l border-warm p-6 lg:p-8 md:w-[280px] lg:w-[320px]">
+                <h4 className="text-[15px] font-semibold mb-6">
+                  Trip Overview
+                </h4>
+                <StaggerContainer stagger={0.1} delay={0.5}>
                   {[
-                    "Final headcount due Sep 1",
-                    "Deposit deadline Sep 15",
-                    "Itinerary review Sep 20",
-                  ].map((milestone) => (
-                    <div
-                      key={milestone}
-                      className="flex items-start gap-2 text-[13px] text-foreground/50"
-                    >
-                      <div className="w-1.5 h-1.5 rounded-full bg-plum/40 mt-1.5 flex-shrink-0" />
-                      {milestone}
-                    </div>
+                    { label: "Budget Allocated", progress: 72 },
+                    { label: "Accommodations Booked", progress: 100 },
+                    { label: "Activities Planned", progress: 60 },
+                    { label: "Flights Confirmed", progress: 85 },
+                  ].map((param) => (
+                    <StaggerItem key={param.label}>
+                      <div className="mb-6">
+                        <div className="flex items-center justify-between">
+                          <span className="text-[13px] text-foreground/60">
+                            {param.label}
+                          </span>
+                          <span className="text-[12px] font-medium text-plum">
+                            {param.progress}%
+                          </span>
+                        </div>
+                        <div className="mt-2 h-1.5 rounded-full bg-warm overflow-hidden">
+                          <motion.div
+                            className="h-full rounded-full bg-plum"
+                            initial={{ width: 0 }}
+                            whileInView={{
+                              width: `${param.progress}%`,
+                            }}
+                            viewport={{ once: true }}
+                            transition={{
+                              duration: 1.2,
+                              delay: 0.6,
+                              ease: [0.25, 0.1, 0.25, 1],
+                            }}
+                          />
+                        </div>
+                      </div>
+                    </StaggerItem>
                   ))}
+                </StaggerContainer>
+                <div className="mt-4">
+                  <span className="text-[13px] text-foreground/60">
+                    Upcoming Milestones
+                  </span>
+                  <StaggerContainer stagger={0.08} delay={0.8} className="mt-3">
+                    {[
+                      "Final headcount due Sep 1",
+                      "Deposit deadline Sep 15",
+                      "Itinerary review Sep 20",
+                    ].map((milestone) => (
+                      <StaggerItem key={milestone}>
+                        <div className="flex items-start gap-2 text-[13px] text-foreground/50 py-1">
+                          <div className="w-1.5 h-1.5 rounded-full bg-plum/40 mt-1.5 flex-shrink-0" />
+                          {milestone}
+                        </div>
+                      </StaggerItem>
+                    ))}
+                  </StaggerContainer>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </Card>
+        </Card>
+      </FadeInScale>
     </section>
   );
 }
@@ -216,96 +260,132 @@ const featureCardBgs = [
 ];
 
 function Features() {
+  const iconMap = {
+    briefcase: Briefcase,
+    building: Building2,
+    users: Users,
+    sparkles: Sparkles,
+    globe: Globe,
+    calendar: CalendarDays,
+  };
+
   return (
     <Section id="platform">
       <div className="text-center mb-10 lg:mb-16">
-        <SectionLabel>One Platform, Every Journey</SectionLabel>
-        <SectionHeading className="mb-4">
-          Everything travel teams actually need
-        </SectionHeading>
-        <p className="text-[15px] lg:text-[16px] leading-relaxed text-foreground/60 max-w-[680px] mx-auto">
-          Whether you&apos;re a business coordinating brand trips, a travel
-          agent building your practice, or a consumer planning your next
-          getaway — Plum handles it all.
-        </p>
+        <FadeIn blur>
+          <SectionLabel>One Platform, Every Journey</SectionLabel>
+        </FadeIn>
+        <FadeIn delay={0.1}>
+          <SectionHeading className="mb-4">
+            Everything travel teams actually need
+          </SectionHeading>
+        </FadeIn>
+        <FadeIn delay={0.2}>
+          <p className="text-[15px] lg:text-[16px] leading-relaxed text-foreground/60 max-w-[680px] mx-auto">
+            Whether you&apos;re a business coordinating brand trips, a travel
+            agent building your practice, or a consumer planning your next
+            getaway — Plum handles it all.
+          </p>
+        </FadeIn>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+      <StaggerContainer
+        stagger={0.08}
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6"
+      >
         {features.map((feature, i) => {
-          const iconMap = {
-            briefcase: Briefcase,
-            building: Building2,
-            users: Users,
-            sparkles: Sparkles,
-            globe: Globe,
-            calendar: CalendarDays,
-          };
           const Icon = iconMap[feature.icon];
           return (
-            <div
-              key={feature.title}
-              className={`rounded-2xl ${featureCardBgs[i]} p-6 lg:p-8 hover:shadow-md transition-all`}
-            >
-              <Icon className="w-6 h-6 text-plum mb-4 lg:mb-5" />
-              <h3 className="font-serif text-[20px] lg:text-[22px] font-medium tracking-[-0.02em] mb-3">
-                {feature.title}
-              </h3>
-              <p className="text-[14px] lg:text-[15px] leading-relaxed text-foreground/60">
-                {feature.description}
-              </p>
-            </div>
+            <StaggerItem key={feature.title}>
+              <motion.div
+                className={`rounded-2xl ${featureCardBgs[i]} p-6 lg:p-8 transition-shadow`}
+                whileHover={{
+                  y: -4,
+                  boxShadow:
+                    "0 20px 40px -12px rgba(0,0,0,0.08)",
+                }}
+                transition={{
+                  type: "spring",
+                  stiffness: 400,
+                  damping: 25,
+                }}
+              >
+                <Icon className="w-6 h-6 text-plum mb-4 lg:mb-5" />
+                <h3 className="font-serif text-[20px] lg:text-[22px] font-medium tracking-[-0.02em] mb-3">
+                  {feature.title}
+                </h3>
+                <p className="text-[14px] lg:text-[15px] leading-relaxed text-foreground/60">
+                  {feature.description}
+                </p>
+              </motion.div>
+            </StaggerItem>
           );
         })}
-      </div>
+      </StaggerContainer>
     </Section>
   );
 }
 
 function Testimonials() {
+  const testimonials = [
+    {
+      quote:
+        "“We used to juggle spreadsheets, Venmo requests, and group chats for every brand trip. Plum replaced all of that with one dashboard. Our last creator retreat had 20 influencers confirmed and paid in 48 hours.”",
+      name: "Jordan Ellis",
+      title: "Brand Partnerships Lead, Glow Collective",
+    },
+    {
+      quote:
+        "“As an independent travel agent, Plum gave me a real platform to run my business. I set my rates, clients book directly through the app, and I spend my time curating experiences instead of chasing invoices.”",
+      name: "Maya Torres",
+      title: "Independent Travel Agent, Wanderlux Travel",
+    },
+  ];
+
   return (
     <section className="bg-foreground text-white">
       <div className="px-6 py-20 md:px-12 md:py-28 lg:px-20 lg:py-32 max-w-[1440px] mx-auto">
         <div className="text-center mb-10 lg:mb-16">
-          <div className="flex items-center justify-center gap-3 mb-6 lg:mb-8">
-            <div className="w-4 h-px bg-white/30" />
-            <span className="text-[12px] lg:text-[13px] font-medium tracking-wider uppercase text-peach">
-              What People Are Saying
-            </span>
-          </div>
-          <h2 className="font-serif text-[28px] md:text-[36px] lg:text-[44px] leading-tight font-medium tracking-[-0.03em]">
-            Trusted by travel teams everywhere
-          </h2>
+          <FadeIn blur>
+            <div className="flex items-center justify-center gap-3 mb-6 lg:mb-8">
+              <div className="w-4 h-px bg-white/30" />
+              <span className="text-[12px] lg:text-[13px] font-medium tracking-wider uppercase text-peach">
+                What People Are Saying
+              </span>
+            </div>
+          </FadeIn>
+          <FadeIn delay={0.15}>
+            <h2 className="font-serif text-[28px] md:text-[36px] lg:text-[44px] leading-tight font-medium tracking-[-0.03em]">
+              Trusted by travel teams everywhere
+            </h2>
+          </FadeIn>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-          {[
-            {
-              quote:
-                "“We used to juggle spreadsheets, Venmo requests, and group chats for every brand trip. Plum replaced all of that with one dashboard. Our last creator retreat had 20 influencers confirmed and paid in 48 hours.”",
-              name: "Jordan Ellis",
-              title: "Brand Partnerships Lead, Glow Collective",
-            },
-            {
-              quote:
-                "“As an independent travel agent, Plum gave me a real platform to run my business. I set my rates, clients book directly through the app, and I spend my time curating experiences instead of chasing invoices.”",
-              name: "Maya Torres",
-              title: "Independent Travel Agent, Wanderlux Travel",
-            },
-          ].map((testimonial) => (
-            <div
+          {testimonials.map((testimonial, i) => (
+            <FadeIn
               key={testimonial.name}
-              className="rounded-2xl ring-1 ring-white/10 p-8 lg:p-12"
+              direction={i === 0 ? "left" : "right"}
+              delay={0.2 + i * 0.15}
             >
-              <p className="font-serif text-[18px] lg:text-[20px] leading-relaxed text-white/80 mb-8 lg:mb-10">
-                {testimonial.quote}
-              </p>
-              <div>
-                <p className="text-[15px] font-semibold text-white">
-                  {testimonial.name}
+              <motion.div
+                className="rounded-2xl ring-1 ring-white/10 p-8 lg:p-12 h-full hover:ring-white/20 transition-[box-shadow]"
+                whileHover={{
+                  boxShadow: "0 0 40px rgba(255,211,172,0.06)",
+                }}
+                transition={{ duration: 0.3 }}
+              >
+                <p className="font-serif text-[18px] lg:text-[20px] leading-relaxed text-white/80 mb-8 lg:mb-10">
+                  {testimonial.quote}
                 </p>
-                <p className="text-[13px] text-white/50 mt-1">
-                  {testimonial.title}
-                </p>
-              </div>
-            </div>
+                <div>
+                  <p className="text-[15px] font-semibold text-white">
+                    {testimonial.name}
+                  </p>
+                  <p className="text-[13px] text-white/50 mt-1">
+                    {testimonial.title}
+                  </p>
+                </div>
+              </motion.div>
+            </FadeIn>
           ))}
         </div>
       </div>
@@ -319,17 +399,23 @@ function ForBusiness() {
       <div className="flex flex-col lg:flex-row gap-10 lg:gap-16">
         <div className="lg:w-[515px] lg:flex-shrink-0">
           <div className="mb-8 lg:mb-10">
-            <SectionLabel>Built for Business</SectionLabel>
-            <SectionHeading className="mb-4">
-              Brand trips and team offsites, handled
-            </SectionHeading>
-            <p className="text-[15px] lg:text-[16px] leading-relaxed text-foreground/60">
-              Businesses today need seamless trip execution — from influencer
-              brand trips to quarterly team offsites. Plum gives you the tools
-              to plan, book, and manage group travel without the chaos.
-            </p>
+            <FadeIn blur>
+              <SectionLabel>Built for Business</SectionLabel>
+            </FadeIn>
+            <FadeIn delay={0.1}>
+              <SectionHeading className="mb-4">
+                Brand trips and team offsites, handled
+              </SectionHeading>
+            </FadeIn>
+            <FadeIn delay={0.2}>
+              <p className="text-[15px] lg:text-[16px] leading-relaxed text-foreground/60">
+                Businesses today need seamless trip execution — from influencer
+                brand trips to quarterly team offsites. Plum gives you the tools
+                to plan, book, and manage group travel without the chaos.
+              </p>
+            </FadeIn>
           </div>
-          <div className="space-y-6 mb-10 lg:mb-12">
+          <StaggerContainer stagger={0.12} delay={0.3} className="space-y-6 mb-10 lg:mb-12">
             {[
               {
                 num: "1",
@@ -342,39 +428,43 @@ function ForBusiness() {
                 desc: "Budget-controlled planning for remote teams who need to get together. Group rates, shared itineraries, and expense tracking built in.",
               },
             ].map((item) => (
-              <div key={item.num} className="flex gap-4">
-                <div className="w-9 h-9 rounded-full border border-warm flex items-center justify-center text-[15px] font-semibold flex-shrink-0">
-                  {item.num}
+              <StaggerItem key={item.num} direction="left">
+                <div className="flex gap-4">
+                  <div className="w-9 h-9 rounded-full border border-warm flex items-center justify-center text-[15px] font-semibold flex-shrink-0">
+                    {item.num}
+                  </div>
+                  <div>
+                    <h4 className="font-serif text-lg font-medium mb-1">
+                      {item.title}
+                    </h4>
+                    <p className="text-[14px] lg:text-[15px] leading-relaxed text-foreground/60">
+                      {item.desc}
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h4 className="font-serif text-lg font-medium mb-1">
-                    {item.title}
-                  </h4>
-                  <p className="text-[14px] lg:text-[15px] leading-relaxed text-foreground/60">
-                    {item.desc}
-                  </p>
-                </div>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
-          <a
-            href="#demo"
-            className="inline-flex items-center gap-2 text-[15px] font-semibold text-foreground hover:text-plum transition-colors"
-          >
-            Talk to our Business Team
-            <ArrowRight className="w-3.5 h-3.5" />
-          </a>
+          </StaggerContainer>
+          <FadeIn delay={0.5}>
+            <a
+              href="#demo"
+              className="inline-flex items-center gap-2 text-[15px] font-semibold text-foreground hover:text-plum transition-colors"
+            >
+              Talk to our Business Team
+              <ArrowRight className="w-3.5 h-3.5" />
+            </a>
+          </FadeIn>
         </div>
-        <div className="flex-1">
+        <FadeIn direction="right" delay={0.2} className="flex-1">
           <div className="w-full h-[300px] md:h-[400px] lg:h-[480px] rounded-2xl overflow-hidden relative">
-            <img
+            <ParallaxImage
               src="/images/resort.jpg"
               alt="Luxury resort view with palm trees and ocean"
-              className="w-full h-full object-cover"
+              className="w-full h-full"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
           </div>
-        </div>
+        </FadeIn>
       </div>
     </Section>
   );
@@ -386,17 +476,23 @@ function Marketplace() {
       <div className="flex flex-col-reverse lg:flex-row-reverse gap-10 lg:gap-16">
         <div className="lg:w-[515px] lg:flex-shrink-0">
           <div className="mb-8 lg:mb-10">
-            <SectionLabel>Travel Agent Marketplace</SectionLabel>
-            <SectionHeading className="mb-4">
-              Your platform to become a travel entrepreneur
-            </SectionHeading>
-            <p className="text-[15px] lg:text-[16px] leading-relaxed text-foreground/60">
-              As AI reshapes the workforce, human-centered services like travel
-              planning become more valuable than ever. Plum gives anyone the
-              tools to build a thriving travel agency business.
-            </p>
+            <FadeIn blur>
+              <SectionLabel>Travel Agent Marketplace</SectionLabel>
+            </FadeIn>
+            <FadeIn delay={0.1}>
+              <SectionHeading className="mb-4">
+                Your platform to become a travel entrepreneur
+              </SectionHeading>
+            </FadeIn>
+            <FadeIn delay={0.2}>
+              <p className="text-[15px] lg:text-[16px] leading-relaxed text-foreground/60">
+                As AI reshapes the workforce, human-centered services like
+                travel planning become more valuable than ever. Plum gives
+                anyone the tools to build a thriving travel agency business.
+              </p>
+            </FadeIn>
           </div>
-          <div className="space-y-6 mb-10 lg:mb-12">
+          <StaggerContainer stagger={0.1} delay={0.3} className="space-y-6 mb-10 lg:mb-12">
             {[
               {
                 num: "1",
@@ -414,39 +510,43 @@ function Marketplace() {
                 desc: "Build your reputation with client reviews, track earnings, and access AI-powered tools to plan trips faster.",
               },
             ].map((item) => (
-              <div key={item.num} className="flex gap-4">
-                <div className="w-9 h-9 rounded-full border border-warm flex items-center justify-center text-[15px] font-semibold flex-shrink-0">
-                  {item.num}
+              <StaggerItem key={item.num} direction="right">
+                <div className="flex gap-4">
+                  <div className="w-9 h-9 rounded-full border border-warm flex items-center justify-center text-[15px] font-semibold flex-shrink-0">
+                    {item.num}
+                  </div>
+                  <div>
+                    <h4 className="font-serif text-lg font-medium mb-1">
+                      {item.title}
+                    </h4>
+                    <p className="text-[14px] lg:text-[15px] leading-relaxed text-foreground/60">
+                      {item.desc}
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h4 className="font-serif text-lg font-medium mb-1">
-                    {item.title}
-                  </h4>
-                  <p className="text-[14px] lg:text-[15px] leading-relaxed text-foreground/60">
-                    {item.desc}
-                  </p>
-                </div>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
-          <a
-            href="#get-started"
-            className="inline-flex items-center gap-2 text-[15px] font-semibold text-foreground hover:text-plum transition-colors"
-          >
-            Become a Plum Agent
-            <ArrowRight className="w-3.5 h-3.5" />
-          </a>
+          </StaggerContainer>
+          <FadeIn delay={0.6}>
+            <a
+              href="#get-started"
+              className="inline-flex items-center gap-2 text-[15px] font-semibold text-foreground hover:text-plum transition-colors"
+            >
+              Become a Plum Agent
+              <ArrowRight className="w-3.5 h-3.5" />
+            </a>
+          </FadeIn>
         </div>
-        <div className="flex-1">
+        <FadeIn direction="left" delay={0.2} className="flex-1">
           <div className="w-full h-[300px] md:h-[400px] lg:h-[540px] rounded-2xl overflow-hidden relative">
-            <img
+            <ParallaxImage
               src="/images/yacht-friends.jpg"
               alt="Friends enjoying a yacht trip together"
-              className="w-full h-full object-cover"
+              className="w-full h-full"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
           </div>
-        </div>
+        </FadeIn>
       </div>
     </Section>
   );
@@ -508,66 +608,87 @@ function Pricing() {
   return (
     <Section id="pricing">
       <div className="text-center mb-10 lg:mb-16">
-        <SectionLabel>Simple Pricing</SectionLabel>
-        <SectionHeading className="mb-4">
-          A plan for every kind of traveler
-        </SectionHeading>
-        <p className="text-[15px] lg:text-[16px] leading-relaxed text-foreground/60 max-w-[680px] mx-auto">
-          Whether you&apos;re exploring the world, building a travel business,
-          or managing corporate trips — start for free and scale as you grow.
-        </p>
+        <FadeIn blur>
+          <SectionLabel>Simple Pricing</SectionLabel>
+        </FadeIn>
+        <FadeIn delay={0.1}>
+          <SectionHeading className="mb-4">
+            A plan for every kind of traveler
+          </SectionHeading>
+        </FadeIn>
+        <FadeIn delay={0.2}>
+          <p className="text-[15px] lg:text-[16px] leading-relaxed text-foreground/60 max-w-[680px] mx-auto">
+            Whether you&apos;re exploring the world, building a travel business,
+            or managing corporate trips — start for free and scale as you grow.
+          </p>
+        </FadeIn>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+      <StaggerContainer
+        stagger={0.12}
+        className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6"
+      >
         {pricingPlans.map((plan) => (
-          <div
-            key={plan.name}
-            className={`rounded-2xl border p-8 lg:p-10 flex flex-col ${
-              plan.popular
-                ? "border-plum bg-white ring-1 ring-plum/20"
-                : "border-warm"
-            }`}
-          >
-            <div className="mb-6">
-              <div className="flex items-center gap-3 mb-3">
-                <h3 className="font-serif text-[22px] lg:text-[26px] font-medium">
-                  {plan.name}
-                </h3>
-                {plan.popular && <Badge>Most Popular</Badge>}
-              </div>
-              <p className="text-[14px] leading-relaxed text-foreground/60">
-                {plan.description}
-              </p>
-            </div>
-            <div className="flex items-baseline gap-2 mb-6">
-              <span className="font-serif text-[36px] lg:text-[44px] font-medium tracking-[-0.03em]">
-                {plan.price}
-              </span>
-              <span className="text-[15px] text-foreground/50">
-                {plan.period}
-              </span>
-            </div>
-            <div className="h-px bg-warm mb-6" />
-            <div className="space-y-3 mb-auto">
-              {plan.features.map((feature) => (
-                <div key={feature} className="flex items-start gap-3">
-                  <Check className="w-3.5 h-3.5 text-plum mt-0.5 flex-shrink-0" />
-                  <span className="text-[14px] text-foreground/70">
-                    {feature}
-                  </span>
+          <StaggerItem key={plan.name}>
+            <motion.div
+              className={`rounded-2xl border p-8 lg:p-10 flex flex-col h-full ${
+                plan.popular
+                  ? "border-plum bg-white ring-1 ring-plum/20"
+                  : "border-warm"
+              }`}
+              whileHover={{
+                y: -6,
+                boxShadow: plan.popular
+                  ? "0 24px 48px -12px rgba(107,56,97,0.15)"
+                  : "0 20px 40px -12px rgba(0,0,0,0.08)",
+              }}
+              transition={{
+                type: "spring",
+                stiffness: 400,
+                damping: 25,
+              }}
+            >
+              <div className="mb-6">
+                <div className="flex items-center gap-3 mb-3">
+                  <h3 className="font-serif text-[22px] lg:text-[26px] font-medium">
+                    {plan.name}
+                  </h3>
+                  {plan.popular && <Badge>Most Popular</Badge>}
                 </div>
-              ))}
-            </div>
-            <div className="mt-8 lg:mt-10">
-              <Button variant={plan.ctaVariant} href="#get-started">
-                {plan.cta}
-                {plan.ctaVariant === "secondary" && (
-                  <ArrowRight className="w-3.5 h-3.5" />
-                )}
-              </Button>
-            </div>
-          </div>
+                <p className="text-[14px] leading-relaxed text-foreground/60">
+                  {plan.description}
+                </p>
+              </div>
+              <div className="flex items-baseline gap-2 mb-6">
+                <span className="font-serif text-[36px] lg:text-[44px] font-medium tracking-[-0.03em]">
+                  {plan.price}
+                </span>
+                <span className="text-[15px] text-foreground/50">
+                  {plan.period}
+                </span>
+              </div>
+              <div className="h-px bg-warm mb-6" />
+              <div className="space-y-3 mb-auto">
+                {plan.features.map((feature) => (
+                  <div key={feature} className="flex items-start gap-3">
+                    <Check className="w-3.5 h-3.5 text-plum mt-0.5 flex-shrink-0" />
+                    <span className="text-[14px] text-foreground/70">
+                      {feature}
+                    </span>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-8 lg:mt-10">
+                <Button variant={plan.ctaVariant} href="#get-started">
+                  {plan.cta}
+                  {plan.ctaVariant === "secondary" && (
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  )}
+                </Button>
+              </div>
+            </motion.div>
+          </StaggerItem>
         ))}
-      </div>
+      </StaggerContainer>
     </Section>
   );
 }
@@ -578,147 +699,221 @@ function GalleryPause() {
     { label: "Beach Escape", image: "/images/beach.jpg" },
     { label: "Lisbon Adventure", image: "/images/lisbon.jpg" },
   ];
+
   return (
     <Section>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6">
+      <StaggerContainer
+        stagger={0.1}
+        className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6"
+      >
         {destinations.map((dest) => (
-          <div
-            key={dest.label}
-            className="aspect-[411/320] rounded-2xl overflow-hidden relative group"
-          >
-            <img
-              src={dest.image}
-              alt={dest.label}
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
-            <span className="absolute bottom-5 left-5 lg:bottom-6 lg:left-6 text-[15px] lg:text-[16px] text-white font-semibold">
-              {dest.label}
-            </span>
-          </div>
+          <StaggerItem key={dest.label}>
+            <motion.div
+              className="aspect-[411/320] rounded-2xl overflow-hidden relative"
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300, damping: 25 }}
+            >
+              <ParallaxImage
+                src={dest.image}
+                alt={dest.label}
+                speed={0.15}
+                className="w-full h-full"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
+              <span className="absolute bottom-5 left-5 lg:bottom-6 lg:left-6 text-[15px] lg:text-[16px] text-white font-semibold">
+                {dest.label}
+              </span>
+            </motion.div>
+          </StaggerItem>
         ))}
-      </div>
+      </StaggerContainer>
     </Section>
   );
 }
 
 function AIVision() {
   return (
-    <section className="bg-foreground text-white">
+    <section className="bg-foreground text-white overflow-hidden">
       <div className="px-6 py-20 md:px-12 md:py-28 lg:px-20 lg:py-32 max-w-[1440px] mx-auto text-center">
-        <div className="flex items-center justify-center gap-3 mb-6 lg:mb-8">
-          <div className="w-4 h-px bg-white/30" />
-          <span className="text-[12px] lg:text-[13px] font-medium tracking-wider uppercase text-peach">
-            Why Now
-          </span>
-        </div>
-        <h2 className="font-serif text-[28px] md:text-[36px] lg:text-[44px] leading-tight font-medium tracking-[-0.03em] mb-6 max-w-[700px] mx-auto">
-          AI creates free time. People spend free time traveling.
-        </h2>
-        <p className="text-[15px] lg:text-[16px] leading-relaxed text-white/60 max-w-[640px] mx-auto mb-10 lg:mb-14">
-          As AI automates more work, people gain more leisure time — and travel
-          is how they spend it. Plum meets this growing demand while creating
-          new opportunities for displaced workers to become travel
-          entrepreneurs.
-        </p>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-[900px] mx-auto">
+        <FadeIn blur>
+          <div className="flex items-center justify-center gap-3 mb-6 lg:mb-8">
+            <div className="w-4 h-px bg-white/30" />
+            <span className="text-[12px] lg:text-[13px] font-medium tracking-wider uppercase text-peach">
+              Why Now
+            </span>
+          </div>
+        </FadeIn>
+        <FadeIn delay={0.15}>
+          <h2 className="font-serif text-[28px] md:text-[36px] lg:text-[44px] leading-tight font-medium tracking-[-0.03em] mb-6 max-w-[700px] mx-auto">
+            AI creates free time. People spend free time traveling.
+          </h2>
+        </FadeIn>
+        <FadeIn delay={0.25}>
+          <p className="text-[15px] lg:text-[16px] leading-relaxed text-white/60 max-w-[640px] mx-auto mb-10 lg:mb-14">
+            As AI automates more work, people gain more leisure time — and travel
+            is how they spend it. Plum meets this growing demand while creating
+            new opportunities for displaced workers to become travel
+            entrepreneurs.
+          </p>
+        </FadeIn>
+        <StaggerContainer
+          stagger={0.15}
+          delay={0.3}
+          className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-[900px] mx-auto"
+        >
           {[
             {
-              stat: "$730B+",
+              value: 730,
+              prefix: "$",
+              suffix: "B+",
               label: "Online travel market in 2026",
             },
             {
-              stat: "34%",
+              value: 34,
+              prefix: "",
+              suffix: "%",
               label: "YoY growth in AI-powered travel",
             },
             {
-              stat: "3 in 1",
+              value: 3,
+              prefix: "",
+              suffix: " in 1",
               label: "SaaS + Marketplace + Consumer app",
             },
           ].map((item) => (
-            <div key={item.label}>
-              <p className="font-serif text-[28px] lg:text-[36px] font-medium text-peach mb-2">
-                {item.stat}
-              </p>
-              <p className="text-[13px] lg:text-[14px] text-white/50">
-                {item.label}
-              </p>
-            </div>
+            <StaggerItem key={item.label}>
+              <div>
+                <p className="font-serif text-[28px] lg:text-[36px] font-medium text-peach mb-2">
+                  <AnimatedCounter
+                    value={item.value}
+                    prefix={item.prefix}
+                    suffix={item.suffix}
+                    duration={1.8}
+                  />
+                </p>
+                <p className="text-[13px] lg:text-[14px] text-white/50">
+                  {item.label}
+                </p>
+              </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
+  );
+}
+
+function HeroImage() {
+  return (
+    <FadeIn delay={0.1}>
+      <section className="px-6 md:px-12 lg:px-20 max-w-[1440px] mx-auto">
+        <motion.div
+          className="w-full h-[240px] md:h-[320px] lg:h-[400px] rounded-2xl overflow-hidden relative"
+          whileHover={{ scale: 1.01 }}
+          transition={{ type: "spring", stiffness: 200, damping: 30 }}
+        >
+          <ParallaxImage
+            src="/images/lisbon-evening.jpg"
+            alt="Evening in a charming European city"
+            className="w-full h-full"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+          <div className="absolute bottom-6 left-6 lg:bottom-10 lg:left-10">
+            <LineReveal delay={0.3}>
+              <p className="text-white/80 text-[12px] lg:text-[13px] font-medium tracking-wider uppercase mb-2">
+                Your Next Adventure Awaits
+              </p>
+            </LineReveal>
+            <LineReveal delay={0.45}>
+              <p className="font-serif text-white text-[22px] md:text-[28px] lg:text-[32px] font-medium">
+                Every trip tells a story
+              </p>
+            </LineReveal>
+          </div>
+        </motion.div>
+      </section>
+    </FadeIn>
   );
 }
 
 function Footer() {
   return (
     <footer className="px-6 md:px-12 lg:px-20 pt-16 lg:pt-24 pb-10 lg:pb-12 max-w-[1440px] mx-auto">
-      <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 mb-12 lg:mb-16">
-        <div className="lg:w-[320px]">
-          <div className="mb-6">
-            <Logo />
-          </div>
-          <p className="text-[14px] leading-relaxed text-foreground/50">
-            The all-in-one travel platform for businesses managing brand trips,
-            agents building their practice, and travelers exploring the world.
-          </p>
-        </div>
-        <div className="flex-1 grid grid-cols-2 sm:grid-cols-3 gap-8 lg:justify-end lg:gap-20">
-          {[
-            {
-              title: "Platform",
-              links: [
-                "Trip Planner",
-                "Agent Marketplace",
-                "Business Tools",
-                "Travel Diary",
-              ],
-            },
-            {
-              title: "Company",
-              links: ["About Us", "Careers", "Press", "Blog"],
-            },
-            {
-              title: "Resources",
-              links: ["Help Center", "API Docs", "Agent Guide", "Status"],
-            },
-          ].map((col) => (
-            <div key={col.title}>
-              <h4 className="text-[13px] font-semibold uppercase tracking-wider text-foreground/40 mb-5">
-                {col.title}
-              </h4>
-              <div className="space-y-3">
-                {col.links.map((link) => (
-                  <a
-                    key={link}
-                    href="#"
-                    className="block text-[14px] lg:text-[15px] text-foreground/60 hover:text-foreground transition-colors"
-                  >
-                    {link}
-                  </a>
-                ))}
-              </div>
+      <FadeIn>
+        <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 mb-12 lg:mb-16">
+          <div className="lg:w-[320px]">
+            <div className="mb-6">
+              <Logo />
             </div>
-          ))}
+            <p className="text-[14px] leading-relaxed text-foreground/50">
+              The all-in-one travel platform for businesses managing brand trips,
+              agents building their practice, and travelers exploring the world.
+            </p>
+          </div>
+          <div className="flex-1 grid grid-cols-2 sm:grid-cols-3 gap-8 lg:justify-end lg:gap-20">
+            {[
+              {
+                title: "Platform",
+                links: [
+                  "Trip Planner",
+                  "Agent Marketplace",
+                  "Business Tools",
+                  "Travel Diary",
+                ],
+              },
+              {
+                title: "Company",
+                links: ["About Us", "Careers", "Press", "Blog"],
+              },
+              {
+                title: "Resources",
+                links: ["Help Center", "API Docs", "Agent Guide", "Status"],
+              },
+            ].map((col) => (
+              <div key={col.title}>
+                <h4 className="text-[13px] font-semibold uppercase tracking-wider text-foreground/40 mb-5">
+                  {col.title}
+                </h4>
+                <div className="space-y-3">
+                  {col.links.map((link) => (
+                    <a
+                      key={link}
+                      href="#"
+                      className="block text-[14px] lg:text-[15px] text-foreground/60 hover:text-foreground transition-colors"
+                    >
+                      {link}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-      <div className="mb-4">
+      </FadeIn>
+      <motion.div
+        className="mb-4"
+        initial={{ opacity: 0, x: -60 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
+      >
         <h2 className="font-serif text-[48px] md:text-[72px] lg:text-[96px] leading-none font-bold tracking-[-0.04em] text-foreground/10 select-none">
           PLUM
         </h2>
-      </div>
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-[13px] text-foreground/40">
-        <span>&copy; 2026 Plum Technologies. All rights reserved.</span>
-        <div className="flex gap-6">
-          <a href="#" className="hover:text-foreground transition-colors">
-            Privacy Policy
-          </a>
-          <a href="#" className="hover:text-foreground transition-colors">
-            Terms of Service
-          </a>
+      </motion.div>
+      <FadeIn delay={0.2}>
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-[13px] text-foreground/40">
+          <span>&copy; 2026 Plum Technologies. All rights reserved.</span>
+          <div className="flex gap-6">
+            <a href="#" className="hover:text-foreground transition-colors">
+              Privacy Policy
+            </a>
+            <a href="#" className="hover:text-foreground transition-colors">
+              Terms of Service
+            </a>
+          </div>
         </div>
-      </div>
+      </FadeIn>
     </footer>
   );
 }
@@ -731,24 +926,7 @@ export default function Home() {
       <DashboardMockup />
       <Features />
       <Testimonials />
-      <section className="px-6 md:px-12 lg:px-20 max-w-[1440px] mx-auto">
-        <div className="w-full h-[240px] md:h-[320px] lg:h-[400px] rounded-2xl overflow-hidden relative">
-          <img
-            src="/images/lisbon-evening.jpg"
-            alt="Evening in a charming European city"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-          <div className="absolute bottom-6 left-6 lg:bottom-10 lg:left-10">
-            <p className="text-white/80 text-[12px] lg:text-[13px] font-medium tracking-wider uppercase mb-2">
-              Your Next Adventure Awaits
-            </p>
-            <p className="font-serif text-white text-[22px] md:text-[28px] lg:text-[32px] font-medium">
-              Every trip tells a story
-            </p>
-          </div>
-        </div>
-      </section>
+      <HeroImage />
       <ForBusiness />
       <Marketplace />
       <AIVision />
