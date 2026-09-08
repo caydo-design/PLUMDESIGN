@@ -7,6 +7,7 @@ import {
   Plane,
   Check,
   ArrowRight,
+  ArrowUpRight,
   Globe,
   CalendarDays,
   MapPin,
@@ -58,46 +59,25 @@ function SiteNavbar() {
 function Hero() {
   return (
     <section className="relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(255,211,172,0.25),transparent)]" />
-      <div className="relative px-6 md:px-12 lg:px-20 pt-24 md:pt-32 lg:pt-40 pb-20 lg:pb-28 max-w-[1440px] mx-auto">
-        <FadeIn delay={0.1} blur>
-          <span className="uppercase font-semibold text-[11px] lg:text-[12px] tracking-[0.12em] text-sienna">
-            Group trips, end to end
-          </span>
-        </FadeIn>
-        <TextReveal
-          text="From group chat to gate D7."
-          as="h1"
-          className="font-serif font-medium max-w-[900px] mt-4 lg:mt-5"
-          style={{
-            fontSize: "clamp(40px, 8vw, 112px)",
-            lineHeight: 0.98,
-            letterSpacing: "-0.035em",
-          }}
-          delay={0.3}
-          stagger={0.06}
-        />
-        <FadeIn delay={0.8} blur>
-          <p className="mt-6 lg:mt-8 text-[16px] lg:text-[18px] leading-relaxed text-foreground/60 max-w-[560px]">
-            You&apos;ve talked about it for months. Plum turns the group chat
-            into a booked trip — plans, splits, and all — in one afternoon.
-          </p>
-        </FadeIn>
-        <FadeIn delay={1} direction="up">
-          <div className="flex flex-wrap items-center gap-3 mt-8 lg:mt-10">
-            <MagneticHover strength={0.15}>
-              <Button href="#get-started" size="lg">
-                Start planning free
-              </Button>
-            </MagneticHover>
-            <MagneticHover strength={0.15}>
-              <Button variant="secondary" href="#how-it-works" size="lg">
-                See how it works
-                <ArrowRight className="w-4 h-4" />
-              </Button>
-            </MagneticHover>
-          </div>
-        </FadeIn>
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(255,211,172,0.3),transparent)]" />
+      <div className="relative px-6 md:px-12 lg:px-20 pt-24 md:pt-36 lg:pt-44 pb-16 lg:pb-24 max-w-[1440px] mx-auto text-center">
+        <h1 className="font-serif text-[44px] md:text-[64px] lg:text-[88px] leading-[1.05] font-normal tracking-[-0.04em] max-w-[900px] mx-auto mb-6 lg:mb-8">
+          Don&apos;t plan trips,{" "}
+          <em>live them</em>
+        </h1>
+        <p className="text-[16px] lg:text-[18px] leading-relaxed text-foreground/60 max-w-[540px] mx-auto mb-10 lg:mb-14">
+          The all-in-one travel platform for businesses managing brand trips,
+          agents building their practice, and travelers exploring the world.
+        </p>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+          <Button href="#get-started">
+            Start Planning Free
+            <ArrowRight className="w-4 h-4" />
+          </Button>
+          <Button variant="ghost" href="#platform">
+            See How It Works
+          </Button>
+        </div>
       </div>
     </section>
   );
@@ -108,39 +88,95 @@ function Hero() {
  * ──────────────────────────────────────────────────────────────── */
 function HeroImage() {
   return (
-    <FadeIn delay={0.1}>
-      <section className="px-6 md:px-12 lg:px-20 max-w-[1440px] mx-auto">
-        <motion.div
-          className="w-full h-[280px] md:h-[400px] lg:h-[520px] rounded-2xl overflow-hidden relative"
-          whileHover={{ scale: 1.005 }}
-          transition={{ type: "spring", stiffness: 200, damping: 30 }}
-        >
-          <ParallaxImage
-            src="/images/lisbon-evening.jpg"
-            alt="Evening light on a European street"
-            className="w-full h-full"
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(180deg, rgba(50,5,5,0.1) 0%, rgba(50,5,5,0.45) 100%)",
-            }}
-          />
-          <div className="absolute bottom-6 left-6 lg:bottom-10 lg:left-10">
-            <LineReveal delay={0.3}>
-              <span className="uppercase font-semibold text-[11px] tracking-[0.12em] text-white/70">
-                Lisbon · April
-              </span>
-            </LineReveal>
-            <LineReveal delay={0.45}>
-              <p
-                className="font-serif text-white font-medium mt-2"
-                style={{ fontSize: "clamp(22px, 3vw, 36px)" }}
-              >
-                Every trip starts with one message.
-              </p>
-            </LineReveal>
+    <section className="px-6 md:px-12 lg:px-20 pb-8 max-w-[1440px] mx-auto">
+      <Card variant="bordered" className="overflow-hidden">
+        <div className="flex flex-col lg:flex-row">
+          <div className="hidden lg:block w-[240px] border-r border-warm/40 p-8 flex-shrink-0">
+            <h3 className="font-serif text-lg font-semibold mb-10">
+              Plum Dashboard
+            </h3>
+            <div className="space-y-4">
+              {[
+                { icon: Plane, label: "Trip Planner" },
+                { icon: Users, label: "Guest Manager" },
+                { icon: CalendarDays, label: "Itinerary Builder" },
+                { icon: MapPin, label: "Destination Hub" },
+                { icon: BookOpen, label: "Travel Diary" },
+              ].map((item) => (
+                <div key={item.label} className="flex items-center gap-3">
+                  <item.icon className="w-4 h-4 text-lavender" />
+                  <span className="text-[14px] text-foreground/70">
+                    {item.label}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="flex-1 flex flex-col md:flex-row">
+            <div className="flex-1 p-6 lg:p-8">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
+                <h3 className="font-serif text-xl lg:text-2xl font-medium">
+                  Brand Trip: Tulum Creator Retreat
+                </h3>
+                <Badge>12 Guests Confirmed</Badge>
+              </div>
+              <div className="w-full aspect-[656/518] rounded-xl bg-gradient-to-br from-peach/40 via-section to-warm flex items-center justify-center">
+                <div className="text-center">
+                  <Globe className="w-12 h-12 text-plum/30 mx-auto mb-3" />
+                  <p className="text-[14px] text-foreground/30 font-medium">
+                    Interactive Trip Map
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="border-t md:border-t-0 md:border-l border-warm/40 p-6 lg:p-8 md:w-[280px] lg:w-[320px]">
+              <h4 className="text-[15px] font-semibold mb-6">Trip Overview</h4>
+              <div className="space-y-6">
+                {[
+                  { label: "Budget Allocated", progress: 72 },
+                  { label: "Accommodations Booked", progress: 100 },
+                  { label: "Activities Planned", progress: 60 },
+                  { label: "Flights Confirmed", progress: 85 },
+                ].map((param) => (
+                  <div key={param.label}>
+                    <div className="flex items-center justify-between">
+                      <span className="text-[13px] text-foreground/60">
+                        {param.label}
+                      </span>
+                      <span className="text-[12px] font-medium text-plum">
+                        {param.progress}%
+                      </span>
+                    </div>
+                    <div className="mt-2 h-1.5 rounded-full bg-warm">
+                      <div
+                        className="h-full rounded-full bg-plum transition-all"
+                        style={{ width: `${param.progress}%` }}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-10">
+                <span className="text-[13px] text-foreground/60">
+                  Upcoming Milestones
+                </span>
+                <div className="mt-3 space-y-2">
+                  {[
+                    "Final headcount due Sep 1",
+                    "Deposit deadline Sep 15",
+                    "Itinerary review Sep 20",
+                  ].map((milestone) => (
+                    <div
+                      key={milestone}
+                      className="flex items-start gap-2 text-[13px] text-foreground/50"
+                    >
+                      <div className="w-1.5 h-1.5 rounded-full bg-plum/40 mt-1.5 flex-shrink-0" />
+                      {milestone}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </motion.div>
       </section>
@@ -366,75 +402,89 @@ function PhoneFrame({ children }: { children: ReactNode }) {
   );
 }
 
-function AppShowcase() {
+const testimonials = [
+  {
+    initials: "JE",
+    quote:
+      "We used to juggle spreadsheets, Venmo requests, and group chats for every brand trip. Plum replaced all of that with one dashboard. Our last creator retreat had 20 influencers confirmed and paid in 48 hours.",
+    name: "Jordan Ellis",
+    title: "Brand Partnerships Lead, Glow Collective",
+  },
+  {
+    initials: "MT",
+    quote:
+      "As an independent travel agent, Plum gave me a real platform to run my business. I set my rates, clients book directly through the app, and I spend my time curating experiences instead of chasing invoices.",
+    name: "Maya Torres",
+    title: "Independent Travel Agent, Wanderlux Travel",
+  },
+  {
+    initials: "AP",
+    quote:
+      "Plum's AI itinerary builder saved me hours of planning. I told it my budget and interests, and it created a perfect two-week Europe trip. The travel diary feature is something I use every single day.",
+    name: "Aisha Patel",
+    title: "Travel Enthusiast & Digital Nomad",
+  },
+];
+
+const proofCards = [
+  {
+    metric: "$730B+",
+    headline: "Online travel market",
+    quote: "Travel is the fastest-growing category in consumer spending globally.",
+    name: "McKinsey & Company",
+    source: "Global Travel Report 2026",
+  },
+  {
+    metric: "90% faster",
+    headline: "Trip planning time",
+    quote: "Plum cut our trip planning from days to minutes with AI-powered tools.",
+    name: "Sarah Kim",
+    source: "Operations Lead at Nomad Co",
+  },
+  {
+    metric: "4.9 stars",
+    headline: "Highest rated platform",
+    quote: "The most loved business travel platform by agents and travelers alike.",
+    name: "App Store",
+    source: "Travel Category, 2026",
+  },
+  {
+    metric: "3-in-1",
+    headline: "SaaS + Marketplace + App",
+    quote: "One seamless product for businesses, agents, and consumers.",
+    name: "Plum Platform",
+    source: "Product Overview",
+  },
+];
+
+function SocialProof() {
   return (
-    <section className="border-t border-warm/60 bg-foreground text-white overflow-hidden">
-      <div className="px-6 py-20 md:px-12 md:py-28 lg:px-20 lg:py-32 max-w-[1440px] mx-auto">
-        <FadeIn blur>
-          <span className="uppercase font-semibold text-[11px] lg:text-[12px] tracking-[0.12em] text-peach">
-            The app
-          </span>
-        </FadeIn>
-        <FadeIn delay={0.1}>
-          <h2
-            className="font-serif font-medium mt-4 max-w-3xl"
-            style={{
-              fontSize: "clamp(28px, 5vw, 56px)",
-              lineHeight: 1.05,
-              letterSpacing: "-0.03em",
-            }}
-          >
-            Four screens. The whole product.
-          </h2>
-        </FadeIn>
-        <FadeIn delay={0.2}>
-          <p className="mt-4 text-[15px] lg:text-[16px] leading-relaxed text-white/50 max-w-xl">
-            Invitation, shared feed, AI itinerary, trip creation — the soul of
-            the app is group context, shared content, and AI planning.
-          </p>
-        </FadeIn>
+    <section className="bg-foreground text-white">
+      <div className="px-6 py-24 md:px-12 md:py-32 lg:px-20 lg:py-40 max-w-[1440px] mx-auto">
+        <h2 className="font-serif text-[36px] md:text-[48px] lg:text-[64px] leading-[1.1] font-normal tracking-[-0.03em] text-center mb-14 lg:mb-20">
+          Love letters
+          <br />
+          to Plum
+        </h2>
 
-        <div className="mt-14 lg:mt-20 grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20">
-          {/* Screen 1: Invitation */}
-          <FadeIn direction="up" delay={0.3}>
-            <div className="flex flex-col lg:flex-row gap-8 items-start">
-              <div className="lg:sticky lg:top-12 flex-1">
-                <span className="font-serif text-[20px] text-white/30">01</span>
-                <div className="h-px w-10 bg-white/40 my-3" />
-                <h3
-                  className="font-serif font-medium"
-                  style={{ fontSize: "clamp(22px, 3vw, 28px)" }}
-                >
-                  You&apos;re invited.
-                </h3>
-                <p className="mt-3 text-[14px] leading-relaxed text-white/50">
-                  It starts in your messages. Someone you trust sends a trip —
-                  destination, dates, vibe. One tap and you&apos;re in.
-                </p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 mb-5">
+          {testimonials.map((t) => (
+            <div
+              key={t.name}
+              className="bg-[#FAF6F0] text-foreground rounded-2xl p-6 lg:p-8"
+            >
+              <div className="w-11 h-11 rounded-full bg-plum/10 flex items-center justify-center mb-5">
+                <span className="text-[14px] font-semibold text-plum">
+                  {t.initials}
+                </span>
               </div>
-              <div className="mx-auto lg:mx-0">
-                <PhoneFrame>
-                  <InvitationMockup />
-                </PhoneFrame>
-              </div>
-            </div>
-          </FadeIn>
-
-          {/* Screen 2: AI Itinerary */}
-          <FadeIn direction="up" delay={0.4}>
-            <div className="flex flex-col lg:flex-row gap-8 items-start">
-              <div className="lg:sticky lg:top-12 flex-1">
-                <span className="font-serif text-[20px] text-white/30">02</span>
-                <div className="h-px w-10 bg-white/40 my-3" />
-                <h3
-                  className="font-serif font-medium"
-                  style={{ fontSize: "clamp(22px, 3vw, 28px)" }}
-                >
-                  AI that knows the season.
-                </h3>
-                <p className="mt-3 text-[14px] leading-relaxed text-white/50">
-                  Your AI travel agent reads the feed, the group&apos;s
-                  calendars, and the destination — then builds the plan.
+              <p className="text-[14px] lg:text-[15px] leading-relaxed text-foreground/70 mb-6">
+                &ldquo;{t.quote}&rdquo;
+              </p>
+              <div>
+                <p className="text-[14px] font-semibold">{t.name}</p>
+                <p className="text-[12px] text-foreground/50 mt-0.5">
+                  {t.title}
                 </p>
               </div>
               <div className="mx-auto lg:mx-0">
@@ -505,6 +555,31 @@ function InvitationMockup() {
         </div>
         <div className="h-11 rounded-full border border-foreground text-foreground font-medium text-[14px] flex items-center justify-center">
           Maybe later
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5">
+          {proofCards.map((s) => (
+            <div
+              key={s.metric}
+              className="bg-plum rounded-2xl p-6 lg:p-8 relative"
+            >
+              <ArrowUpRight className="absolute top-6 right-6 lg:top-8 lg:right-8 w-5 h-5 text-white/50" />
+              <h3 className="font-serif text-[28px] lg:text-[36px] font-medium tracking-[-0.02em] mb-1">
+                {s.metric}
+              </h3>
+              <p className="text-[15px] lg:text-[16px] font-semibold text-white/90 mb-3">
+                {s.headline}
+              </p>
+              <p className="text-[13px] lg:text-[14px] text-white/60 leading-relaxed mb-5">
+                &ldquo;{s.quote}&rdquo;
+              </p>
+              <div className="flex items-center gap-1.5">
+                <span className="text-[13px] font-semibold text-white/90">
+                  {s.name}
+                </span>
+                <span className="text-[12px] text-white/40">, {s.source}</span>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
@@ -1018,6 +1093,11 @@ function Pricing() {
       <FadeIn delay={0.1}>
         <SectionHeading size="lg" className="mt-4 mb-5 max-w-xl">
           A plan for every kind of traveler.
+    <Section id="pricing">
+      <div className="text-center mb-12 lg:mb-20">
+        <SectionLabel>Simple Pricing</SectionLabel>
+        <SectionHeading className="mb-4">
+          A plan for every kind of traveler
         </SectionHeading>
       </FadeIn>
       <FadeIn delay={0.2}>
@@ -1056,6 +1136,41 @@ function Pricing() {
                     {plan.name}
                   </h3>
                   {plan.popular && <Badge>Most Popular</Badge>}
+          <div
+            key={plan.name}
+            className={`rounded-2xl p-8 lg:p-10 flex flex-col ${
+              plan.popular
+                ? "bg-white ring-2 ring-plum/20 shadow-lg"
+                : "bg-white ring-1 ring-foreground/[0.06]"
+            }`}
+          >
+            <div className="mb-6">
+              <div className="flex items-center gap-3 mb-3">
+                <h3 className="font-serif text-[22px] lg:text-[26px] font-medium">
+                  {plan.name}
+                </h3>
+                {plan.popular && <Badge>Most Popular</Badge>}
+              </div>
+              <p className="text-[14px] leading-relaxed text-foreground/60">
+                {plan.description}
+              </p>
+            </div>
+            <div className="flex items-baseline gap-2 mb-6">
+              <span className="font-serif text-[36px] lg:text-[44px] font-medium tracking-[-0.03em]">
+                {plan.price}
+              </span>
+              <span className="text-[15px] text-foreground/50">
+                {plan.period}
+              </span>
+            </div>
+            <div className="h-px bg-warm/60 mb-6" />
+            <div className="space-y-3 mb-auto">
+              {plan.features.map((feature) => (
+                <div key={feature} className="flex items-start gap-3">
+                  <Check className="w-3.5 h-3.5 text-plum mt-0.5 flex-shrink-0" />
+                  <span className="text-[14px] text-foreground/70">
+                    {feature}
+                  </span>
                 </div>
                 <p className="text-[14px] leading-relaxed text-foreground/60">
                   {plan.description}
