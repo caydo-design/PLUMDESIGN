@@ -29,7 +29,6 @@ import {
   StaggerContainer,
   StaggerItem,
   TextReveal,
-  LineReveal,
   ParallaxImage,
   AnimatedCounter,
   MagneticHover,
@@ -100,51 +99,6 @@ function Hero() {
         </FadeIn>
       </div>
     </section>
-  );
-}
-
-/* ────────────────────────────────────────────────────────────────
- * Hero image — full-bleed editorial image
- * ──────────────────────────────────────────────────────────────── */
-function HeroImage() {
-  return (
-    <FadeIn delay={0.1}>
-      <section className="px-6 md:px-12 lg:px-20 max-w-[1440px] mx-auto">
-        <motion.div
-          className="w-full h-[280px] md:h-[400px] lg:h-[520px] rounded-2xl overflow-hidden relative"
-          whileHover={{ scale: 1.005 }}
-          transition={{ type: "spring", stiffness: 200, damping: 30 }}
-        >
-          <ParallaxImage
-            src="/images/lisbon-evening.jpg"
-            alt="Evening light on a European street"
-            className="w-full h-full"
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(180deg, rgba(50,5,5,0.1) 0%, rgba(50,5,5,0.45) 100%)",
-            }}
-          />
-          <div className="absolute bottom-6 left-6 lg:bottom-10 lg:left-10">
-            <LineReveal delay={0.3}>
-              <span className="uppercase font-semibold text-[11px] tracking-[0.12em] text-white/70">
-                Lisbon · April
-              </span>
-            </LineReveal>
-            <LineReveal delay={0.45}>
-              <p
-                className="font-serif text-white font-medium mt-2"
-                style={{ fontSize: "clamp(22px, 3vw, 36px)" }}
-              >
-                Every trip starts with one message.
-              </p>
-            </LineReveal>
-          </div>
-        </motion.div>
-      </section>
-    </FadeIn>
   );
 }
 
@@ -1279,7 +1233,6 @@ export default function Home() {
     <main className="bg-background">
       <SiteNavbar />
       <Hero />
-      <HeroImage />
       <HowItWorks />
       <Features />
       <PullQuote />
